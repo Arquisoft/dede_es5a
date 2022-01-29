@@ -45,7 +45,7 @@ docker-compose down
 
 En esta etapa vamos a configurar GitHub Actions para tener CI en nuestro sistema. La idea es que cada vez que creemos una nuevo entregable (release) se construya el sistema (restapi y webapi), se ejecuten los tests y si todo funciona correctamente se construirán las imagenes de docker y se subirán a GiHub packages. Entonces podremos desplegar nuestra nuestra aplicación utilizando estas imagenes.
 
-El flujo de trabajo se encuentra en el archivo [asw2122.yml](.github/workflows/asw2122.yml).  Si lo revisas podrás ver que existen dos trabajos, uno para la restapi(**unit-test-restapi**) y otro para la webapp(**unit-test-webapp**). Estos trabajos se ejecutan de forma paralela por lo que aceleran la construcción de las imagenes. 
+El flujo de trabajo se encuentra en el archivo [asw2122.yml](https://github.com/Arquisoft/dede_es5a/blob/master/.github/workflows/asw2122.yml).  Si lo revisas podrás ver que existen dos trabajos, uno para la restapi(**unit-test-restapi**) y otro para la webapp(**unit-test-webapp**). Estos trabajos se ejecutan de forma paralela por lo que aceleran la construcción de las imagenes. 
 
 Si todo va bien revisarán los tests e2e (end to end) y si estos test de aceptación pasan se crearán las imagenes de docker y se desplegarán.
 
