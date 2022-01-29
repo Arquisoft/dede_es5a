@@ -1,6 +1,6 @@
 # asw2122_es5a
 
-[![Actions Status](https://github.com/Arquisoft/dede_es5a/workflows/CI%20for%20ASW2122/badge.svg)](https://github.com/Arquisoft/dede_es5a/actions)
+[![Actions Status](https://github.com/Arquisoft/dede_es5a/workflows/asw2122.yml/badge.svg)](https://github.com/Arquisoft/dede_es5a/actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pglez82_asw2122_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=pglez82_asw2122_es5a)
 [![codecov](https://codecov.io/gh/pglez82/asw2122_es5a/branch/master/graph/badge.svg?token=VN4XG9NTRO)](https://codecov.io/gh/pglez82/asw2122_es5a)
 
@@ -16,7 +16,7 @@ Este proyecto es un ejemplo basico de un sitio web utilizando **React** con **Ty
 
 <mark>Si tienes instalados node.js y npm, asegurate de actualizarlos antes de intentar construir las imagenes</mark>
 
-Si quieres ejecutar el proyecto necesitarás [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) y [Docker](https://docs.docker.com/get-docker/). Asegurate de tenerlos instalados en tu equipo. Descarga el proyecto con `git clone https://github.com/pglez82/asw2122_es5a`. La manera más rápìda de ejecutar todo es con Docker.
+Si quieres ejecutar el proyecto necesitarás [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) y [Docker](https://docs.docker.com/get-docker/). Asegurate de tenerlos instalados en tu equipo. Descarga el proyecto con `git clone https://github.com/Arquisoft/dede_es5a`. La manera más rápìda de ejecutar todo es con Docker.
 
 ```bash
 docker-compose up --build
