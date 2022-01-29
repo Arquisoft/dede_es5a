@@ -1,5 +1,5 @@
 # asw2122_es5a
-[([![pages-build-deployment](https://github.com/Arquisoft/dede_es5a/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Arquisoft/dede_es5a/actions/workflows/pages/pages-build-deployment))]
+[![pages-build-deployment](https://github.com/Arquisoft/dede_es5a/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Arquisoft/dede_es5a/actions/workflows/pages/pages-build-deployment)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pglez82_asw2122_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=pglez82_asw2122_es5a)
 [![codecov](https://codecov.io/gh/pglez82/asw2122_es5a/branch/master/graph/badge.svg?token=VN4XG9NTRO)](https://codecov.io/gh/pglez82/asw2122_es5a)
 
