@@ -14,7 +14,7 @@ Este proyecto es un ejemplo basico de un sitio web utilizando **React** con **Ty
 
 ## Miembros del equipo
 Diego González Suárez - UO276406  
-Alonso Álvarez Díaz-Ordóñez - UO270262
+Alonso Álvarez Díaz-Ordóñez - UO270262  
 Sofía Yiyu Qiu - UO277360  
 Gaspar Pisa Eyaralar - UO250825  
 
