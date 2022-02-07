@@ -17,6 +17,7 @@ Diego González Suárez - UO276406
 Alonso Álvarez Díaz-Ordóñez - UO270262  
 Sofía Yiyu Qiu - UO277360  
 Gaspar Pisa Eyaralar - UO250825  
+María Urrutia Fernández - UO251282
 
 
 ## Guia de inicio rápido
