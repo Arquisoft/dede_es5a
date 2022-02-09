@@ -69,7 +69,11 @@ Table with role names, person names, and their expectations with respect to the 
 
 [options="header",cols="1,2,2"]
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+|Rol/Nombre|Descripción|Expectativas
+| _Equipo de desarrollo_ | _Formado por los alumnos del grupo ES5A_ | _Aprender todo lo posible acerca de la arquitectura de software y del trabajo en equipo para finalmente aprobar la asignatura_
+| _Usuarios_ | _Cualquier persona que quiera encargar productos a domicilio manteniendo la privacidad de sus datos_| _Disponer de una aplicación que permita hacer compras y al mismo tiempo gestionando los datos que se comparten._
+| _Repartidores_ | _Se encargan de portar los productos desde un centro de distribución hasta los usuarios_| _Esperan un sistema fácil de usar con algoritmo que calcule las rutas óptimas._
+| _Proveedores_ | _Son los centros de distribución de los productos que se ofertan en la aplicación_| _Satisfacer los pedidos de los usuarios_
+| _Inrupt_ | _Compañía fundada por Tim Berners-Lee_ | _Dar a conocer el proyecto SOLID y fomentar su desarrollo_
+| _Cliente_ | _Son los profesores de la asignatura Arquitectura del Software_ | _Esperan un trabajo continuo y responsable. Además, un producto donde se refleje lo aprendido en la asignatura_
 |===
