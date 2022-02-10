@@ -26,6 +26,7 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| SOLID     | Se trata de una especificación que permite a los clientes guardar sus datos de manera segura en almacenes de datos descentralizados.
+| REACT     | Es una biblioteca de Javascript de código abierto que permite crear interfaces de usuario interactivas de manera sencilla
+| Typescript | Es un lenguaje de programación web basado en Typescript que añade tipado estático
 |===
