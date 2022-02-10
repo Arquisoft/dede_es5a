@@ -45,16 +45,16 @@ If you as an architect do not know how the quality of your work will be judged �
 A table with quality goals and concrete scenarios, ordered by priorities
 ****
 
-Los principales objetivos de calidad a conseguir y que determinarán la arquitectura podrían resumirse en los que siguen a continuación:
+Most important quality goals could be the ones that are exposed right here:
 
 [options="header",cols="1,2,2"]
 |===
-|Nº|Calidad|Motivación
-|1|Usabilidad|Conseguir que la curva de aprendizaje a la hora de usar la tienda por primera vez sea lo mínima. Facilitarle la vida al usuario a la hora de realizar sus gestiones será un reto a alcanzar.
-|2|Accesibilidad|Alcanzar al menos el nivel AA de accesibilidad mínimo requerido por la UE y con ello aumentar al máximo el número de posibles compradores de la tienda.
-|3|Disponibilidad|Lograr la máxima disponibilidad del sitio web para evitar perdidas económicas por fallos o caídas del sistema.
-|4|Eficiencia|Reducir al máximo los tiempos de espera al realizar operaciones concretas básicas por ejemplo una compra. Minimizar estos tiempos hará que las operaciones del usuario sean muy eficientes.
-|5|Mantenibilidad|Se intentará tener una implementación limpia que permita un mantenimiento eficiente por parte de otros desarrolladores en el futuro.
+|Nº|Quality|Motivation
+|1|Accesibility|Reaching at least AA accesibility level in order to pass EU minimum requirements. This will improve the number of clients using the application. It will be measured using online tools to prove that.
+|2|Confidentiality|The application will respect client's privacy. This website will always ask users to use their personal information because it will be stored in a personal pod using SOLID. Clients are going to manage their personal details.
+|3|Efficiency|Server's response is going to be under 0.5 seconds. This value is considered the minimum acceptable waiting time by users all over the net. Waiting times upper 0.5 seconds are usually negative for websites' popularity.
+|4|Usability|The GUI will be the most user-friendly for noob users. We will make usability tests with users who do not know any about the application.
+|5|Availability|The application will available the majority of time. System's availability will always be upper to 98%. This will reduce money loss due to system failures.
 |===
 
 === Stakeholders
