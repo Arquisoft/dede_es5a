@@ -54,7 +54,7 @@ Most important quality goals could be the ones that are exposed right here:
 |2|Confidentiality|The application will respect client's privacy. This website will always ask users to use their personal information because it will be stored in a personal pod using SOLID. Clients are going to manage their personal details.
 |3|Efficiency|Server's response is going to be under 0.5 seconds. This value is considered the minimum acceptable waiting time by users all over the net. Waiting times upper 0.5 seconds are usually negative for websites' popularity.
 |4|Usability|The GUI will be the most user-friendly for noob users. We will make usability tests with users who do not know any about the application.
-|5|Availability|The application will available the majority of time. System's availability will always be upper to 98%. This will reduce money loss due to system failures.
+|5|Availability|The application will be available the majority of time. System's availability will always be upper to 98%. This will reduce money loss due to system failures.
 |===
 
 === Stakeholders
