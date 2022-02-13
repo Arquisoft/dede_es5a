@@ -25,7 +25,9 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Term                  | Definition
+| DBMS                  | DataBase Management System is a software that is used to store and retrieve data from a database.
+| IDE                   | Integrated development environment is a software that provides facilities to developers.
+| Usability tests       | Usability tests is a testing technique to evaluate the functionality of a software product that consists of proposing tasks to real users and observing how they perform it. 
+| Deployment            | All the processes and activities that make a software system available to its users.
 |===
