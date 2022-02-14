@@ -4,11 +4,16 @@
 
 [role="arc42help"]
 ****
-.Restricciones técnicas
+.Technical Constraints
 |===
-|Restricción|Explicación
-| _SOLID_ | _Usaremos esta tecnología para que la información de los usuarios no pueda centralizarse en un servidor, esta información se obtendrá de los pods de los usuarios, siempre que den permisos._ 
-| React/Typescript | _Su uso compartido nos ofrecerá distintas ventajas como tener una aplicación más robusta y a prueba de bugs._ 
-| Arc42 | _Debemos utilizar esta plantilla para documentar el proyecto de una forma clara y simple y efectiva._
+|Constraint|Description
+| _SOLID_ | _We will use this technology so that the information of the users cannot be centralized in a server, this information will be obtained from the pods of the users, as long as they give permissions._ 
+| React/Typescript | _Its shared use will offer us different advantages such as having a more robust and bug-proof application._ 
+| Arc42 | _We must use this template because it is suitable for the project to be carried out, it will allow us to document it in a clear, simple and effective way._
+|===
+.Organizational constraints
+|===
+|Constraint|Description
+| GitHub | _We must use this version controller. It helps us to have a good organization of the project and facilitates teamwork._
 |===
 ****

@@ -26,7 +26,9 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| SOLID     | Se trata de una especificación que permite a los clientes guardar sus datos de manera segura en almacenes de datos descentralizados.
-| REACT     | Es una biblioteca de Javascript de código abierto que permite crear interfaces de usuario interactivas de manera sencilla
-| Typescript | Es un lenguaje de programación web basado en Typescript que añade tipado estático
+| Git       | It´s a version control software designed by Linus Torvalds, thinking about the efficiency, reliability and compatibility of application version maintenance.
+| Github    | Is´s a platform for hosting projects using the Git version control system.
+| SOLID     | It´s a specification that allows customers to store their data securely in decentralized data stores.
+| REACT     | It´s an open source Javascript library that allows you to easily create interactive user interfaces.
+| Typescript | It´s a Javascript-based web programming language that adds static typing.
 |===
