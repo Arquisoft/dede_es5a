@@ -70,11 +70,9 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role|Description|Expectations
-| _Client_ | _Fictitious company that hires us to develop Dede application._ | _They expect continuous and responsible work. In addition, a product that reflects what has been learned in the course._
+| _Client_ | _Fictitious company that hires us to develop DeDe application._ | _They expect continuous and responsible work. In addition, a product that reflects what has been learned in the course._
 | _Development team + Software Architects_ | _Formed by group ES5A students._ | _Learn about Software Architecture and teamwork._
 | _Users_ | _People intrested in buying online products while maintaining their privacy._ | _To have an application that allows making purchases and at the same time managing the shared data._
 | _Suppliers_ | _These are the distribution centers of the products offered in the application._| _Deliver orders to users._
-
-
 | _Inrupt_ | _Company founded by Tim Berners-Lee._ | _Make known the SOLID project and promote its development._
 |===
