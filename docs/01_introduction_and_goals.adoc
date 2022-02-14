@@ -14,20 +14,17 @@ Describes the relevant requirements and the driving forces that software archite
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+The following diagram represents the functional requirements of the application... (Link here Use Case diagram).
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+List of requirements:
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+* The system will emulate an online shop where the users will be able to select and buy products.
+* The system will calculate the shipping costs of the selected products based on the shipping information provided by the 
+    user's pod.
+* The system will show the user the total price for the products selected.
+* The system will register the user's order and will proceed with the shipping.
+* The system will show the user a list of all its orders.
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
@@ -44,6 +41,18 @@ If you as an architect do not know how the quality of your work will be judged โ
 .Form
 A table with quality goals and concrete scenarios, ordered by priorities
 ****
+
+Most important quality goals could be the ones that are exposed right here:
+
+[options="header",cols="1,2,2"]
+|===
+|Nยบ|Quality|Motivation
+|1|Accesibility|Reaching at least AA accesibility level in order to pass EU minimum requirements. This will improve the number of clients using the application. It will be measured using online tools to prove that.
+|2|Confidentiality|The application will respect client's privacy. This website will always ask users to use their personal information because it will be stored in a personal pod using SOLID. Clients are going to manage their personal details.
+|3|Efficiency|Server's response is going to be under 0.5 seconds. This value is considered the minimum acceptable waiting time by users all over the net. Waiting times upper 0.5 seconds are usually negative for websites' popularity.
+|4|Usability|The GUI will be the most user-friendly for noob users. We will make usability tests with users who do not know any about the application.
+|5|Availability|The application will be available the majority of time. System's availability will always be upper to 98%. This will reduce money loss due to system failures.
+|===
 
 === Stakeholders
 

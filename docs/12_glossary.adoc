@@ -31,4 +31,13 @@ Potentially more columns in case you need translations.
 | SOLID     | It´s a specification that allows customers to store their data securely in decentralized data stores.
 | REACT     | It´s an open source Javascript library that allows you to easily create interactive user interfaces.
 | Typescript | It´s a Javascript-based web programming language that adds static typing.
+| DBMS                  | DataBase Management System is a software that is used to store and retrieve data from a database.
+| IDE                   | Integrated development environment is a software that provides facilities to developers.
+| Usability tests       | Usability tests is a testing technique to evaluate the functionality of a software product that consists of proposing tasks to real users and observing how they perform it. 
+| Deployment            | All the processes and activities that make a software system available to its users.
+| Accesibility     | The attribute of being easy to meet or deal with especially for disabled clients
+| Confidentiality     | The ethical principle or legal right that a physician or other health professional will hold secret all information relating to a patient, unless the patient gives consent permitting disclosure.
+| Efficiency     | The ratio of the effective or useful output to the total input in any system.
+| Usability     | The degree to which an object, device, software application, etc. is easy to use with no specific training.
+| Availability     | The quality of being at hand when needed.
 |===
