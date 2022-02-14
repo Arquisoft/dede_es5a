@@ -69,11 +69,12 @@ Table with role names, person names, and their expectations with respect to the 
 
 [options="header",cols="1,2,2"]
 |===
-|Rol/Nombre|Descripción|Expectativas
-| _Equipo de desarrollo_ | _Formado por los alumnos del grupo ES5A_ | _Aprender todo lo posible acerca de la arquitectura de software y del trabajo en equipo para finalmente aprobar la asignatura_
-| _Usuarios_ | _Cualquier persona que quiera encargar productos a domicilio manteniendo la privacidad de sus datos_| _Disponer de una aplicación que permita hacer compras y al mismo tiempo gestionando los datos que se comparten._
-| _Repartidores_ | _Se encargan de portar los productos desde un centro de distribución hasta los usuarios_| _Esperan un sistema fácil de usar con algoritmo que calcule las rutas óptimas._
-| _Proveedores_ | _Son los centros de distribución de los productos que se ofertan en la aplicación_| _Satisfacer los pedidos de los usuarios_
-| _Inrupt_ | _Compañía fundada por Tim Berners-Lee_ | _Dar a conocer el proyecto SOLID y fomentar su desarrollo_
-| _Cliente_ | _Son los profesores de la asignatura Arquitectura del Software_ | _Esperan un trabajo continuo y responsable. Además, un producto donde se refleje lo aprendido en la asignatura_
+|Role|Description|Expectations
+| _Client_ | _Fictitious company that hires us to develop Dede application._ | _They expect continuous and responsible work. In addition, a product that reflects what has been learned in the course._
+| _Development team + Software Architects_ | _Formed by group ES5A students._ | _Learn about Software Architecture and teamwork._
+| _Users_ | _People intrested in buying online products while maintaining their privacy._ | _To have an application that allows making purchases and at the same time managing the shared data._
+| _Suppliers_ | _These are the distribution centers of the products offered in the application._| _Deliver orders to users._
+
+
+| _Inrupt_ | _Company founded by Tim Berners-Lee._ | _Make known the SOLID project and promote its development._
 |===
