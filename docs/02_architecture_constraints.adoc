@@ -4,10 +4,23 @@
 
 [role="arc42help"]
 ****
+.Contents
+Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+
+.Motivation
+Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
+Constraints must always be dealt with; they may be negotiable, though.
+
+.Form
+Simple tables of constraints with explanations.
+If needed you can subdivide them into
+technical constraints, organizational and political constraints and
+conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+****
 .Technical Constraints
 |===
 |Constraint|Description
-| _SOLID_ | _We will use this technology so that the information of the users cannot be centralized in a server, this information will be obtained from the pods of the users, as long as they give permissions._ 
+| _SOLID_ | _We will use this technology so that the users´  information cannot be centralized in a server, this information will be obtained from the users´  pods, as long as they give permissions._ 
 | React/Typescript | _Its shared use will offer us different advantages such as having a more robust and bug-proof application._ 
 | Arc42 | _We must use this template because it is suitable for the project to be carried out, it will allow us to document it in a clear, simple and effective way._
 |===
@@ -16,4 +29,3 @@
 |Constraint|Description
 | GitHub | _We must use this version controller. It helps us to have a good organization of the project and facilitates teamwork._
 |===
-****
