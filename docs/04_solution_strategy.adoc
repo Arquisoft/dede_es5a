@@ -22,3 +22,39 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+[options="header"]
+.Technology decisions
+|===
+|Decision|Reason
+|MongoDB as DBMS|MongoDB is a non-relational model that is a good choice for this project. However, this decision may change in the future.
+|Docker for application deployment|Docker is chosen due to its popularity and there is a lot of information about this technology.
+|Visual Studio Code, WebStorm as IDE or a text editor|At the moment, everyone can use any IDE that supports Typescript and React. Or even, it is possible to use a text editor instead of an IDE. Because the project continues working regardless of the used tool. However, an agreement may be fine to avoid potential problems.
+|===
+
+.Decisions about the top-level decomposition of the system
+* Possibilities:
+. Layered Architecture,
+. MVC Architecture,
+. or something hybrid.
+
+[options="header"]
+.Decisions on how to achieve quality goals
+|===
+|Decision|Reason
+|Online accessibility testing tools|To achieve accessibility
+|SOLID|To achieve confidentiality
+|NoSQL database|NoSQL database provides easy and fast search and thus efficiency is achieved.
+|Usability tests|Perform usability tests throughout development and do not leave for the last moment can help detect usability problems early.
+|Server provider|Choose the server provider and the payment plan according to our needs to achieve acceptable availability.
+|===
+
+[options="header"]
+.Organizational decisions
+|===
+|Decision|Reason
+|Kanban Board as work management tool|It allows stakeholders to visualize the workflow. Also, it helps development team to organize their tasks more visually.
+|Git Flow as branching strategy|All members have experience with it and find it comfortable. 
+|Wiki to record of meeting minutes|It is an integrated tool in GitHub where the project's git repository is.
+|Labels are created as needed|For now, create labels as needed and be careful not to duplicate them.
+|===
