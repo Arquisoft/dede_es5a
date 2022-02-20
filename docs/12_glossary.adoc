@@ -42,8 +42,8 @@ Potentially more columns in case you need translations.
 | Efficiency     | The ratio of the effective or useful output to the total input in any system.
 | Usability     | The degree to which an object, device, software application, etc. is easy to use with no specific training.
 | Availability     | The quality of being at hand when needed.
-| Node.js| An open-source and cross-platform runtime environment on the server-side. It is based on Google's V8 Javascript engine which is designed to execute Javascript code very quickly.
-| JavaScript| A programming language used both on the client side and on the server side. Javascript allows the interaction between web pages.
-| Express| A web aplication framework for Node.js used to building web and mobile aplications.
+| Node.js| An open-source and cross-platform runtime environment on the server-side. It is based on Google's V8 JavaScript engine, which is designed to execute JavaScript code very quickly.
+| JavaScript| A programming language used both on the client side and on the server side. JavaScript allows the interaction between web pages.
+| Express| A web application framework for Node.js used for building web and mobile applications.
 | Merge branches| The process of incorporating any changes in a branch to another branch.
 |===
