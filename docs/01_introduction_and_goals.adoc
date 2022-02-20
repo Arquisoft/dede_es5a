@@ -13,7 +13,6 @@ Describes the relevant requirements and the driving forces that software archite
 === Requirements Overview
 
 [role="arc42help"]
-****
 The following diagram represents the functional requirements of the application... (Link here Use Case diagram).
 
 List of requirements:
@@ -24,8 +23,6 @@ List of requirements:
 * The system will show the user the total price for the products selected.
 * The system will register the user's order and will proceed with the shipping.
 * The system will show the user a list of all its orders.
-
-****
 
 === Quality Goals
 
