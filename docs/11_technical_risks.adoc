@@ -15,3 +15,24 @@ This should be your motto for systematic detection and evaluation of risks and t
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
+
+[options="header"]
+.List of risks
+|===
+|Risk|Explanation|Measures
+|Lack of time||
+|Abandonment of a team member||
+|Not enough experience on technologies which we need to use. They are Typescript, React, Node.js, Express and SOLID.||
+|Lack of communication||
+|Unproductive meetings||
+|Problems with git||
+|English||
+|===
+
+[options="header"]
+.List of technical debts
+|===
+|Technical debts|Explanation|Measures
+|||
+|===
+
