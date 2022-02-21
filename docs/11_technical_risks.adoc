@@ -15,3 +15,23 @@ This should be your motto for systematic detection and evaluation of risks and t
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
+
+[options="header"]
+.List of risks
+|===
+|Nº|Risk|Explanation|Measures
+|1|Abandonment of a team member|It can be caused by different reasons such as personal or organizational problems.|Do not leave an important task or module for a single person. 
+|2|Not enough experience on technologies which we need to use.|These technologies are Typescript, React, Node.js, Express and SOLID.|Investigate more about these technologies and practice by following tutorials or online courses. There are also materials provided by teachers.
+|3|Problems with git|Team members can have conflicts when merging branches.|Make sure the result is what we expect before running unknown commands. To do this, we can consult the official documentation or ask other members of the team.
+|4|Lack of time|This risk is closely related to the others. In addition, team members also have other subjects besides this one.|Combine the completion of this work with the rest of the subjects. 
+|5|Unproductive meetings|It can be caused by not making preparations before meetings.|Have a list of topics to talk about during the meeting. 
+|6|Lack of communication|The communication is not immediate in most of the time because team members have different schedules.|Team members need to be more collaborative. Another measure is to take advantage of scheduled meetings.
+|7|English|It is not the usual language of the team members. Then this documentation can have linguistic errors.|Use the free online dictionary and language error detection tools. 
+|===
+
+[options="header"]
+.List of technical debts
+|===
+|Nº|Technical debts|Explanation|Measures
+|===
+
