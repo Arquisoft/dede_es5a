@@ -40,4 +40,4 @@ Accepted.
 
 Consequences::
 
-Having this much information about how to combine these technologies will help the team during the developement to create a much more robust application.
+Having this much information about how to combine these technologies will help the team during the development to create a much more robust application.
