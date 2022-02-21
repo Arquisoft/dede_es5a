@@ -30,28 +30,25 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== <Runtime Scenario 1>
-
-
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
+=== View orders and products
 
 [plantuml,"Sequence diagram",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+User -> Webapp: Request orders done
+
+database Restapi
+Webapp -> Restapi: Get orders by user
+Webapp <- Restapi: List of user's orders
+
+... **non related temporally** ...
+
+User -> Webapp: Show products
+Webapp -> Restapi: Get products
+Webapp <- Restapi: List of products
 ----
-=== <Runtime Scenario 2>
 
-=== ...
+Many details to keep in mind:
 
-=== <Runtime Scenario n>
+* The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
+* Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.
