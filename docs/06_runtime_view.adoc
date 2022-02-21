@@ -47,7 +47,6 @@ User -> Webapp: Show products
 Webapp -> Restapi: Get products
 Webapp <- Restapi: List of products
 ----
-
 Many details to keep in mind:
 
 * The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
@@ -65,7 +64,7 @@ Webapp -> Restapi: Add the product to cart
 User <-- Webapp: Product added correctly
 @enduml
 ----
-
 Many details to keep in mind:
 
 * Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
+
