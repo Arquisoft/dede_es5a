@@ -51,4 +51,4 @@ Webapp <- Restapi: List of products
 Many details to keep in mind:
 
 * The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
-* Restapi will manage request in order to get a response from database system. The response will be shown by the webapp in diferent views.
+* Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.
