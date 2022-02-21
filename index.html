@@ -562,7 +562,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="paragraph">
+<div class="paragraph arc42help">
 <p>The following diagram represents the functional requirements of the application&#8230;&#8203; (Link here Use Case diagram).</p>
 </div>
 <div class="paragraph">
@@ -1897,6 +1897,90 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dificulty</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidenciality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users' personal data  will be stored in Solid pods.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidenciality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only the data necessary for the correct operation of the application will be accessed. (Name, address and profile photo).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be available the majority of time, specially at client reviews. System availability will always be above 97%, with about 15 hours of maintenance every three weeks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project documentation shall be kept up to date and consistent with the project. Changes will be made as soon as something changes, and this will be checked with a review every two weeks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be intuitive and easy to use. This will be verified by testing with different user profiles.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesibility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The web application must pass the AA level in tawdis.net</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QS.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efficiency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The system will have a response time of less than 0.5 seconds.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Very High</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>@startmindmap
+<strong>[#Orange] QUALITY
+<strong>[#Yellow] Confidenciality
+</strong></strong> QS.1
+<strong>* QS.2
+</strong>[#Yellow] Availability
+<strong>* QS.3
+</strong>[#Yellow] Usability
+<strong>* QS.4
+</strong>* QS.5
+<strong>[#Yellow] Accesibility
+</strong>* QS.6
+<strong>[#Yellow] Efficiency
+</strong>* QS.7
+@endmindmap</p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -2158,7 +2242,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-12 13:10:45 +0100
+Last updated 2022-02-07 16:19:07 +0100
 </div>
 </div>
 </body>
