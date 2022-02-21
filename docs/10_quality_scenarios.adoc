@@ -69,7 +69,7 @@ Tabular or free form text.
 | QS.4 | Usability | Project documentation shall be kept up to date and consistent with the project. Changes will be made as soon as something changes, and this will be checked with a review every two weeks. | Medium| High
 | QS.5 | Usability | The application must be intuitive and easy to use. This will be verified by testing with different user profiles.| Medium| Medium
 | QS.6 | Accesibility | The web application must pass the AA level in tawdis.net | Low | High
-| QS.7 | Efficiency | El sistema tendrá un tiempo de respuesta de menos de 0.5.segundos | Low| Very High
+| QS.7 | Efficiency | The system will have a response time of less than 0.5 seconds. | Low| Very High
 
 |===
 
