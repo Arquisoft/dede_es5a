@@ -26,12 +26,12 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| Git       | It´s a version control software designed by Linus Torvalds, thinking about the efficiency, reliability and compatibility of application version maintenance.
-| Github    | Is´s a platform for hosting projects using the Git version control system.
-| Solid     | It´s a specification that allows customers to store their data securely in decentralized data stores.
+| Git       | It's a version control software designed by Linus Torvalds, thinking about the efficiency, reliability and compatibility of application version maintenance.
+| Github    | Is's a platform for hosting projects using the Git version control system.
+| Solid     | It's a specification that allows customers to store their data securely in decentralized data stores.
 | Solid Pod | Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.
-| REACT     | It´s an open source Javascript library that allows you to easily create interactive user interfaces.
-| Typescript | It´s a Javascript-based web programming language that adds static typing.
+| REACT     | It's an open source Javascript library that allows you to easily create interactive user interfaces.
+| Typescript | It's a Javascript-based web programming language that adds static typing.
 | DBMS                  | DataBase Management System is a software that is used to store and retrieve data from a database.
 | IDE                   | Integrated development environment is a software that provides facilities to developers.
 | GUI     | Graphical User Interface. 
@@ -42,4 +42,8 @@ Potentially more columns in case you need translations.
 | Efficiency     | The ratio of the effective or useful output to the total input in any system.
 | Usability     | The degree to which an object, device, software application, etc. is easy to use with no specific training.
 | Availability     | The quality of being at hand when needed.
+| Node.js| An open-source and cross-platform runtime environment on the server-side. It is based on Google's V8 JavaScript engine, which is designed to execute JavaScript code very quickly.
+| JavaScript| A programming language used both on the client side and on the server side. JavaScript allows the interaction between web pages.
+| Express| A web application framework for Node.js used for building web and mobile applications.
+| Merge branches| The process of incorporating any changes in a branch to another branch.
 |===
