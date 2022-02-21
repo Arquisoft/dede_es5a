@@ -485,7 +485,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_concept_n">8.3. <em>&lt;Concept n&gt;</em></a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">9. Design Decisions</a></li>
+<li><a href="#section-design-decisions">9. Design Decisions</a>
+<ul class="sectlevel2">
+<li><a href="#_mern_stack_usage">9.1. MERN Stack usage</a></li>
+</ul>
+</li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
 <ul class="sectlevel2">
 <li><a href="#_quality_tree">10.1. Quality Tree</a></li>
@@ -558,28 +562,31 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).</p>
+<div class="paragraph arc42help">
+<p>The following diagram represents the functional requirements of the application&#8230;&#8203; (Link here Use Case diagram).</p>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.</p>
+<p>List of requirements:</p>
 </div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.</p>
-</div>
-<div class="paragraph">
-<p>Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.</p>
-</div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The system will emulate an online shop where the users will be able to select and buy products.</p>
+</li>
+<li>
+<p>The system will calculate the shipping costs of the selected products based on the shipping information provided by the
+user&#8217;s pod.</p>
+</li>
+<li>
+<p>The system will show the user the total price for the products selected.</p>
+</li>
+<li>
+<p>The system will register the user&#8217;s order and will proceed with the shipping.</p>
+</li>
+<li>
+<p>The system will show the user a list of all its orders.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -601,6 +608,47 @@ If you as an architect do not know how the quality of your work will be judged �
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nº</th>
+<th class="tableblock halign-left valign-top">Quality</th>
+<th class="tableblock halign-left valign-top">Motivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidentiality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will respect client&#8217;s privacy. Users are going to manage their personal information stored in Solid Pods.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will be available the majority of time, specially at client reviews. System availability will always be above 97%, with about 15 hours of maintenance every three weeks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The GUI will be easy to use for any user, especially non-technical users. We will do usability tests with different user profiles.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesibility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide equal access and opportunities to people. Increase the number of customers using the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efficiency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server&#8217;s response is going to be under 0.5 seconds. This value is considered the minimum acceptable waiting time by users all over the net. Waiting times upper 0.5 seconds are usually negative for websites' popularity.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
@@ -649,21 +697,36 @@ These stakeholders determine the extent and the level of detail of your work and
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Role/Name</th>
-<th class="tableblock halign-left valign-top">Contact</th>
+<th class="tableblock halign-left valign-top">Role</th>
+<th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-left valign-top">Expectations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Client</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Fictitious company that hires us to develop DeDe application.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>They expect continuous and responsible work. In addition, a product that reflects what has been learned in the course.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Role-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Contact-2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Expectation-2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Development team + Software Architects</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Formed by group ES5A students.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Learn about Software Architecture and teamwork.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Users</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>People interested in buying online products while maintaining their privacy.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>To have an application that allows making purchases and at the same time managing the shared data.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Suppliers</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>These are the distribution centers of the products offered in the application.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Deliver orders to users.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Inrupt</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Company founded by Tim Berners-Lee.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Make known the SOLID project and promote its development.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -694,6 +757,48 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Technical Constraints</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>SOLID</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>We will use this technology so that the users´  information cannot be centralized in a server, this information will be obtained from the users´  pods, as long as they give permissions.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React/Typescript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Its shared use will offer us different advantages such as having a more robust and bug-proof application.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>We must use this template because it is suitable for the project to be carried out, it will allow us to document it in a clear, simple and effective way.</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Organizational constraints</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>We must use this version controller. It helps us to have a good organization of the project and facilitates teamwork.</em></p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -754,10 +859,23 @@ The title of the table is the name of your system, the three columns contain the
 </div>
 </div>
 <div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
+<p><span class="image"><img src="./images/business_context_diagram.png" alt="Business Context of DeDe"></span></p>
 </div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of external domain interfaces&gt;</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Client</strong>: the main target that should pay attention to our products, he has to interact with the shop and buy products.</p>
+</li>
+<li>
+<p><strong>Database</strong>: the infrastructure that stores the orders generated by the client and all the information related to them.</p>
+</li>
+<li>
+<p><strong>Solid pod</strong>: external storage which guarantees client&#8217;s privacy and personal data management.</p>
+</li>
+<li>
+<p><strong>Shopping Cart</strong>: warehouse in the session of the client which knows the client&#8217;s product selection.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -780,13 +898,26 @@ together with a mapping table showing the relationships between channels and inp
 </div>
 </div>
 <div class="paragraph">
-<p><strong>&lt;Diagram or Table&gt;</strong></p>
+<p><span class="image"><img src="./images/technical_context_diagram.png" alt="Technical Context of DeDe"></span></p>
 </div>
-<div class="paragraph">
-<p><strong>&lt;optionally: Explanation of technical interfaces&gt;</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>&lt;Mapping Input/Output to Channels&gt;</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Web browser</strong>: the application used by the client to reach a connection to the shop. It could be an application such as firefox or chrome.</p>
+</li>
+<li>
+<p><strong>Database</strong>: the infrastructure that stores all the information related to the shop. Orders, products, etc&#8230;&#8203;</p>
+</li>
+<li>
+<p><strong>Solid pod</strong>: external storage which guarantees client&#8217;s privacy and personal data management. We will accede it using http requests to the web using an API key.</p>
+</li>
+<li>
+<p><strong>Webapp</strong>: it refers to the UI of the application. It will be the visible part of DeDe developed using React.js.</p>
+</li>
+<li>
+<p><strong>Restapi</strong>: it is a server based on Node.js and Express that receives requests by the webapp. It will return json objects in order to satisfy webapp&#8217;s needs.</p>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -832,6 +963,120 @@ Refer to details in the following sections.</p>
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Technology decisions</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Decision</th>
+<th class="tableblock halign-left valign-top">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB as DBMS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB is a non-relational model that is a good choice for this project. However, this decision may change in the future.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker for application deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker is chosen due to its popularity and there is a lot of information about this technology.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code, WebStorm as IDE or a text editor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">At the moment, everyone can use any IDE that supports Typescript and React. Or even, it is possible to use a text editor instead of an IDE. Because the project continues working regardless of the used tool. However, an agreement may be fine to avoid potential problems.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<div class="title">Decisions about the top-level decomposition of the system</div>
+<ul>
+<li>
+<p>Possibilities:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Layered Architecture,</p>
+</li>
+<li>
+<p>MVC Architecture,</p>
+</li>
+<li>
+<p>or something hybrid.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Decisions on how to achieve quality goals</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Decision</th>
+<th class="tableblock halign-left valign-top">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Online accessibility testing tools</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To achieve accessibility</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">To achieve confidentiality</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NoSQL database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NoSQL database provides easy and fast search and thus efficiency is achieved.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Perform usability tests throughout development and do not leave for the last moment can help detect usability problems early.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server provider</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Choose the server provider and the payment plan according to our needs to achieve acceptable availability.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Organizational decisions</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Decision</th>
+<th class="tableblock halign-left valign-top">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kanban Board as work management tool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It allows stakeholders to visualize the workflow. Also, it helps development team to organize their tasks more visually.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git Flow as branching strategy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All members have experience with it and find it comfortable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wiki to record of meeting minutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is an integrated tool in GitHub where the project&#8217;s git repository is.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Labels are created as needed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For now, create labels as needed and be careful not to duplicate them.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1533,7 +1778,30 @@ here in this central section or whether you better document it locally
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_mern_stack_usage">9.1. MERN Stack usage</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Context</dt>
+<dd>
+<p>We need a set of different technologies and frameworks that can work well together in order to build our project.</p>
+</dd>
+<dt class="hdlist1">Decision</dt>
+<dd>
+<p>As we are restricted to use the <a href="02_architecture_constraints.adoc">React</a> framework, we might as well use these technologies (MongoDB, Express and Node.JS) knowing that there is a lot of information about them working together.</p>
+</dd>
+<dt class="hdlist1">Status</dt>
+<dd>
+<p>Accepted.</p>
+</dd>
+<dt class="hdlist1">Consequences</dt>
+<dd>
+<p>Having this much information about how to combine these technologies will help the team during the development to create a much more robust application.</p>
+</dd>
+</dl>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1655,6 +1923,84 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. List of risks</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nº</th>
+<th class="tableblock halign-left valign-top">Risk</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
+<th class="tableblock halign-left valign-top">Measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Abandonment of a team member</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It can be caused by different reasons such as personal or organizational problems.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not leave an important task or module for a single person.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not enough experience on technologies which we need to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These technologies are Typescript, React, Node.js, Express and SOLID.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Investigate more about these technologies and practice by following tutorials or online courses. There are also materials provided by teachers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Problems with git</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Team members can have conflicts when merging branches.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure the result is what we expect before running unknown commands. To do this, we can consult the official documentation or ask other members of the team.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This risk is closely related to the others. In addition, team members also have other subjects besides this one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Combine the completion of this work with the rest of the subjects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unproductive meetings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It can be caused by not making preparations before meetings.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have a list of topics to talk about during the meeting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of communication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The communication is not immediate in most of the time because team members have different schedules.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Team members need to be more collaborative. Another measure is to take advantage of scheduled meetings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">English</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It is not the usual language of the team members. Then this documentation can have linguistic errors.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the free online dictionary and language error detection tools.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. List of technical debts</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nº</th>
+<th class="tableblock halign-left valign-top">Technical debts</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
+<th class="tableblock halign-left valign-top">Measures</th>
+</tr>
+</thead>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1706,12 +2052,84 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-1&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-1&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s a version control software designed by Linus Torvalds, thinking about the efficiency, reliability and compatibility of application version maintenance.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-2&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-2&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Is&#8217;s a platform for hosting projects using the Git version control system.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s a specification that allows customers to store their data securely in decentralized data stores.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid Pod</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pods are where you store your data. Any kind of data can be stored in a Solid Pod. Once stored in a Pod, you control who can access your data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s an open source Javascript library that allows you to easily create interactive user interfaces.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typescript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It&#8217;s a Javascript-based web programming language that adds static typing.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DBMS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataBase Management System is a software that is used to store and retrieve data from a database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IDE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integrated development environment is a software that provides facilities to developers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Graphical User Interface.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability tests is a testing technique to evaluate the functionality of a software product that consists of proposing tasks to real users and observing how they perform it.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All the processes and activities that make a software system available to its users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accesibility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The attribute of being easy to meet or deal with especially for disabled clients</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confidentiality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ethical principle or legal right that a physician or other health professional will hold secret all information relating to a patient, unless the patient gives consent permitting disclosure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efficiency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ratio of the effective or useful output to the total input in any system.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The degree to which an object, device, software application, etc. is easy to use with no specific training.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The quality of being at hand when needed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An open-source and cross-platform runtime environment on the server-side. It is based on Google&#8217;s V8 JavaScript engine, which is designed to execute JavaScript code very quickly.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A programming language used both on the client side and on the server side. JavaScript allows the interaction between web pages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Express</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A web application framework for Node.js used for building web and mobile applications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Merge branches</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The process of incorporating any changes in a branch to another branch.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1740,7 +2158,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-15 11:49:02 +0100
+Last updated 2022-02-12 13:10:45 +0100
 </div>
 </div>
 </body>
