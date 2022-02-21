@@ -64,8 +64,10 @@ together with a mapping table showing the relationships between channels and inp
 
 ****
 
-**<Diagram or Table>**
+image:technical_context_diagram.png["Technical Context of DeDe"]
 
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
+* **Web browser**: the application used by the client to reach a connection to the shop. It could be an application such as firefox or chrome.
+* **Database**: the infrastructure that stores all the information related to the shop. Orders, products, etc...
+* **Solid pod**: external storage which guarantees client's privacy and personal data management. We will accede it using http requests to the web using an API key.
+* **Webapp**: it refers to the UI of the application. It will be the visible part of DeDe developed using React.js.
+* **Restapi**: it is a server based on Node.js and Express that receives requests by the webapp. It will return json objects in order to satisfy webapp's needs. 
