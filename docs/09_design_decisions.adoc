@@ -24,3 +24,20 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+=== MERN Stack usage
+
+Context:: 
+
+We need a set of different technologies and frameworks that can work well together in order to build our project. 
+
+Decision::
+
+As we are restricted to use the link:02_architecture_constraints.adoc[React] framework, we might as well use these technologies (MongoDB, Express and Node.JS) knowing that there is a lot of information about them working together.
+
+Status::
+
+Accepted.
+
+Consequences::
+
+Having this much information about how to combine these technologies will help the team during the development to create a much more robust application.
