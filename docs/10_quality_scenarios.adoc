@@ -35,6 +35,24 @@ The quality tree is a high-level overview of the quality goals and requirements:
 
 In any case the tree should include links to the scenarios of the following section.
 ****
+[plantuml,mindmap,svg]
+....
+@startmindmap
+*[#Orange] QUALITY
+**[#Yellow] Confidenciality
+*** QS.1
+*** QS.2
+**[#Yellow] Availability
+*** QS.3
+**[#Yellow] Usability
+*** QS.4
+*** QS.5
+**[#Yellow] Accesibility
+*** QS.6
+**[#Yellow] Efficiency
+*** QS.7
+@endmindmap
+....
 
 === Quality Scenarios
 
@@ -61,3 +79,15 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 .Form
 Tabular or free form text.
 ****
+|===
+|Reference|Atribute|Scenario|Priority|Dificulty
+| QS.1 | Confidenciality | Users' personal data  will be stored in Solid pods. | High | Medium
+| QS.2 | Confidenciality | Only the data necessary for the correct operation of the application will be accessed. (Name, address and profile photo). | High| Medium
+| QS.3 | Availability | The application will be available the majority of time, specially at client reviews. System availability will always be above 97%, with about 15 hours of maintenance every three weeks. | Medium | High
+| QS.4 | Usability | Project documentation shall be kept up to date and consistent with the project. Changes will be made as soon as something changes, and this will be checked with a review every two weeks. | Medium| High
+| QS.5 | Usability | The application must be intuitive and easy to use. This will be verified by testing with different user profiles.| Medium| Medium
+| QS.6 | Accesibility | The web application must pass the AA level in tawdis.net | Low | High
+| QS.7 | Efficiency | The system will have a response time of less than 0.5 seconds. | Low| Very High
+
+|===
+
