@@ -52,3 +52,28 @@ Many details to keep in mind:
 
 * The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
 * Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.
+
+=== Confirm purchase
+
+[plantuml,"Sequence diagram_Confirm_purchase",png]
+----
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User-> WebApp: Enter shopping cart
+User<- WebApp: Return shopping cart
+User-> WebApp: Checkout order
+... **Payment process** ...
+alt Checkout confirmed
+    User<- WebApp: Ask for personal information
+    User-> WebApp: Grants permission
+    WebApp-> SOLID: Check necessary information
+    WebApp<- SOLID: Returns information
+    WebApp-> Restapi: Save order
+    Restapi-> WebApp: Order saved
+    WebApp-> User: Order confirmed
+else Checkout error
+    WebApp-> User: Error with payment
+end
+----
