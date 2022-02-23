@@ -1498,31 +1498,10 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 <div class="sect2">
 <h3 id="_confirm_purchase">6.5. Confirm purchase</h3>
-<hr>
-<div class="paragraph">
-<p>@startuml
-actor User
-participant WebApp
-database Restapi
-database SOLID
-User&#8594; WebApp: Enter shopping cart
-User&#8592;- WebApp: Return shopping cart
-User&#8594; WebApp: Checkout order
-alt Checkout confirmed
-    User&#8592; WebApp: Ask for personal information
-    User&#8594; WebApp: Grant permission
-    WebApp&#8594; Restapi: Check necessary information
-    Restapi&#8594; SOLID: Get information
-    Restapi&#8592;- SOLID: Return information
-&#8230;&#8203; <strong>Payment process</strong> &#8230;&#8203;
-    Restapi&#8594; Restapi: Save order
-    Restapi-&#8594; WebApp: Order saved
-    WebApp-&#8594; User: Order confirmed
-else Checkout error
-    WebApp-&#8594; User: Error with payment
-end
-@enduml
----</p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram_Confirm_purchase.png" alt="Sequence diagram Confirm purchase" width="590" height="659">
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
