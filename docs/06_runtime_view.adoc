@@ -34,6 +34,7 @@ There are many notations for describing scenarios, e.g.
 
 [plantuml,"Sequence diagram_signUp_signIn", png]
 ----
+@startuml
 actor User
 participant WebApp
 database Restapi
@@ -60,12 +61,14 @@ alt User exists
 else User doesn't exists
     Restapi-> WebApp: Denied authentication
 end
+@enduml
 ----
 
 === View orders and products
 
 [plantuml,"Sequence diagram",png]
 ----
+@startuml
 actor User
 User -> Webapp: Request orders done
 
@@ -78,6 +81,7 @@ Webapp <- Restapi: List of user's orders
 User -> Webapp: Show products
 Webapp -> Restapi: Get products
 Webapp <- Restapi: List of products
+@enduml
 ----
 Many details to keep in mind:
 
@@ -110,10 +114,30 @@ Many details to keep in mind:
 
 * Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
 
-=== Confirm purchase
+=== Delete product from cart 
+[plantuml,"Sequence diagram_DeleteProduct",png]
+----
+@startuml
+actor User
+User -> Webapp: Enter shopping cart
+User <-- Webapp: Show cart
+User -> Webapp: Click on delete product
+database Restapi
+Webapp -> Restapi: Delete product from cart
+alt Deletion confirmed
+Webapp <-- Restapi: Product deleted
+User <-- Webapp: Update cart
+else Deletion error
+Webapp <-- Restapi: Product not deleted
+User <-- Webapp: Don't update cart
+end
+@enduml
+----
 
+=== Confirm purchase
 [plantuml,"Sequence diagram_Confirm_purchase",png]
 ----
+@startuml
 actor User
 participant WebApp
 database Restapi
@@ -134,4 +158,5 @@ alt Checkout confirmed
 else Checkout error
     WebApp--> User: Error with payment
 end
+@enduml
 ----
