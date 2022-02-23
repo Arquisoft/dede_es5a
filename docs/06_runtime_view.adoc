@@ -130,8 +130,8 @@ alt Checkout confirmed
 ... **Payment process** ...
     Restapi-> Restapi: Save order
     Restapi--> WebApp: Order saved
-    WebApp-> User: Order confirmed
+    WebApp--> User: Order confirmed
 else Checkout error
-    WebApp-> User: Error with payment
+    WebApp--> User: Error with payment
 end
 ----
