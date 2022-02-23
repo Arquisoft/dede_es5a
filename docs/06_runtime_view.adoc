@@ -30,28 +30,133 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== <Runtime Scenario 1>
+=== Sign up and sign in
 
+[plantuml,"Sequence diagram_signUp_signIn", png]
+----
+@startuml
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User-> WebApp: Enter credentials
+WebApp -> Restapi: Create user
+Restapi -> Restapi: Exists
+alt User already exists
+    Restapi -> WebApp: Error
+else Not registered
+    Restapi -> SOLID: Exists
+    alt Exists in SOLID
+        Restapi -> Restapi: Insert
+        Restapi -> WebApp: Created
+    else Doesn't exist in SOLID
+        Restapi -> WebApp: Error
+    end
+end
+User-> WebApp: Enter credentials
+WebApp-> Restapi: Login request
+alt User exists
+    Restapi-> WebApp: Returns the user
+    WebApp-> User: User logged in
+else User doesn't exists
+    Restapi-> WebApp: Denied authentication
+end
+@enduml
+----
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
+=== View orders and products
 
 [plantuml,"Sequence diagram",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+@startuml
+actor User
+User -> Webapp: Request orders done
+
+database Restapi
+Webapp -> Restapi: Get orders by user
+Webapp <- Restapi: List of user's orders
+
+... **non related temporally** ...
+
+User -> Webapp: Show products
+Webapp -> Restapi: Get products
+Webapp <- Restapi: List of products
+@enduml
 ----
-=== <Runtime Scenario 2>
+Many details to keep in mind:
 
-=== ...
+* The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
+* Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.
 
-=== <Runtime Scenario n>
+
+=== Add product to cart 
+[plantuml,"Sequence diagram_AddProduct",png]
+----
+@startuml
+actor User
+participant Webapp
+database Restapi
+database Server
+database Database
+
+User -> Webapp: Click on a product
+Webapp -> Restapi: Add product to cart
+alt User is logged in
+    Restapi -> Database: Add product to database
+else Else
+    Restapi -> Server: Add product to server's session
+end
+
+User <-- Webapp: Product added correctly
+@enduml
+----
+Many details to keep in mind:
+
+* Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
+
+=== Delete product from cart 
+[plantuml,"Sequence diagram_DeleteProduct",png]
+----
+@startuml
+actor User
+User -> Webapp: Enter shopping cart
+User <-- Webapp: Show cart
+User -> Webapp: Click on delete product
+database Restapi
+Webapp -> Restapi: Delete product from cart
+alt Deletion confirmed
+Webapp <-- Restapi: Product deleted
+User <-- Webapp: Update cart
+else Deletion error
+Webapp <-- Restapi: Product not deleted
+User <-- Webapp: Don't update cart
+end
+@enduml
+----
+
+=== Confirm purchase
+[plantuml,"Sequence diagram_Confirm_purchase",png]
+----
+@startuml
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User-> WebApp: Enter shopping cart
+User<-- WebApp: Return shopping cart
+User-> WebApp: Checkout order
+alt Checkout confirmed
+    User<- WebApp: Ask for personal information
+    User-> WebApp: Grant permission
+    WebApp-> Restapi: Check necessary information
+    Restapi-> SOLID: Get information
+    Restapi<-- SOLID: Return information
+... **Payment process** ...
+    Restapi-> Restapi: Save order
+    Restapi--> WebApp: Order saved
+    WebApp--> User: Order confirmed
+else Checkout error
+    WebApp--> User: Error with payment
+end
+@enduml
+----
