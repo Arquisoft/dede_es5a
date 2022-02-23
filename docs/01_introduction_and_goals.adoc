@@ -12,6 +12,7 @@ Describes the relevant requirements and the driving forces that software archite
 
 === Requirements Overview
 
+[role="arc42help"]
 The following diagram represents the functional requirements of the application... (Link here Use Case diagram).
 
 List of requirements:
