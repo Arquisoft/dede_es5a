@@ -469,7 +469,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_sign_up_and_sign_in">6.1. Sign up and sign in</a></li>
 <li><a href="#_view_orders_and_products">6.2. View orders and products</a></li>
 <li><a href="#_add_product_to_cart">6.3. Add product to cart</a></li>
-<li><a href="#_confirm_purchase">6.4. Confirm purchase</a></li>
+<li><a href="#_delete_product_from_cart">6.4. Delete product from cart</a></li>
+<li><a href="#_confirm_purchase">6.5. Confirm purchase</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -1488,11 +1489,40 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_confirm_purchase">6.4. Confirm purchase</h3>
+<h3 id="_delete_product_from_cart">6.4. Delete product from cart</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram_Confirm_purchase.png" alt="Sequence diagram Confirm purchase" width="590" height="659">
+<img src="./images/Sequence%20diagram_DeleteProduct.png" alt="Sequence diagram DeleteProduct" width="407" height="483">
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_confirm_purchase">6.5. Confirm purchase</h3>
+<hr>
+<div class="paragraph">
+<p>@startuml
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User&#8594; WebApp: Enter shopping cart
+User&#8592;- WebApp: Return shopping cart
+User&#8594; WebApp: Checkout order
+alt Checkout confirmed
+    User&#8592; WebApp: Ask for personal information
+    User&#8594; WebApp: Grant permission
+    WebApp&#8594; Restapi: Check necessary information
+    Restapi&#8594; SOLID: Get information
+    Restapi&#8592;- SOLID: Return information
+&#8230;&#8203; <strong>Payment process</strong> &#8230;&#8203;
+    Restapi&#8594; Restapi: Save order
+    Restapi-&#8594; WebApp: Order saved
+    WebApp-&#8594; User: Order confirmed
+else Checkout error
+    WebApp-&#8594; User: Error with payment
+end
+@enduml
+---</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -2252,7 +2282,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-12 13:10:45 +0100
+Last updated 2022-02-07 16:19:07 +0100
 </div>
 </div>
 </body>
