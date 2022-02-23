@@ -79,9 +79,34 @@ User -> Webapp: Show products
 Webapp -> Restapi: Get products
 Webapp <- Restapi: List of products
 ----
-
 Many details to keep in mind:
 
 * The user will interact with UI elements of the webapp such as buttons. These elements trigger events to the restapi.
 * Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.
+
+
+=== Add product to cart 
+[plantuml,"Sequence diagram_AddProduct",png]
+----
+@startuml
+actor User
+participant Webapp
+database Restapi
+database Server
+database Database
+
+User -> Webapp: Click on a product
+Webapp -> Restapi: Add product to cart
+alt User is logged in
+    Restapi -> Database: Add product to database
+else Else
+    Restapi -> Server: Add product to server's session
+end
+
+User <-- Webapp: Product added correctly
+@enduml
+----
+Many details to keep in mind:
+
+* Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
 
