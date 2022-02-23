@@ -81,10 +81,10 @@ User -> Webapp: Click on delete product
 database Restapi
 Webapp -> Restapi: Delete product from cart
 alt Deletion confirmed
-Webapp <- Restapi: Product deleted
+Webapp <-- Restapi: Product deleted
 User <-- Webapp: Update cart
 else Deletion error
-Webapp <- Restapi: Product not deleted
+Webapp <-- Restapi: Product not deleted
 User <-- Webapp: Don't update cart
 end
 @enduml
