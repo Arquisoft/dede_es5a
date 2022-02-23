@@ -58,9 +58,19 @@ Many details to keep in mind:
 ----
 @startuml
 actor User
-User -> Webapp: Click on a product
+participant Webapp
 database Restapi
-Webapp -> Restapi: Add the product to cart
+database Server
+database Database
+
+User -> Webapp: Click on a product
+Webapp -> Restapi: Add product to cart
+alt User is logged in
+    Restapi -> Database: Add product to database
+else Else
+    Restapi -> Server: Add product to server's session
+end
+
 User <-- Webapp: Product added correctly
 @enduml
 ----
