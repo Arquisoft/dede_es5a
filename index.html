@@ -466,7 +466,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_view_orders_and_products">6.1. View orders and products</a></li>
+<li><a href="#_sign_up_and_sign_in">6.1. Sign up and sign in</a></li>
+<li><a href="#_view_orders_and_products">6.2. View orders and products</a></li>
+<li><a href="#_add_product_to_cart">6.3. Add product to cart</a></li>
+<li><a href="#_confirm_purchase">6.4. Confirm purchase</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -559,7 +562,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
-<div class="paragraph arc42help">
+<div class="paragraph">
 <p>The following diagram represents the functional requirements of the application&#8230;&#8203; (Link here Use Case diagram).</p>
 </div>
 <div class="paragraph">
@@ -1438,10 +1441,18 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_view_orders_and_products">6.1. View orders and products</h3>
+<h3 id="_sign_up_and_sign_in">6.1. Sign up and sign in</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="359" height="405">
+<img src="./images/Sequence%20diagram_signUp_signIn.png" alt="Sequence diagram signUp signIn" width="416" height="757">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_orders_and_products">6.2. View orders and products</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="330" height="416">
 </div>
 </div>
 <div class="paragraph">
@@ -1456,6 +1467,32 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <p>Restapi will manage requests in order to get a response from database system. The response will be shown by the webapp in diferent views.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_product_to_cart">6.3. Add product to cart</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram_AddProduct.png" alt="Sequence diagram AddProduct" width="648" height="392">
+</div>
+</div>
+<div class="paragraph">
+<p>Many details to keep in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_confirm_purchase">6.4. Confirm purchase</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram_Confirm_purchase.png" alt="Sequence diagram Confirm purchase" width="590" height="659">
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1843,7 +1880,7 @@ concrete and measurable.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/mindmap.svg" alt="mindmap" width="375" height="416">
+<img src="./images/mindmap.svg" alt="mindmap" width="367" height="425">
 </div>
 </div>
 </div>
@@ -2215,7 +2252,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-19 12:12:49 +0100
+Last updated 2022-02-12 13:10:45 +0100
 </div>
 </div>
 </body>
