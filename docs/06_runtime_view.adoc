@@ -30,6 +30,40 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
+=== Sign up and sign in
+
+[plantuml,"Sequence diagram_signUp_signIn", png]
+----
+@startuml
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User-> WebApp: Enter credentials
+WebApp -> Restapi: Create user
+Restapi -> Restapi: Exists
+alt User already exists
+    Restapi -> WebApp: Error
+else Not registered
+    Restapi -> SOLID: Exists
+    alt Exists in SOLID
+        Restapi -> Restapi: Insert
+        Restapi -> WebApp: Created
+    else Doesn't exist in SOLID
+        Restapi -> WebApp: Error
+    end
+end
+User-> WebApp: Enter credentials
+WebApp-> Restapi: Login request
+alt User exists
+    Restapi-> WebApp: Returns the user
+    WebApp-> User: User logged in
+else User doesn't exists
+    Restapi-> WebApp: Denied authentication
+end
+@enduml
+----
+
 === View orders and products
 
 [plantuml,"Sequence diagram",png]
@@ -60,9 +94,19 @@ Many details to keep in mind:
 ----
 @startuml
 actor User
-User -> Webapp: Click on a product
+participant Webapp
 database Restapi
-Webapp -> Restapi: Add the product to cart
+database Server
+database Database
+
+User -> Webapp: Click on a product
+Webapp -> Restapi: Add product to cart
+alt User is logged in
+    Restapi -> Database: Add product to database
+else Else
+    Restapi -> Server: Add product to server's session
+end
+
 User <-- Webapp: Product added correctly
 @enduml
 ----
@@ -89,3 +133,30 @@ User <-- Webapp: Don't update cart
 end
 @enduml
 ----
+
+=== Confirm purchase
+[plantuml,"Sequence diagram_Confirm_purchase",png]
+----
+@startuml
+actor User
+participant WebApp
+database Restapi
+database SOLID
+User-> WebApp: Enter shopping cart
+User<-- WebApp: Return shopping cart
+User-> WebApp: Checkout order
+alt Checkout confirmed
+    User<- WebApp: Ask for personal information
+    User-> WebApp: Grant permission
+    WebApp-> Restapi: Check necessary information
+    Restapi-> SOLID: Get information
+    Restapi<-- SOLID: Return information
+... **Payment process** ...
+    Restapi-> Restapi: Save order
+    Restapi--> WebApp: Order saved
+    WebApp--> User: Order confirmed
+else Checkout error
+    WebApp--> User: Error with payment
+end
+@enduml
+---
