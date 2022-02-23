@@ -136,7 +136,7 @@ end
 
 === Confirm purchase
 [plantuml,"Sequence diagram_Confirm_purchase",png]
----
+----
 @startuml
 actor User
 participant WebApp
@@ -159,4 +159,4 @@ else Checkout error
     WebApp--> User: Error with payment
 end
 @enduml
----
+----
