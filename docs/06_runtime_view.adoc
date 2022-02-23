@@ -136,7 +136,7 @@ end
 
 === Confirm purchase
 [plantuml,"Sequence diagram_Confirm_purchase",png]
-----
+---
 @startuml
 actor User
 participant WebApp
