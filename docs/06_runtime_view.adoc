@@ -34,6 +34,7 @@ There are many notations for describing scenarios, e.g.
 
 [plantuml,"Sequence diagram",png]
 ----
+@startuml
 actor User
 User -> Webapp: Request orders done
 
@@ -46,6 +47,7 @@ Webapp <- Restapi: List of user's orders
 User -> Webapp: Show products
 Webapp -> Restapi: Get products
 Webapp <- Restapi: List of products
+@enduml
 ----
 Many details to keep in mind:
 
@@ -68,3 +70,17 @@ Many details to keep in mind:
 
 * Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
 
+=== Delete product from cart 
+[plantuml,"Sequence diagram_DeleteProduct",png]
+----
+@startuml
+actor User
+User -> Webapp: Click on cart
+User <-- Webapp: Show cart
+User -> Webapp: Click on delete product
+database Restapi
+Webapp -> Restapi: Delete product from cart
+Webapp <- Restapi: Notify
+User <-- Webapp: Notify
+@enduml
+----
