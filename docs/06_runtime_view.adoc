@@ -75,12 +75,17 @@ Many details to keep in mind:
 ----
 @startuml
 actor User
-User -> Webapp: Click on cart
+User -> Webapp: Enter shopping cart
 User <-- Webapp: Show cart
 User -> Webapp: Click on delete product
 database Restapi
 Webapp -> Restapi: Delete product from cart
-Webapp <- Restapi: Notify
-User <-- Webapp: Notify
+alt Deletion confirmed
+Webapp <- Restapi: Product deleted
+User <-- Webapp: Update cart
+else Deletion error
+Webapp <- Restapi: Product not deleted
+User <-- Webapp: Don't update cart
+end
 @enduml
 ----
