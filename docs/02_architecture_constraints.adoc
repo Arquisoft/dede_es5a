@@ -23,9 +23,11 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | _SOLID_ | _We will use this technology so that the users´  information cannot be centralized in a server, this information will be obtained from the users´  pods, as long as they give permissions._ 
 | React/Typescript | _Its shared use will offer us different advantages such as having a more robust and bug-proof application._ 
 | Arc42 | _We must use this template because it is suitable for the project to be carried out, it will allow us to document it in a clear, simple and effective way._
+| GitHub | _We must use this version controller. It helps us to have a good organization of the project and facilitates teamwork._
 |===
 .Organizational constraints
 |===
 |Constraint|Description
-| GitHub | _We must use this version controller. It helps us to have a good organization of the project and facilitates teamwork._
+| Time | _Other task from other subjects will be constraints. Time spent doing them will be time we will not spend in the project. We must take advantage of our organizational skills in order to get success._
+| Knowledge | _Technologies used are going to be constraints due to the few experience we have. We must improve our knowledge as soon as possible so it will be easier to work in the project._
 |===
