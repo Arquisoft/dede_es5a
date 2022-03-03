@@ -1,10 +1,9 @@
 // External Dependencies
 import express, { Request, Response } from "express";
-import { ObjectId } from "mongodb";
+import  mongodb  from "mongodb";
 import { collections } from "../services/products.service";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
-import mongodb from "mongodb";
 
 
 // Global Config
@@ -34,7 +33,7 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
 
     try {
         
-        const query = { _id: new ObjectId(id) };
+        const query = { _id: new mongodb.ObjectId(id) };
         const product = (await collectionProducts.findOne(query));
 
         if (product) {
@@ -66,7 +65,7 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
 
     try {
         const updatedProduct: Product = req.body;
-        const query = { _id: new ObjectId(id) };
+        const query = { _id: new mongodb.ObjectId(id) };
       
         const result = await collectionProducts.updateOne(query, { $set: updatedProduct });
 
@@ -84,7 +83,7 @@ productsRouter.delete("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
-        const query = { _id: new ObjectId(id) };
+        const query = { _id: new mongodb.ObjectId(id) };
         const result = await collectionProducts.deleteOne(query);
 
         if (result && result.deletedCount) {
