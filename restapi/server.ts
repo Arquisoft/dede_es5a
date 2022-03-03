@@ -10,6 +10,7 @@ dotenv.config();
 const app: Application = express();
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
 
+
 const options: cors.CorsOptions = {
     origin: ['http://localhost:3000']
 };

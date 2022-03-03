@@ -4,16 +4,23 @@ import { ObjectId } from "mongodb";
 import { collections } from "../services/products.service";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
+import mongodb from "mongodb";
+
 
 // Global Config
 export const productsRouter = express.Router();
+productsRouter.use(express.json()); //Usará json
 
-productsRouter.use(express.json());
+let collectionProducts : mongodb.Collection; //Almacenará la collección del servicio
+if(collections.products !== undefined){  //Se comprueba que existe una colección
+    collectionProducts = collections.products; //Se obtiene la colección del servicio
+}
+
 
 // GET (todos los productos)
 productsRouter.get("/", async (_req: Request, res: Response) => {
     try {
-       const products = (await collections.products!.find({}).toArray()); //Se obtienen los datos del servicio
+       const products = (await collectionProducts.find({}).toArray()); //Se obtienen los datos del servicio
 
         res.status(200).send(products); //Envía los datos como respuesta en json
     } catch (error) {
@@ -28,7 +35,7 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
     try {
         
         const query = { _id: new ObjectId(id) };
-        const product = (await collections.products!.findOne(query));
+        const product = (await collectionProducts.findOne(query));
 
         if (product) {
             res.status(200).send(product);
@@ -42,7 +49,7 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
 productsRouter.post("/", async (req: Request, res: Response) => {
     try {
         const newGame = req.body as Product;
-        const result = await collections.products!.insertOne(newGame); //Añade a la collección
+        const result = await collectionProducts.insertOne(newGame); //Añade a la collección
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new product with id ${result.insertedId}`))
@@ -61,7 +68,7 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
         const updatedProduct: Product = req.body;
         const query = { _id: new ObjectId(id) };
       
-        const result = await collections.products!.updateOne(query, { $set: updatedProduct });
+        const result = await collectionProducts.updateOne(query, { $set: updatedProduct });
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
@@ -78,7 +85,7 @@ productsRouter.delete("/:id", async (req: Request, res: Response) => {
 
     try {
         const query = { _id: new ObjectId(id) };
-        const result = await collections.products!.deleteOne(query);
+        const result = await collectionProducts.deleteOne(query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed product with id ${id}`));
