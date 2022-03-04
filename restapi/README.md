@@ -1,3 +1,10 @@
+## Esquema de peticiones al CRUD de productos
+- GET: http://localhost:5000/products -> lista de todos los productos
+- GET: http://localhost:5000/products/id -> producto concreto sustituyendo el "id" por el id que sea en la BD.
+- POST: http://localhost:5000/products -> añadido a la base de datos (pasando en el body un json con el producto, con las propiedades correspondientes)
+- DELETE: http://localhost:5000/products/id -> borra de la base de datos el producto de id pasado en la URL
+- PUT: http://localhost:5000/products/id -> actualiza el producto cuyo id sea el pasado en la URL
+
 ## Restapi
 
 El objetivo de esta parte es crear una al rest APi utilizando Express y Node.js con TypeScript. Solo vamos a implementar dos funciones. Una petición post para registrar un nuevo usuario y una petición get que devolverá un listado de todos los usuarios en el sistema. Es servicio web se desplegará utilizando Docker.
