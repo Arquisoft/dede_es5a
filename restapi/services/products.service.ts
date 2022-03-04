@@ -1,26 +1,44 @@
 // External Dependencies
 import mongodb from "mongodb";
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
+import mongoose = require("mongoose");
 
 dotenv.config();
 
-// Global Variables
-export const collections: { products? : mongodb.Collection } = {
-} //Datos de la base de datos
+//Datos de la base de datos
 
 const URI: string = process.env.DATABASE_URI != undefined ? process.env.DATABASE_URI : "undefined"; //Datos para la conexión
-const COLLECTION_PRODUCTS: string = process.env.COLLECTION_PRODUCTS != undefined ? process.env.COLLECTION_PRODUCTS : "undefined";
 
-// Initialize Connection
-export async function connectToProductsDatabase() {
+/**
+ * Conecta con la base de datos. En todos los demas metodos hay que:
+ *  - Llamar a este metodo
+ *  - Hacer lo que sea que tenga que hacer
+ *  - Cerrar la conexión
+ * 
+ */
+async function connectToDatabase() {
 
-    const client: mongodb.MongoClient = new mongodb.MongoClient(URI); //Obtenemos el cliente con la URI
-    await client.connect(); //Nos conectamos
+    var client = await mongoose.connect(URI);
+    console.log("Connected");
 
-    const db: mongodb.Db = client.db(process.env.DB_NAME); //Vamos a la base de datos específica
-    const productsCollection: mongodb.Collection = db.collection(COLLECTION_PRODUCTS); //vamos a la colección de productos en mongodb
+    return client;
+}
 
-    collections.products = productsCollection; //Almacena la colección en la variable products de co
+/**
+ * Obtiene una colección de la BD
+ * @param collection Nombre de la colección
+ * @returns Array con la colección
+ */
+export async function getCollection(collection:string) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection(collection).find().toArray();
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
+}
 
-    console.log(`Successfully connected to (database: ${db.databaseName} - collection: ${productsCollection.collectionName})`);
+export async function findProductBy(filter:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection("Producto").find(filter).toArray();
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
 }

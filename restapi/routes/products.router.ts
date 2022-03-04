@@ -1,25 +1,23 @@
 // External Dependencies
 import express, { Request, Response } from "express";
-import  mongodb  from "mongodb";
-import { collections } from "../services/products.service";
+import * as mongodb  from "mongodb";
+import * as service from "../services/products.service";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
+import {app} from "../server";
 
-
-// Global Config
-export const productsRouter = express.Router();
-productsRouter.use(express.json()); //Usará json
-
-let collectionProducts : mongodb.Collection; //Almacenará la collección del servicio
-if(collections.products !== undefined){  //Se comprueba que existe una colección
-    collectionProducts = collections.products; //Se obtiene la colección del servicio
-}
+/*
+app.get("/abc", async (req: Request, res: Response) => {
+    res.send("aaaaaa");
+    console.log(await test.getCollection("Producto"));
+});
+*/
 
 
 // GET (todos los productos)
-productsRouter.get("/", async (_req: Request, res: Response) => {
+app.get("/", async (_req: Request, res: Response) => {
     try {
-       const products = (await collectionProducts.find({}).toArray()); //Se obtienen los datos del servicio
+       var products = await service.getCollection("Producto"); //Se obtienen los datos del servicio
 
         res.status(200).send(products); //Envía los datos como respuesta en json
     } catch (error) {
@@ -28,13 +26,13 @@ productsRouter.get("/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-productsRouter.get("/:id", async (req: Request, res: Response) => {
+app.get("/:id", async (req: Request, res: Response) => {
     const id = req?.params?.id;
 
     try {
         
-        const query = { _id: new mongodb.ObjectId(id) };
-        const product = (await collectionProducts.findOne(query));
+        var query = { _id: new mongodb.ObjectId(id) };
+        var product = await service.findProductBy(query);
 
         if (product) {
             res.status(200).send(product);
@@ -43,7 +41,7 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
         res.status(404).send(sanitizeHtml(`Unable to find matching document with id: ${req.params.id}`));
     }
 });
-
+/*
 // POST (Add)
 productsRouter.post("/", async (req: Request, res: Response) => {
     try {
@@ -97,4 +95,4 @@ productsRouter.delete("/:id", async (req: Request, res: Response) => {
         console.error(error.message);
         res.status(400).send(error.message);
     }
-});
+});*/
