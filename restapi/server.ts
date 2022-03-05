@@ -2,12 +2,12 @@ import express, { Application, RequestHandler } from "express";
 import cors from 'cors';
 import promBundle from 'express-prom-bundle';
 import dotenv from "dotenv";
-import { connectToProductsDatabase } from "./services/products.service"
-import { productsRouter } from "./routes/products.router";
 
 dotenv.config();
 
 const app: Application = express();
+module.exports = app;
+
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
 
 
@@ -21,16 +21,9 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
-connectToProductsDatabase() //Nos conectamos a la base de datos DeDe (collección de productos)
-    .then(() => {
-        app.use("/products", productsRouter); //Las rutas de la api de productos serán http://localhost:5000/products/
-    })
-    .catch((error: Error) => {
-        console.error("Products connection failed", error); //Captura si se produce algún error al conectarse a mongoDB
-        process.exit();
-    });
-
-
+//Rutas a los controladores
+require("./routes/products_router");
+require("./routes/users_router");
 
 //El servidor empieza a escuchar
 app.listen(port, () => {
