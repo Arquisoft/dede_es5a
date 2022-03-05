@@ -1,25 +1,15 @@
 // External Dependencies
 import express, { Request, Response } from "express";
-import  mongodb  from "mongodb";
-import { collections } from "../services/products.service";
+import * as mongodb  from "mongodb";
+import * as service from "../services/DB_manager";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
-
-
-// Global Config
-export const productsRouter = express.Router();
-productsRouter.use(express.json()); //Usará json
-
-let collectionProducts : mongodb.Collection; //Almacenará la collección del servicio
-if(collections.products !== undefined){  //Se comprueba que existe una colección
-    collectionProducts = collections.products; //Se obtiene la colección del servicio
-}
-
+var app = require("../server");
 
 // GET (todos los productos)
-productsRouter.get("/", async (_req: Request, res: Response) => {
+app.get("/product/", async (_req: Request, res: Response) => {
     try {
-       const products = (await collectionProducts.find({}).toArray()); //Se obtienen los datos del servicio
+       var products = await service.getCollection("Producto"); //Se obtienen los datos del servicio
 
         res.status(200).send(products); //Envía los datos como respuesta en json
     } catch (error) {
@@ -28,13 +18,12 @@ productsRouter.get("/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-productsRouter.get("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.get("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        
-        const query = { _id: new mongodb.ObjectId(id) };
-        const product = (await collectionProducts.findOne(query));
+        var query = { _id: new mongodb.ObjectId(id) };
+        var product = await service.findProductBy(query);
 
         if (product) {
             res.status(200).send(product);
@@ -45,10 +34,10 @@ productsRouter.get("/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-productsRouter.post("/", async (req: Request, res: Response) => {
+app.post("/product/", async (req: Request, res: Response) => {
     try {
-        const newGame = req.body as Product;
-        const result = await collectionProducts.insertOne(newGame); //Añade a la collección
+        var newProduct = req.body as Product;
+        var result = await service.addProduct(newProduct); //Añade a la collección
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new product with id ${result.insertedId}`))
@@ -60,14 +49,13 @@ productsRouter.post("/", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-productsRouter.put("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.put("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        const updatedProduct: Product = req.body;
-        const query = { _id: new mongodb.ObjectId(id) };
-      
-        const result = await collectionProducts.updateOne(query, { $set: updatedProduct });
+        var updatedProduct: Product = req.body;
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.updateProduct(query,updatedProduct);
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
@@ -79,12 +67,12 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-productsRouter.delete("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.delete("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        const query = { _id: new mongodb.ObjectId(id) };
-        const result = await collectionProducts.deleteOne(query);
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.removeProduct(query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed product with id ${id}`));
