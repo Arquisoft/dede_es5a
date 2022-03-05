@@ -1,21 +1,13 @@
 // External Dependencies
 import express, { Request, Response } from "express";
 import * as mongodb  from "mongodb";
-import * as service from "../services/products.service";
+import * as service from "../services/DB_manager";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
 import {app} from "../server";
 
-/*
-app.get("/abc", async (req: Request, res: Response) => {
-    res.send("aaaaaa");
-    console.log(await test.getCollection("Producto"));
-});
-*/
-
-
 // GET (todos los productos)
-app.get("/", async (_req: Request, res: Response) => {
+app.get("/product/", async (_req: Request, res: Response) => {
     try {
        var products = await service.getCollection("Producto"); //Se obtienen los datos del servicio
 
@@ -26,11 +18,10 @@ app.get("/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.get("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        
         var query = { _id: new mongodb.ObjectId(id) };
         var product = await service.findProductBy(query);
 
@@ -41,12 +32,12 @@ app.get("/:id", async (req: Request, res: Response) => {
         res.status(404).send(sanitizeHtml(`Unable to find matching document with id: ${req.params.id}`));
     }
 });
-/*
+
 // POST (Add)
-productsRouter.post("/", async (req: Request, res: Response) => {
+app.post("/product/", async (req: Request, res: Response) => {
     try {
-        const newGame = req.body as Product;
-        const result = await collectionProducts.insertOne(newGame); //Añade a la collección
+        var newProduct = req.body as Product;
+        var result = await service.addProduct(newProduct); //Añade a la collección
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new product with id ${result.insertedId}`))
@@ -58,14 +49,13 @@ productsRouter.post("/", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-productsRouter.put("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.put("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        const updatedProduct: Product = req.body;
-        const query = { _id: new mongodb.ObjectId(id) };
-      
-        const result = await collectionProducts.updateOne(query, { $set: updatedProduct });
+        var updatedProduct: Product = req.body;
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.updateProduct(query,updatedProduct);
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
@@ -77,12 +67,12 @@ productsRouter.put("/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-productsRouter.delete("/:id", async (req: Request, res: Response) => {
-    const id = req?.params?.id;
+app.delete("/product/:id", async (req: Request, res: Response) => {
+    var id = req?.params?.id;
 
     try {
-        const query = { _id: new mongodb.ObjectId(id) };
-        const result = await collectionProducts.deleteOne(query);
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.removeProduct(query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed product with id ${id}`));
@@ -95,4 +85,4 @@ productsRouter.delete("/:id", async (req: Request, res: Response) => {
         console.error(error.message);
         res.status(400).send(error.message);
     }
-});*/
+});

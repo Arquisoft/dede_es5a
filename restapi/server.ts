@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const app: Application = express();
-const port: number = 5000 /*process.env.PORT != undefined ? parseInt(process.env.PORT) : -1*/;
+const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
 
 
 const options: cors.CorsOptions = {
@@ -19,8 +19,9 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
-//Ruta al controlador
-require("./routes/products.router");
+//Rutas a los controladores
+require("./routes/products_router");
+require("./routes/users_router");
 
 //El servidor empieza a escuchar
 app.listen(port, () => {
