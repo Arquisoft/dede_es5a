@@ -5,7 +5,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const app: Application = express();
+const app: Application = express();
+module.exports = app;
+
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
 
 
