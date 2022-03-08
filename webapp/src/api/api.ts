@@ -1,4 +1,4 @@
-import {User} from '../shared/shareddtypes';
+import { User, Login } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 export async function addUser(user:User):Promise<boolean>{
@@ -28,3 +28,6 @@ export async function getProducts():Promise<Product[]>{
   return response.json()
 }
 
+export async function login(login: Login): Promise<boolean> {
+  return login.email == 'prueba@prueba.es' && login.password=='123';
+}

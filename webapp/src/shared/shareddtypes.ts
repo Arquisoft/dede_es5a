@@ -13,3 +13,8 @@ export type Product = {
       description: string,
       _id:string
 }
+
+export interface Login {
+  email: string;
+  password: string;
+}
