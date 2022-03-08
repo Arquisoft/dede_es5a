@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Product } from '../../shared/shareddtypes'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import { Grid } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -19,19 +19,23 @@ interface Props {
 
 export default function ImgMediaCard({ product }: Props) {
   const [size, setSize] = React.useState('')
+  const disponibility = product.disponibility
+
+  const sizesList = disponibility.map((s) => (
+    <MenuItem value={s.size}>{s.size}</MenuItem>
+  ))
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
   }
 
   return (
-    <Grid item xs={3} minWidth="200">
+    <Grid item xs={4}>
       <Card>
         <CardMedia
           component="img"
-          alt={product.name}
+          alt={product.name + " image can't be loaded"}
           height="200"
-          width="200"
           //image={require('/public/images/' + product.name + '.png')}
           image={'/images/socks_' + product.name + '.png'}
         />
@@ -55,16 +59,8 @@ export default function ImgMediaCard({ product }: Props) {
         <CardActions>
           <FormControl size="small" fullWidth>
             <InputLabel id="demo-simple-select-label">Size</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value="1"
-              label="Size"
-              onChange={handleSizeChange}
-            >
-              <MenuItem value={1}>35-40</MenuItem>
-              <MenuItem value={2}>40-45</MenuItem>
-              <MenuItem value={3}>45-50</MenuItem>
+            <Select label="Size" onChange={handleSizeChange}>
+              {sizesList}
             </Select>
           </FormControl>
           <Button variant="outlined">

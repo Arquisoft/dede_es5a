@@ -8,8 +8,12 @@ export type Product = {
       price: number, 
       type: string, 
       brand: string,
-      size: number,
-      stock: number,
+      disponibility: Array<Disponibility>,
       description: string,
       _id:string
+}
+
+export type Disponibility = {
+  size: string,
+  stock: number
 }
