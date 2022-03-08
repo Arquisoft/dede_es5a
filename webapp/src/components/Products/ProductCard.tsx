@@ -79,12 +79,13 @@ export default function ImgMediaCard({ product }: Props) {
               {sizesList}
             </Select>
           </FormControl>
-          <Button variant="outlined" disabled={!size} onClick={handleClick}>
+          <Button variant="contained" disabled={!size} onClick={handleClick}>
             <AddShoppingCartIcon></AddShoppingCartIcon>
           </Button>
         </CardActions>
         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
           <Alert
+            variant="filled"
             onClose={handleClose}
             severity="success"
             sx={{ width: '100%' }}
