@@ -14,6 +14,6 @@ export type Product = {
 }
 
 export type Disponibility = {
-  size: string,
+  size: number,
   stock: number
 }

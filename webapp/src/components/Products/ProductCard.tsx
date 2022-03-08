@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Product } from '../../shared/shareddtypes'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import { Container, Grid } from '@mui/material'
+import { Alert, Container, Grid, Snackbar } from '@mui/material'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -21,12 +21,28 @@ export default function ImgMediaCard({ product }: Props) {
   const [size, setSize] = React.useState('')
   const disponibility = product.disponibility
 
-  const sizesList = disponibility.map((s) => (
-    <MenuItem value={s.size}>{s.size}</MenuItem>
-  ))
+  const sizesList = disponibility
+    .sort((n1, n2) => n1.size - n2.size)
+    .map((s) => <MenuItem value={s.size}>{s.size}</MenuItem>)
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
+  }
+
+  const [open, setOpen] = React.useState(false)
+
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string,
+  ) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setOpen(false)
   }
 
   return (
@@ -63,10 +79,19 @@ export default function ImgMediaCard({ product }: Props) {
               {sizesList}
             </Select>
           </FormControl>
-          <Button variant="outlined">
+          <Button variant="outlined" disabled={!size} onClick={handleClick}>
             <AddShoppingCartIcon></AddShoppingCartIcon>
           </Button>
         </CardActions>
+        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: '100%' }}
+          >
+            Sock size {size} added to cart!
+          </Alert>
+        </Snackbar>
       </Card>
     </Grid>
   )
