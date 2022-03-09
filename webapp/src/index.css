@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html, body, #root, .App {
+  height: 100%;
+}
+
+.MuiContainer-root {
+  min-height: calc(100% - 145px);
+}

@@ -8,18 +8,21 @@ import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { useForm } from "react-hook-form";
 import { login } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 interface SignInPops {
     setPage: (page: string) => void
 }
 
-export default function SignIn({setPage}: SignInPops): JSX.Element{
+export default function UserLogIn(): JSX.Element{
 
     const {register, formState: { errors },handleSubmit} = useForm();
+    const navigate = useNavigate();
 
     async function doLogin(data: any) {
         const logued = await login(data);
-        if (logued) setPage('products');
+        if (logued) navigate('/products', {replace: true});
+        
     }
 
     return <React.Fragment>
