@@ -1,8 +1,8 @@
 // External Dependencies
-import mongodb from "mongodb";
 import dotenv, { config } from "dotenv";
 import mongoose = require("mongoose");
 import Product from "../models/product";
+import Order from "../models/order";
 
 dotenv.config();
 
@@ -66,6 +66,40 @@ export async function removeProduct(filter:any) {
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------ Consultas Pedido ---------------------------------------------------------
+export async function findOrderBy(filter:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection("Pedido").find(filter).toArray();
+    await client.connection.close(); 
+    return res;
+}
+
+export async function addOrder(o:Order) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection("Pedido").insertOne(o);
+    await client.connection.close(); 
+    return res;
+}
+
+export async function updateOrder(filter:any, o:Order) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection("Pedido").replaceOne(filter, o);
+    await client.connection.close(); 
+    return res;
+}
+
+export async function removeOrder(filter:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection("Order").deleteOne(filter);
+    await client.connection.close(); 
+    return res;
+}
+
+
 //----------------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------ Consultas Usuario ---------------------------------------------------------
+
