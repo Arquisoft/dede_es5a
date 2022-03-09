@@ -35,6 +35,7 @@ when your infrastructure is more complex.
 ****
 
 === Infrastructure Level 1
+image:deployment_view.png["Deployment diagram"]
 
 [role="arc42help"]
 ****

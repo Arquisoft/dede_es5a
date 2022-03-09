@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Navbar from './components/Navbar/Navbar';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+     <Navbar/>
+    <Container maxWidth="lg">
+      <App />
+    </Container>
   </React.StrictMode>,
   document.getElementById('root')
 );
