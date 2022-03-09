@@ -24,7 +24,7 @@ app.get("/user/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var user = await service.findUserBy(query);
+        var user = await service.findBy("Usuario", query);
 
         if (user) {
             res.status(200).send(user);
@@ -38,7 +38,7 @@ app.get("/user/:id", async (req: Request, res: Response) => {
 app.post("/user/", async (req: Request, res: Response) => {
     try {
         var newUser = req.body as User;
-        var result = await service.addUser(newUser); //Añade a la collección
+        var result = await service.addElement("Usuario", newUser); //Añade a la collección
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new user with id ${result.insertedId}`))
@@ -56,7 +56,7 @@ app.put("/user/:id", async (req: Request, res: Response) => {
     try {
         var updatedUser: User = req.body;
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.updateUser(query,updatedUser);
+        var result = await service.updateElement("Usuario", query, updatedUser);
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated user with id ${id}`))
@@ -73,7 +73,7 @@ app.delete("/user/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.removeUser(query);
+        var result = await service.removeElement("Usuario", query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed user with id ${id}`));

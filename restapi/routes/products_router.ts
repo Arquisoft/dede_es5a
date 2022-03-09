@@ -23,7 +23,7 @@ app.get("/product/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var product = await service.findProductBy(query);
+        var product = await service.findBy("Producto", query);
 
         if (product) {
             res.status(200).send(product);
@@ -37,7 +37,7 @@ app.get("/product/:id", async (req: Request, res: Response) => {
 app.post("/product/", async (req: Request, res: Response) => {
     try {
         var newProduct = req.body as Product;
-        var result = await service.addProduct(newProduct); //Añade a la collección
+        var result = await service.addElement("Producto", newProduct); //Añade a la collección
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new product with id ${result.insertedId}`))
@@ -55,7 +55,7 @@ app.put("/product/:id", async (req: Request, res: Response) => {
     try {
         var updatedProduct: Product = req.body;
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.updateProduct(query,updatedProduct);
+        var result = await service.updateElement("Producto", query,updatedProduct);
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
@@ -72,7 +72,7 @@ app.delete("/product/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.removeProduct(query);
+        var result = await service.removeElement("Producto", query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed product with id ${id}`));
