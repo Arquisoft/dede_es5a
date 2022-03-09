@@ -2,8 +2,6 @@
 import mongodb from "mongodb";
 import dotenv, { config } from "dotenv";
 import mongoose = require("mongoose");
-import Product from "../models/product";
-import User from "../models/user";
 
 dotenv.config();
 
