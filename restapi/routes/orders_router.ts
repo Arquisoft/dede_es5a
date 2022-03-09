@@ -3,18 +3,13 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import * as Order from "../models/order";
 import sanitizeHtml from "sanitize-html";
+import { findAll } from "./find_all";
 
 var app = require("../server");
 
 // GET (todos los productos)
 app.get("/order/", async (_req: Request, res: Response) => {
-    try {
-        var products = await service.getCollection("Pedido"); //Se obtienen los datos del servicio
-        
-        res.status(200).send(products); //Envía los datos como respuesta en json
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
+    findAll("Pedidos", res);
 });
 
 //ByID
