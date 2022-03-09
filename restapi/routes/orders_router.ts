@@ -3,7 +3,8 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import * as Order from "../models/order";
 import sanitizeHtml from "sanitize-html";
-import { findAll } from "./find_all";
+import { findAll } from "./operations/find_all";
+import { update } from "./operations/update";
 
 var app = require("../server");
 
@@ -51,20 +52,17 @@ app.post("/order/", async (req: Request, res: Response) => {
 
 // PUT (update)
 app.put("/order/:id", async (req: Request, res: Response) => {
-    var id = req?.params?.id;
+    update(req, res, //Llama a operations/update
+        async (id : string) => {
+            var updatedOrder: Order.default = req.body;
+            var query = { _id: new mongodb.ObjectId(id) };
+            var result = await service.updateOrder(query,updatedOrder);
 
-    try {
-        var updatedOrder: Order.default = req.body;
-        var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.updateOrder(query,updatedOrder);
-
-        result
-            ? res.status(200).send(sanitizeHtml(`Successfully updated order with id ${id}`))
-            : res.status(304).send(sanitizeHtml(`Order with id: ${id} not updated`));
-    } catch (error) {
-        console.error(error.message);
-        res.status(400).send(error.message);
-    }
+            result
+                ? res.status(200).send(sanitizeHtml(`Successfully updated order with id ${id}`))
+                : res.status(304).send(sanitizeHtml(`Order with id: ${id} not updated`));
+        })
+    
 });
 
 // DELETE

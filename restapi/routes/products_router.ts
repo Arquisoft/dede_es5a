@@ -4,7 +4,9 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
-import { findAll } from "./find_all";
+import { findAll } from "./operations/find_all";
+import { update } from "./operations/update";
+
 var app = require("../server");
 
 // GET (todos los productos)
@@ -45,20 +47,17 @@ app.post("/product/", async (req: Request, res: Response) => {
 
 // PUT (update)
 app.put("/product/:id", async (req: Request, res: Response) => {
-    var id = req?.params?.id;
+    update(req, res,  //Llama a operations/update
+        async (id: string) =>{
+            var updatedProduct: Product = req.body;
+            var query = { _id: new mongodb.ObjectId(id) };
+            var result = await service.updateProduct(query,updatedProduct);
 
-    try {
-        var updatedProduct: Product = req.body;
-        var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.updateProduct(query,updatedProduct);
-
-        result
-            ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
-            : res.status(304).send(sanitizeHtml(`Product with id: ${id} not updated`));
-    } catch (error) {
-        console.error(error.message);
-        res.status(400).send(error.message);
-    }
+            result
+                ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
+                : res.status(304).send(sanitizeHtml(`Product with id: ${id} not updated`));
+        })
+    
 });
 
 // DELETE
