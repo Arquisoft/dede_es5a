@@ -2,7 +2,7 @@
 import { Response, Request } from "express";
 
 
-export async function update(req : Request, res : Response, operation : Function){
+export async function updateDocument(req : Request, res : Response, operation : Function){
     var id = req?.params?.id;
 
     try {

@@ -3,14 +3,15 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import * as Order from "../models/order";
 import sanitizeHtml from "sanitize-html";
-import { findAll } from "./operations/find_all";
-import { update } from "./operations/update";
+import { findAllDocuments } from "./operations/find_all";
+import { updateDocument } from "./operations/update";
+import { deleteDocument } from "./operations/delete";
 
 var app = require("../server");
 
 // GET (todos los productos)
 app.get("/order/", async (_req: Request, res: Response) => {
-    findAll("Pedidos", res);
+    findAllDocuments("Pedidos", res);
 });
 
 //ByID
@@ -52,7 +53,7 @@ app.post("/order/", async (req: Request, res: Response) => {
 
 // PUT (update)
 app.put("/order/:id", async (req: Request, res: Response) => {
-    update(req, res, //Llama a operations/update
+    updateDocument(req, res, //Llama a operations/update
         async (id : string) => {
             var updatedOrder: Order.default = req.body;
             var query = { _id: new mongodb.ObjectId(id) };
@@ -67,22 +68,8 @@ app.put("/order/:id", async (req: Request, res: Response) => {
 
 // DELETE
 app.delete("/order/:id", async (req: Request, res: Response) => {
-    var id = req?.params?.id;
-
-    try {
-        var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.removeOrder(query);
-
-        if (result && result.deletedCount) {
-            res.status(202).send(sanitizeHtml(`Successfully removed order with id ${id}`));
-        } else if (!result) {
-            res.status(400).send(sanitizeHtml(`Failed to remove order with id ${id}`));
-        } else if (!result.deletedCount) {
-            res.status(404).send(sanitizeHtml(`Order with id ${id} does not exist`));
-        }
-    } catch (error) {
-        console.error(error.message);
-        res.status(400).send(error.message);
-    }
+    deleteDocument(req, res, 
+        async (query:string) => { console.log(query)
+            return await service.removeOrder(query);})
 });
 
