@@ -10,6 +10,7 @@ export type Product = {
       brand: string,
       disponibility: Array<Disponibility>,
       description: string,
+      image: string,
       _id:string
 }
 
