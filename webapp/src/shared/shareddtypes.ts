@@ -11,5 +11,25 @@ export type Product = {
       size: number,
       stock: number,
       description: string,
+      image: string,
       _id:string
+}
+
+export type CartProduct = {
+  name: string, 
+  price: number, 
+  size: number,
+  quantity: number,
+  image: string,
+  _id:string
+}
+
+export type CartActionReducer = {
+  payload: any, 
+  type: 'ADD' | 'REMOVE' | 'REMOVE-ALL'
+}
+
+export type CartContextType = {
+  cartProducts: CartProduct[],
+  dispatch: React.Dispatch<CartActionReducer>
 }

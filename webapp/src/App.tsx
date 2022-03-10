@@ -2,11 +2,14 @@
 import './App.css';
 
 import ProductList from './components/Products/ProductList';
+import { CartProvider } from './contexts/CartContext';
 
 function App(): JSX.Element {
 
   return (
-    <ProductList/>
+    <CartProvider>
+      <ProductList/>
+    </CartProvider>
   );
 }
 
