@@ -12,11 +12,12 @@ import Button from '@mui/material/Button';
 import { CartContext } from '../../contexts/CartContext';
 import CartItem from './CartItem';
 
-import {Card, CardMedia, CardContent, CardActions} from '@mui/material';
+import { Card, CardMedia, CardContent, CardActions } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import logo from '../../logo.svg';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function ShoppingCart() {
     const { cartProducts } = useContext(CartContext)
@@ -41,6 +42,41 @@ export default function ShoppingCart() {
 
                 <ListItem>
                     <Card>
+                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                        <CardMedia
+                            component="img"
+                            width="10"
+                            height="50"
+                            image={logo}
+                            alt="hola"
+                        ></CardMedia>
+                        <CardContent >
+                            <p>Name of Socks</p>
+                            <p>37-40</p>
+                            <p>2,00€</p>
+                        </CardContent>
+
+                        <CardActions>
+                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                <ButtonGroup>
+                                    <Button>
+                                        <RemoveCircleIcon></RemoveCircleIcon>
+                                    </Button>
+                                    <Button disabled>0</Button>
+                                    <Button>
+                                        <AddBoxIcon></AddBoxIcon>
+                                    </Button>
+                                </ButtonGroup>
+                                <Button>
+                                    <DeleteIcon></DeleteIcon>
+                                </Button>
+                            </Box>
+                        </CardActions>
+                        </Box>
+                    </Card>
+                </ListItem>
+                <ListItem>
+                    <Card>
                         <CardMedia
                             component="img"
                             width="200"
@@ -48,7 +84,9 @@ export default function ShoppingCart() {
                             alt="hola"
                         ></CardMedia>
                         <CardContent>
-                            <p>Socks</p>
+                            <p>Name of Socks</p>
+                            <p>37-40</p>
+                            <p>2,00€</p>
                         </CardContent>
                         <CardActions>
                             <Button>
@@ -72,31 +110,9 @@ export default function ShoppingCart() {
                             alt="hola"
                         ></CardMedia>
                         <CardContent>
-                            <p>Socks</p>
-                        </CardContent>
-                        <CardActions>
-                            <Button>
-                                <RemoveCircleIcon></RemoveCircleIcon>
-                            </Button>
-                            <Button>
-                                <AddBoxIcon></AddBoxIcon>
-                            </Button>
-                            <Button>
-                                <DeleteIcon></DeleteIcon>
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </ListItem>
-                <ListItem>
-                    <Card>
-                        <CardMedia
-                            component="img"
-                            width="200"
-                            image={logo}
-                            alt="hola"
-                        ></CardMedia>
-                        <CardContent>
-                            <p>Socks</p>
+                            <p>Name of Socks</p>
+                            <p>37-40</p>
+                            <p>2,00€</p>
                         </CardContent>
                         <CardActions>
                             <Button>
