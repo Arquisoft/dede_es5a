@@ -93,7 +93,7 @@ export async function updateOrder(filter:any, o:Order) {
 
 export async function removeOrder(filter:any) {
     var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Order").deleteOne(filter);
+    var res = await client.connection.db.collection("Pedido").deleteOne(filter);
     await client.connection.close(); 
     return res;
 }

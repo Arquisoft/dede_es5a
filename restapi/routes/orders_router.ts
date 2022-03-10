@@ -3,15 +3,18 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import * as Order from "../models/order";
 import sanitizeHtml from "sanitize-html";
-import { findAllDocuments } from "./operations/find_all";
-import { updateDocument } from "./operations/update";
-import { deleteDocument } from "./operations/delete";
 
 var app = require("../server");
 
 // GET (todos los productos)
 app.get("/order/", async (_req: Request, res: Response) => {
-    findAllDocuments("Pedidos", res);
+    try {
+        var documents = await service.getCollection("Pedido"); //Se obtienen los datos del servicio
+        
+        res.status(200).send(documents); //Envía los datos como respuesta en json
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 
 //ByID
@@ -44,7 +47,7 @@ app.post("/order/", async (req: Request, res: Response) => {
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new order with id ${result.insertedId}`))
-            : res.status(500).send(sanitizeHtml("Failed to create a new product."));
+            : res.status(500).send(sanitizeHtml("Failed to create a new order."));
     } catch (error) {
         console.error(error);
         res.status(400).send(error.message);
@@ -53,23 +56,42 @@ app.post("/order/", async (req: Request, res: Response) => {
 
 // PUT (update)
 app.put("/order/:id", async (req: Request, res: Response) => {
-    updateDocument(req, res, //Llama a operations/update
-        async (id : string) => {
-            var updatedOrder: Order.default = req.body;
-            var query = { _id: new mongodb.ObjectId(id) };
-            var result = await service.updateOrder(query,updatedOrder);
+    var id = req?.params?.id;
 
-            result
-                ? res.status(200).send(sanitizeHtml(`Successfully updated order with id ${id}`))
-                : res.status(304).send(sanitizeHtml(`Order with id: ${id} not updated`));
-        })
+    try {
+        var updatedOrder: Order.default = req.body;
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.updateOrder(query,updatedOrder);
+
+        result
+            ? res.status(200).send(sanitizeHtml(`Successfully updated order with id ${id}`))
+            : res.status(304).send(sanitizeHtml(`Order with id: ${id} not updated`)); //Efectúa la operación de actualización
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).send(error.message);
+    }
     
 });
 
 // DELETE
 app.delete("/order/:id", async (req: Request, res: Response) => {
-    deleteDocument(req, res, 
-        async (query:string) => { console.log(query)
-            return service.removeOrder(query);})
+    var id = req?.params?.id;
+
+    try {
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.removeOrder(query);
+
+        if (result && result.deletedCount) {
+            res.status(202).send(sanitizeHtml(`Successfully removed order with id ${id}`));
+        } else if (!result) {
+            res.status(400).send(sanitizeHtml(`Failed to remove order with id ${id}`));
+        } else if (!result.deletedCount) {
+            res.status(404).send(sanitizeHtml(`Order with id ${id} does not exist`));
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).send(error.message);
+    }
 });
 

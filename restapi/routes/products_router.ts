@@ -4,15 +4,18 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
-import { findAllDocuments } from "./operations/find_all";
-import { updateDocument } from "./operations/update";
-import { deleteDocument } from "./operations/delete";
 
 var app = require("../server");
 
 // GET (todos los productos)
 app.get("/product/", async (_req: Request, res: Response) => {
-    findAllDocuments("Producto", res)
+    try {
+        var documents = await service.getCollection("Producto"); //Se obtienen los datos del servicio
+        
+        res.status(200).send(documents); //Envía los datos como respuesta en json
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 
 //ByID
@@ -48,22 +51,42 @@ app.post("/product/", async (req: Request, res: Response) => {
 
 // PUT (update)
 app.put("/product/:id", async (req: Request, res: Response) => {
-    updateDocument(req, res,  //Llama a operations/update
-        async (id: string) =>{
-            var updatedProduct: Product = req.body;
+    var id = req?.params?.id;
+
+    try {
+        var updatedProduct: Product = req.body;
             var query = { _id: new mongodb.ObjectId(id) };
             var result = await service.updateProduct(query,updatedProduct);
 
             result
                 ? res.status(200).send(sanitizeHtml(`Successfully updated product with id ${id}`))
                 : res.status(304).send(sanitizeHtml(`Product with id: ${id} not updated`));
-        })
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).send(error.message);
+    }
+
     
 });
 
 // DELETE
 app.delete("/product/:id", async (req: Request, res: Response) => {
-    deleteDocument(req, res, 
-        async (query:string) => { console.log(query)
-            return service.removeProduct(query);})
+    var id = req?.params?.id;
+
+    try {
+        var query = { _id: new mongodb.ObjectId(id) };
+        var result = await service.removeProduct(query);
+
+        if (result && result.deletedCount) {
+            res.status(202).send(sanitizeHtml(`Successfully removed product with id ${id}`));
+        } else if (!result) {
+            res.status(400).send(sanitizeHtml(`Failed to remove product with id ${id}`));
+        } else if (!result.deletedCount) {
+            res.status(404).send(sanitizeHtml(`product with id ${id} does not exist`));
+        }
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).send(error.message);
+    }
 });
