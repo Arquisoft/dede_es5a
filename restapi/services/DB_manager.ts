@@ -1,8 +1,6 @@
 // External Dependencies
 import dotenv, { config } from "dotenv";
 import mongoose = require("mongoose");
-import Product from "../models/product";
-import Order from "../models/order";
 
 dotenv.config();
 
@@ -16,12 +14,10 @@ const URI: string = process.env.DATABASE_URI != undefined ? process.env.DATABASE
  *  - Hacer lo que sea que tenga que hacer
  *  - Cerrar la conexión
  * 
- */
+ */ 
 async function connectToDatabase() {
 
     var client = await mongoose.connect(URI);
-    console.log("Connected");
-
     return client;
 }
 
@@ -36,70 +32,33 @@ export async function getCollection(collection:string) {
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
-//----------------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------ Consultas Producto --------------------------------------------------------
-export async function findProductBy(filter:any) {
+export async function findBy(collection:string, filter:any) {
     var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").find(filter).toArray();
+    var res = await client.connection.db.collection(collection).find(filter).toArray();
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
 
-export async function addProduct(p:Product) {
+export async function addElement(collection:string, p:any) {
     var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").insertOne(p);
+    var res = await client.connection.db.collection(collection).insertOne(p);
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
 
-export async function updateProduct(filter:any, p:Product) {
+export async function updateElement(collection:string, filter:any, p:any) {
     var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").replaceOne(filter,p);
+    var res = await client.connection.db.collection(collection).replaceOne(filter,p);
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
 
-export async function removeProduct(filter:any) {
+export async function removeElement(collection:string, filter:any) {
     var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").deleteOne(filter);
+    var res = await client.connection.db.collection(collection).deleteOne(filter);
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------ Consultas Pedido ---------------------------------------------------------
-export async function findOrderBy(filter:any) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Pedido").find(filter).toArray();
-    await client.connection.close(); 
-    return res;
-}
-
-export async function addOrder(o:Order) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Pedido").insertOne(o);
-    await client.connection.close(); 
-    return res;
-}
-
-export async function updateOrder(filter:any, o:Order) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Pedido").replaceOne(filter, o);
-    await client.connection.close(); 
-    return res;
-}
-
-export async function removeOrder(filter:any) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Pedido").deleteOne(filter);
-    await client.connection.close(); 
-    return res;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------ Consultas Usuario ---------------------------------------------------------
-

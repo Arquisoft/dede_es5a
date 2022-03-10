@@ -23,7 +23,7 @@ app.get("/order/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var order = await service.findOrderBy(query);
+        var order = await service.findBy("Pedido",query);
 
         if (order) {
             res.status(200).send(order);
@@ -43,7 +43,7 @@ app.post("/order/", async (req: Request, res: Response) => {
         newOrder.setCode() //Se genera el código del pedido
         newOrder.calculateShipping(); //Se calcula el envio
 
-        var result = await service.addOrder(newOrder); //Añade a la collección
+        var result = await service.addElement("Pedido",newOrder); //Añade a la collección Pedido
 
         result
             ? res.status(201).send(sanitizeHtml(`Successfully created a new order with id ${result.insertedId}`))
@@ -61,7 +61,7 @@ app.put("/order/:id", async (req: Request, res: Response) => {
     try {
         var updatedOrder: Order.default = req.body;
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.updateOrder(query,updatedOrder);
+        var result = await service.updateElement("Pedido",query,updatedOrder);
 
         result
             ? res.status(200).send(sanitizeHtml(`Successfully updated order with id ${id}`))
@@ -80,7 +80,7 @@ app.delete("/order/:id", async (req: Request, res: Response) => {
 
     try {
         var query = { _id: new mongodb.ObjectId(id) };
-        var result = await service.removeOrder(query);
+        var result = await service.removeElement("Pedido", query);
 
         if (result && result.deletedCount) {
             res.status(202).send(sanitizeHtml(`Successfully removed order with id ${id}`));
