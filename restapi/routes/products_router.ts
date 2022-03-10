@@ -65,5 +65,5 @@ app.put("/product/:id", async (req: Request, res: Response) => {
 app.delete("/product/:id", async (req: Request, res: Response) => {
     deleteDocument(req, res, 
         async (query:string) => { console.log(query)
-            return await service.removeProduct(query);})
+            return service.removeProduct(query);})
 });

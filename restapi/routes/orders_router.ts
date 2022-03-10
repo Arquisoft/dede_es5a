@@ -70,6 +70,6 @@ app.put("/order/:id", async (req: Request, res: Response) => {
 app.delete("/order/:id", async (req: Request, res: Response) => {
     deleteDocument(req, res, 
         async (query:string) => { console.log(query)
-            return await service.removeOrder(query);})
+            return service.removeOrder(query);})
 });
 
