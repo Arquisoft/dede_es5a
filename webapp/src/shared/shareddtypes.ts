@@ -8,8 +8,7 @@ export type Product = {
       price: number, 
       type: string, 
       brand: string,
-      size: number,
-      stock: number,
+      disponibility: Array<Disponibility>,
       description: string,
       image: string,
       _id:string
@@ -32,4 +31,8 @@ export type CartActionReducer = {
 export type CartContextType = {
   cartProducts: CartProduct[],
   dispatch: React.Dispatch<CartActionReducer>
+}
+export type Disponibility = {
+  size: number,
+  stock: number
 }
