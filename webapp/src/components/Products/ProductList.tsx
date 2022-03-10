@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Product } from '../../shared/shareddtypes'
 import { getProducts } from '../../api/api'
-import Card from '@mui/material/Card'
-import ProductItem from './ProductItem'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
-import CardContent from '@mui/material/CardContent'
 import ProductCard from './ProductCard'
 
 const Item = styled(Paper)(({ theme }) => ({

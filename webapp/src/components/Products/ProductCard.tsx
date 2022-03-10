@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Product } from '../../shared/shareddtypes'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
-import { Alert, Box, Chip, Grid, Paper, Snackbar } from '@mui/material'
+import { Alert, Chip, Grid, Paper, Snackbar } from '@mui/material'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -44,7 +44,7 @@ export default function ImgMediaCard({ product }: Props) {
     }
   }
 
-  const checkStock = () => {}
+  //const checkStock = () => {}
 
   const [addable, setAddable] = React.useState(false)
 
