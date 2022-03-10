@@ -42,89 +42,104 @@ export default function ShoppingCart() {
 
                 <ListItem>
                     <Card>
-                    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                        <CardMedia
-                            component="img"
-                            width="10"
-                            height="50"
-                            image={logo}
-                            alt="hola"
-                        ></CardMedia>
-                        <CardContent >
-                            <p>Name of Socks</p>
-                            <p>37-40</p>
-                            <p>2,00€</p>
-                        </CardContent>
-
-                        <CardActions>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <ButtonGroup>
+                        <Box sx={{ display: 'flex', flexDirection: 'row' }} >
+                            <CardMedia
+                                component="img"
+                                width="10"
+                                height="50"
+                                image={logo}
+                                alt="hola"
+                            ></CardMedia>
+                            <CardContent >
+                                <p>Name of Socks</p>
+                                <p>37-40</p>
+                                <p>2,00€</p>
+                            </CardContent>
+                            <CardActions>
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Button>
-                                        <RemoveCircleIcon></RemoveCircleIcon>
+                                        <DeleteIcon></DeleteIcon>
                                     </Button>
-                                    <Button disabled>0</Button>
-                                    <Button>
-                                        <AddBoxIcon></AddBoxIcon>
-                                    </Button>
-                                </ButtonGroup>
-                                <Button>
-                                    <DeleteIcon></DeleteIcon>
-                                </Button>
-                            </Box>
-                        </CardActions>
+                                    <ButtonGroup>
+                                        <Button>
+                                            <RemoveCircleIcon></RemoveCircleIcon>
+                                        </Button>
+                                        <Button disabled>0</Button>
+                                        <Button>
+                                            <AddBoxIcon></AddBoxIcon>
+                                        </Button>
+                                    </ButtonGroup>
+                                </Box>
+                            </CardActions>
                         </Box>
                     </Card>
                 </ListItem>
                 <ListItem>
                     <Card>
-                        <CardMedia
-                            component="img"
-                            width="200"
-                            image={logo}
-                            alt="hola"
-                        ></CardMedia>
-                        <CardContent>
-                            <p>Name of Socks</p>
-                            <p>37-40</p>
-                            <p>2,00€</p>
-                        </CardContent>
-                        <CardActions>
-                            <Button>
-                                <RemoveCircleIcon></RemoveCircleIcon>
-                            </Button>
-                            <Button>
-                                <AddBoxIcon></AddBoxIcon>
-                            </Button>
-                            <Button>
-                                <DeleteIcon></DeleteIcon>
-                            </Button>
-                        </CardActions>
+                        <Box sx={{ display: 'flex', flexDirection: 'row' }} >
+                            <CardMedia
+                                component="img"
+                                width="10"
+                                height="50"
+                                image={logo}
+                                alt="hola"
+                            ></CardMedia>
+                            <CardContent >
+                                <p>Name of Socks</p>
+                                <p>37-40</p>
+                                <p>2,00€</p>
+                            </CardContent>
+                            <CardActions>
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Button>
+                                        <DeleteIcon></DeleteIcon>
+                                    </Button>
+                                    <ButtonGroup>
+                                        <Button>
+                                            <RemoveCircleIcon></RemoveCircleIcon>
+                                        </Button>
+                                        <Button disabled>0</Button>
+                                        <Button>
+                                            <AddBoxIcon></AddBoxIcon>
+                                        </Button>
+                                    </ButtonGroup>
+                                </Box>
+                            </CardActions>
+                        </Box>
                     </Card>
                 </ListItem>
                 <ListItem>
                     <Card>
-                        <CardMedia
-                            component="img"
-                            width="200"
-                            image={logo}
-                            alt="hola"
-                        ></CardMedia>
-                        <CardContent>
-                            <p>Name of Socks</p>
-                            <p>37-40</p>
-                            <p>2,00€</p>
-                        </CardContent>
-                        <CardActions>
-                            <Button>
-                                <RemoveCircleIcon></RemoveCircleIcon>
-                            </Button>
-                            <Button>
-                                <AddBoxIcon></AddBoxIcon>
-                            </Button>
-                            <Button>
-                                <DeleteIcon></DeleteIcon>
-                            </Button>
-                        </CardActions>
+                        <Box sx={{ display: 'flex', flexDirection: 'row' }} >
+                            <CardMedia
+                                component="img"
+                                width="10"
+                                height="50"
+                                image={logo}
+                                alt="hola"
+                            ></CardMedia>
+                            <CardContent >
+                                <p>Name of Socks</p>
+                                <p>37-40</p>
+                                <p>2,00€</p>
+                            </CardContent>
+                            <CardActions>
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Button>
+                                        <DeleteIcon></DeleteIcon>
+                                    </Button>
+                                    <ButtonGroup>
+                                        <Button>
+                                            <RemoveCircleIcon></RemoveCircleIcon>
+                                        </Button>
+                                        <Button disabled>0</Button>
+                                        <Button>
+                                            <AddBoxIcon></AddBoxIcon>
+                                        </Button>
+                                    </ButtonGroup>
+                                </Box>
+                            </CardActions>
+                        </Box>
                     </Card>
                 </ListItem>
             </List>
