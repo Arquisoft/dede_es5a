@@ -23,14 +23,14 @@ export type CartProduct = {
   _id:string
 }
 
-export type CartActionReducer = {
+export type CartReducerAction = {
   payload: any, 
-  type: 'ADD' | 'REMOVE' | 'REMOVE-ALL'
+  type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR'
 }
 
 export type CartContextType = {
   cartProducts: CartProduct[],
-  dispatch: React.Dispatch<CartActionReducer>
+  dispatch: React.Dispatch<CartReducerAction>
 }
 export type Disponibility = {
   size: number,

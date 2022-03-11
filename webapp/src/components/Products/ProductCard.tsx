@@ -17,9 +17,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 interface Props {
   product: Product
+  handleAddToCart: (product: Product) => void;
 }
 
-export default function ImgMediaCard({ product }: Props) {
+export default function ImgMediaCard({ product, handleAddToCart }: Props) {
   const [size, setSize] = React.useState('')
   const [available, setAvailable] = React.useState(true)
 
@@ -49,6 +50,7 @@ export default function ImgMediaCard({ product }: Props) {
   const [addable, setAddable] = React.useState(false)
 
   const handleClick = () => {
+    handleAddToCart(product)
     setAddable(true)
   }
 

@@ -1,11 +1,12 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import cartReducer from "../reducers/cartReducer";
-import { CartContextType } from "../shared/shareddtypes";
+import { CartContextType} from "../shared/shareddtypes";
 
 const initialState = {
     cartProducts: [],
     dispatch: () => {}
 }
+
 
 export const CartContext = createContext<CartContextType>(initialState);
 
