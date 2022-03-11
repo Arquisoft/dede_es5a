@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Card, CardMedia, CardContent, CardActions } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { CartProduct } from '../../shared/shareddtypes'
+import { CartProduct, Product } from '../../shared/shareddtypes'
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
+import { CartContext } from '../../contexts/CartContext'
 
 type Props = {
     item: CartProduct
 }
 
 export default function CartItem({ item }: Props) {
+    const { dispatch } = useContext(CartContext)
+
+    const handleAddToCart = (item: CartProduct) => {
+        dispatch({
+            payload: item,
+            type: 'ADD'
+        })
+    }
+
+    const handleRemoveFromCart = (item: CartProduct) => {
+        dispatch({
+            payload: item,
+            type: 'REMOVE'
+        })
+    }
+
+    const handleRemoveAllFromCart = (item: CartProduct) => {
+        dispatch({
+            payload: item,
+            type: 'REMOVE-ALL'
+        })
+    }
+
+
     return (
         <Card>
             <Box sx={{ display: 'flex', flexDirection: 'row' }} >
@@ -26,25 +51,25 @@ export default function CartItem({ item }: Props) {
                 <CardContent >
                     <p>{item.name}</p>
                     <p>{item.size}</p>
-                    <p>{item.price}</p>
+                    <p>{item.price*item.quantity} €</p>
                 </CardContent>
                 <CardActions>
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Button>
+                        <Button onClick={() => handleRemoveAllFromCart(item)}>
                             <DeleteIcon></DeleteIcon>
                         </Button>
                         <ButtonGroup>
-                            <Button>
+                            <Button onClick={() => handleRemoveFromCart(item)}>
                                 <RemoveCircleIcon></RemoveCircleIcon>
                             </Button>
                             <Button disabled>{item.quantity}</Button>
-                            <Button>
+                            <Button onClick={() => handleAddToCart(item)}>
                                 <AddBoxIcon></AddBoxIcon>
                             </Button>
-                        </ButtonGroup>
-                    </Box>
-                </CardActions>
+                    </ButtonGroup>
             </Box>
-        </Card>
+        </CardActions>
+            </Box >
+        </Card >
     )
 }
