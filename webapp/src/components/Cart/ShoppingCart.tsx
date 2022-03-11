@@ -10,6 +10,8 @@ import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import { CartContext } from '../../contexts/CartContext';
 import CartItem from './CartItem';
+import calculateCartTotal from '../../helpers/calculateCartTotal'
+
 
 export default function ShoppingCart() {
     const {cartProducts} = useContext(CartContext)
@@ -48,7 +50,7 @@ export default function ShoppingCart() {
 
                 {list()}
                 <Divider></Divider>
-                <p>Total</p>
+                <p>Total: {calculateCartTotal(cartProducts)} €</p>
                 <Button>Continue</Button>
             </Drawer>
 
