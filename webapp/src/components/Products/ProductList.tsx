@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext} from 'react'
-import { Product } from '../../shared/shareddtypes'
+import React, { useState, useEffect, useContext } from 'react'
+import { Product, CartProduct } from '../../shared/shareddtypes'
 import { getProducts } from '../../api/api'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import ProductCard from './ProductCard'
-import {CartContext} from '../../contexts/CartContext'
+import { CartContext } from '../../contexts/CartContext'
 
 function ProductList() {
-  const {dispatch} = useContext(CartContext)
+  const { dispatch } = useContext(CartContext)
   const [products, setProducts] = useState<Product[]>([])
 
-  const handleAddToCart = (product:Product) => {
+  const handleAddToCart = (cartProduct: CartProduct) => {
     dispatch({
-      payload: product,
+      payload: cartProduct,
       type: 'ADD'
     })
   }

@@ -4,16 +4,16 @@ import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import { CartContext } from '../../contexts/CartContext';
 import CartItem from './CartItem';
 import calculateCartTotal from '../../helpers/calculateCartTotal'
+import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
 import Stack from '@mui/material/Stack';
-import { Paper, styled, Container } from '@mui/material';
-
+import { Container, Badge } from '@mui/material';
+import Typography from '@mui/material/Typography';
 export default function ShoppingCart() {
     const { cartProducts } = useContext(CartContext)
     const [state, setState] = React.useState(false);
@@ -22,20 +22,24 @@ export default function ShoppingCart() {
         setState(open)
     };
 
+
     const list = () => (
         <Stack spacing={2}>
             {cartProducts.map(item => (
                 <CartItem key={item._id} item={item} />
             ))}
+            <Divider />
         </Stack>
     )
 
     return (
         <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open cart">
-                <IconButton onClick={toggleDrawer(true)} sx={{ p: 0 }}>
-                    <ShoppingCartIcon fontSize="large" ></ShoppingCartIcon>
-                </IconButton>
+                <Badge badgeContent={calculateTotalQuantity(cartProducts)} color="secondary">
+                    <IconButton onClick={toggleDrawer(true)} sx={{ p: 0 }}>
+                        <ShoppingCartIcon fontSize="large" ></ShoppingCartIcon>
+                    </IconButton>
+                </Badge>
             </Tooltip>
             <Drawer
                 anchor={"right"}
@@ -43,12 +47,18 @@ export default function ShoppingCart() {
                 onClose={toggleDrawer(false)}
             >
                 <Container>
-                    <h2>Your Shopping Cart</h2>
-                    {cartProducts.length === 0 ? <p>No items in cart.</p> : null}
+                    <Box sx={{ mt: "1.25em", mb: "1.25em" }}>
+                        <Typography align='center' variant='h5' component='h5'>My Shopping Cart</Typography>
+                    </Box>
+                    {cartProducts.length === 0 ? <p>No products in cart.</p> : null}
                     {list()}
-                    <Divider></Divider>
-                    <p>Total: {calculateCartTotal(cartProducts)} €</p>
-                    <Button>Continue</Button>
+                    <Box display="grid" gridTemplateColumns="repeat(2, 1fr)">
+                        <Typography variant='h6'>Total</Typography>
+                        <Typography variant='h6' align='right' >{calculateCartTotal(cartProducts)} €</Typography>
+                    </Box >
+                    <Box sx={{ mt: "1.25em" }}>
+                        <Button fullWidth variant="contained">Continue</Button>
+                    </Box>
                 </Container>
             </Drawer>
 
