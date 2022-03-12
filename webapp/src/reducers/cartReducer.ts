@@ -6,10 +6,10 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
         case 'ADD':
             console.log(state)
             // Dos casos: carrito vacío, carrito con elemento
-            const existProduct = state.find(item => item._id === action.payload._id);
+            const existProduct = state.find(item => item._id === action.payload._id && item.size === action.payload.size);
             if (existProduct) {
                 return state.map(item => {
-                    if (item._id === action.payload._id) {
+                    if (item._id === action.payload._id && item.size === action.payload.size) {
                         return {
                             ...item,
                             quantity: item.quantity + 1
@@ -23,7 +23,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
             }
         case 'REMOVE':
             return state.reduce((acum, item) => {
-                if (item._id === action.payload._id) {
+                if (item._id === action.payload._id && item.size === action.payload.size) {
                     if (item.quantity === 1) return acum;
                     else return [...acum, { ...item, quantity: item.quantity - 1 }]
                 }
@@ -31,8 +31,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
 
             }, [] as CartProduct[])
         case 'REMOVE-ALL':// Eliminar un producto del carrito
-
-            return state.filter(item => item._id !== action.payload._id)
+            return state.filter(item => item._id !== action.payload._id && item.size === action.payload.size)
         case 'CLEAR':// Vaciar el carrito
             return []
         default:

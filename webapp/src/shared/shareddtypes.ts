@@ -24,7 +24,7 @@ export type CartProduct = {
 }
 
 export type CartReducerAction = {
-  payload: any, 
+  payload: CartProduct, 
   type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR'
 }
 

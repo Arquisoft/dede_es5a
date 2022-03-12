@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { Product } from '../../shared/shareddtypes'
+import { Product, CartProduct } from '../../shared/shareddtypes'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { Alert, Chip, Grid, Paper, Snackbar } from '@mui/material'
 import InputLabel from '@mui/material/InputLabel'
@@ -17,7 +17,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 interface Props {
   product: Product
-  handleAddToCart: (product: Product) => void;
+  handleAddToCart: (cartProduct: CartProduct) => void;
 }
 
 export default function ImgMediaCard({ product, handleAddToCart }: Props) {
@@ -50,7 +50,15 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
   const [addable, setAddable] = React.useState(false)
 
   const handleClick = () => {
-    handleAddToCart(product)
+    const addToCartProduct = {
+      name: product.name,
+      price: product.price,
+      size: parseInt(size),
+      quantity: 0,
+      image: product.image,
+      _id: product._id
+    }
+    handleAddToCart(addToCartProduct)
     setAddable(true)
   }
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Card, CardMedia, CardContent, CardActions } from '@mui/material';
+import { Card, CardMedia, CardContent, CardActions, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -37,39 +37,83 @@ export default function CartItem({ item }: Props) {
         })
     }
 
-
+    /*
     return (
-        <Card>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }} >
-                <CardMedia
-                    component="img"
-                    width="10"
-                    height="50"
-                    image={item.image}
-                    alt={item.name}
-                ></CardMedia>
-                <CardContent >
-                    <p>{item.name}</p>
-                    <p>{item.size}</p>
-                    <p>{item.price * item.quantity} €</p>
-                </CardContent>
-                <CardActions>
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Button onClick={() => handleRemoveAllFromCart(item)}>
+        <Card sx={{ maxWidth: '30em', backgroundColor: '#f7f7f7' }}>
+            <Box sx={{ width: '25em', height: '15em'}} >
+                <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
+                <Grid item xs={3}>
+                    <CardMedia
+                        component="img"
+                        width="100%"
+                        height="auto"
+                        image={item.image}
+                        alt={item.name}
+                    ></CardMedia>
+                </Grid>
+                
+                    <Grid item xs>
+                        <CardContent>
+                            <p>{item.name}</p>
+                            <p>{item.price * item.quantity} €</p>
+                            <p>Size {item.size}</p>
+                        </CardContent>
+                    </Grid>
+                    <Grid item xs>
+                        <Button onClick={() => handleRemoveAllFromCart(item)} >
                             <DeleteIcon></DeleteIcon>
                         </Button>
-                        <ButtonGroup>
-                            <Button onClick={() => handleRemoveFromCart(item)}>
-                                <RemoveCircleIcon></RemoveCircleIcon>
-                            </Button>
-                            <Button disabled>{item.quantity}</Button>
-                            <Button onClick={() => handleAddToCart(item)}>
-                                <AddBoxIcon></AddBoxIcon>
-                            </Button>
-                        </ButtonGroup>
-                    </Box>
-                </CardActions>
+                    </Grid>
+                    <Grid item xs>
+                        <CardActions>
+                            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+
+                                <ButtonGroup>
+                                    <Button onClick={() => handleRemoveFromCart(item)}>
+                                        <RemoveCircleIcon></RemoveCircleIcon>
+                                    </Button>
+                                    <Button disabled>{item.quantity}</Button>
+                                    <Button onClick={() => handleAddToCart(item)}>
+                                        <AddBoxIcon></AddBoxIcon>
+                                    </Button>
+                                </ButtonGroup>
+                            </Box>
+                        </CardActions>
+                    </Grid>
+                </Box>
             </Box >
+        </Card >
+    )*/
+    return (
+        <Card sx={{ maxWidth: '30em', backgroundColor: '#f7f7f7' }}>
+            <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gridTemplateRows="repeat(4, 1fr)" >
+                <Box gridArea="1/1/5/5">
+                    <img width="100%" height="auto" src={item.image} alt={item.name}/>
+                </Box>
+                <Box gridArea="1/6/4/9">
+                        <p>{item.name}</p>
+                        <p>{item.price * item.quantity} €</p>
+                        <p>Size {item.size}</p>
+                </Box>
+                <Box gridArea="1/11/1/13">
+                    <Button onClick={() => handleRemoveAllFromCart(item)} >
+                        <DeleteIcon></DeleteIcon>
+                    </Button>
+                </Box>
+                <Box gridArea="4/8/6/11">
+                    <ButtonGroup>
+                        <Button onClick={() => handleRemoveFromCart(item)}>
+                            <RemoveCircleIcon></RemoveCircleIcon>
+                        </Button>
+                        <Button disabled>{item.quantity}</Button>
+                        <Button onClick={() => handleAddToCart(item)}>
+                            <AddBoxIcon></AddBoxIcon>
+                        </Button>
+                    </ButtonGroup>
+                </Box>
+            </Box>
+
+
         </Card >
     )
 }

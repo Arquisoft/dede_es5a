@@ -11,10 +11,11 @@ import Button from '@mui/material/Button';
 import { CartContext } from '../../contexts/CartContext';
 import CartItem from './CartItem';
 import calculateCartTotal from '../../helpers/calculateCartTotal'
-
+import Stack from '@mui/material/Stack';
+import { Paper, styled, Container } from '@mui/material';
 
 export default function ShoppingCart() {
-    const {cartProducts} = useContext(CartContext)
+    const { cartProducts } = useContext(CartContext)
     const [state, setState] = React.useState(false);
 
     const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -22,17 +23,11 @@ export default function ShoppingCart() {
     };
 
     const list = () => (
-        <Box >
-            <List>
-                <h2>Your Shopping Cart</h2>
-                {cartProducts.length === 0 ? <p>No items in cart.</p> : null}
-                {cartProducts.map(item => (
-                    <ListItem>
-                        <CartItem key={item._id} item={item} />
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
+        <Stack spacing={2}>
+            {cartProducts.map(item => (
+                <CartItem key={item._id} item={item} />
+            ))}
+        </Stack>
     )
 
     return (
@@ -47,11 +42,14 @@ export default function ShoppingCart() {
                 open={state}
                 onClose={toggleDrawer(false)}
             >
-
-                {list()}
-                <Divider></Divider>
-                <p>Total: {calculateCartTotal(cartProducts)} €</p>
-                <Button>Continue</Button>
+                <Container>
+                    <h2>Your Shopping Cart</h2>
+                    {cartProducts.length === 0 ? <p>No items in cart.</p> : null}
+                    {list()}
+                    <Divider></Divider>
+                    <p>Total: {calculateCartTotal(cartProducts)} €</p>
+                    <Button>Continue</Button>
+                </Container>
             </Drawer>
 
         </Box>
