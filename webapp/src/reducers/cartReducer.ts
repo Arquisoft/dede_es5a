@@ -2,14 +2,20 @@ import { CartReducerAction, CartProduct } from "../shared/shareddtypes";
 
 
 const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
+
+    const isTheSameProduct = (item: CartProduct) =>{
+        return item._id === action.payload._id && item.size === action.payload.size
+    }
+
+
     switch (action.type) {
         case 'ADD':
             console.log(state)
             // Dos casos: carrito vacío, carrito con elemento
-            const existProduct = state.find(item => item._id === action.payload._id && item.size === action.payload.size);
+            const existProduct = state.find(item => isTheSameProduct(item));
             if (existProduct) {
                 return state.map(item => {
-                    if (item._id === action.payload._id && item.size === action.payload.size) {
+                    if (isTheSameProduct(item)) {
                         return {
                             ...item,
                             quantity: item.quantity + 1
@@ -23,7 +29,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
             }
         case 'REMOVE':
             return state.reduce((acum, item) => {
-                if (item._id === action.payload._id && item.size === action.payload.size) {
+                if (isTheSameProduct(item)) {
                     if (item.quantity === 1) return acum;
                     else return [...acum, { ...item, quantity: item.quantity - 1 }]
                 }
@@ -31,7 +37,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
 
             }, [] as CartProduct[])
         case 'REMOVE-ALL':// Eliminar un producto del carrito
-            return state.filter(item => item._id !== action.payload._id && item.size !== action.payload.size)
+            return state.filter(item => !isTheSameProduct(item))
         case 'CLEAR':// Vaciar el carrito
             return []
         default:

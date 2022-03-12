@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Card } from '@mui/material';
 import Button from '@mui/material/Button';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import Add from '@mui/icons-material/Add';
+import Remove from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartProduct } from '../../shared/shareddtypes'
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -58,12 +58,12 @@ export default function CartItem({ product }: Props) {
                 </Box>
                 <Box gridArea="4/8/6/11">
                     <ButtonGroup>
-                        <Button onClick={() => handleRemoveFromCart(product)}>
-                            <RemoveCircleIcon></RemoveCircleIcon>
+                        <Button variant="contained" onClick={() => handleRemoveFromCart(product)}>
+                            <Remove></Remove>
                         </Button>
-                        <Button aria-readonly>{product.quantity}</Button>
-                        <Button onClick={() => handleAddToCart(product)}>
-                            <AddBoxIcon></AddBoxIcon>
+                        <Button variant="contained" aria-readonly>{product.quantity}</Button>
+                        <Button variant="contained" onClick={() => handleAddToCart(product)}>
+                            <Add></Add>
                         </Button>
                     </ButtonGroup>
                 </Box>
