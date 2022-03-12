@@ -3,10 +3,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-
+import { IconButton, Button } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
 import { CartContext } from '../../contexts/CartContext';
 import CartItem from './CartItem';
 import calculateCartTotal from '../../helpers/calculateCartTotal'
@@ -14,6 +12,7 @@ import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
 import Stack from '@mui/material/Stack';
 import { Container, Badge } from '@mui/material';
 import Typography from '@mui/material/Typography';
+
 export default function ShoppingCart() {
     const { cartProducts } = useContext(CartContext)
     const [state, setState] = React.useState(false);
@@ -25,8 +24,8 @@ export default function ShoppingCart() {
 
     const list = () => (
         <Stack spacing={2}>
-            {cartProducts.map(item => (
-                <CartItem key={item._id} item={item} />
+            {cartProducts.map(product => (
+                <CartItem key={product._id} product={product} />
             ))}
             <Divider />
         </Stack>
@@ -61,7 +60,6 @@ export default function ShoppingCart() {
                     </Box>
                 </Container>
             </Drawer>
-
         </Box>
     )
 }

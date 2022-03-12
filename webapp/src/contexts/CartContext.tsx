@@ -4,6 +4,7 @@ import { CartContextType} from "../shared/shareddtypes";
 
 const initialState = {
     cartProducts: [],
+    // This is intentional to initialize the function 
     dispatch: () => {}
 }
 
