@@ -56,7 +56,7 @@ export default function ShoppingCart() {
                         <Typography variant='h6'>Total</Typography>
                         <Typography variant='h6' align='right' >{calculateCartTotal(cartProducts)} €</Typography>
                     </Box >
-                    <Box sx={{ mt: "1.25em" }}>
+                    <Box sx={{ mt: "1.25em", mb: "1.25em" }}>
                         <Button fullWidth variant="contained">Continue</Button>
                     </Box>
                 </Container>
