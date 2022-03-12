@@ -1,8 +1,6 @@
 // External Dependencies
-import mongodb from "mongodb";
 import dotenv, { config } from "dotenv";
 import mongoose = require("mongoose");
-import Product from "../models/product";
 
 dotenv.config();
 
@@ -16,12 +14,10 @@ const URI: string = process.env.DATABASE_URI != undefined ? process.env.DATABASE
  *  - Hacer lo que sea que tenga que hacer
  *  - Cerrar la conexión
  * 
- */
+ */ 
 async function connectToDatabase() {
 
     var client = await mongoose.connect(URI);
-    console.log("Connected");
-
     return client;
 }
 
@@ -36,36 +32,33 @@ export async function getCollection(collection:string) {
     await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
     return res;
 }
+
+export async function findBy(collection:string, filter:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection(collection).find(filter).toArray();
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
+}
+
+export async function addElement(collection:string, p:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection(collection).insertOne(p);
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
+}
+
+export async function updateElement(collection:string, filter:any, p:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection(collection).replaceOne(filter,p);
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
+}
+
+export async function removeElement(collection:string, filter:any) {
+    var client = await connectToDatabase();
+    var res = await client.connection.db.collection(collection).deleteOne(filter);
+    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
+    return res;
+}
+
 //----------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------ Consultas Producto --------------------------------------------------------
-export async function findProductBy(filter:any) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").find(filter).toArray();
-    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
-    return res;
-}
-
-export async function addProduct(p:Product) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").insertOne(p);
-    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
-    return res;
-}
-
-export async function updateProduct(filter:any, p:Product) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").replaceOne(filter,p);
-    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
-    return res;
-}
-
-export async function removeProduct(filter:any) {
-    var client = await connectToDatabase();
-    var res = await client.connection.db.collection("Producto").deleteOne(filter);
-    await client.connection.close(); // <---------------------- RECORDAR SIEMPRE CERRAR
-    return res;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------ Consultas Usuario ---------------------------------------------------------
