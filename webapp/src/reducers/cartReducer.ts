@@ -31,7 +31,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
 
             }, [] as CartProduct[])
         case 'REMOVE-ALL':// Eliminar un producto del carrito
-            return state.filter(item => item._id !== action.payload._id && item.size === action.payload.size)
+            return state.filter(item => item._id !== action.payload._id && item.size !== action.payload.size)
         case 'CLEAR':// Vaciar el carrito
             return []
         default:
