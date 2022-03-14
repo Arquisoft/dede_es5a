@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { Product } from '../../shared/shareddtypes'
+import React, { useState, useEffect, useContext } from 'react'
+import { Product, CartProduct } from '../../shared/shareddtypes'
 import { getProducts } from '../../api/api'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
-import { styled } from '@mui/material/styles'
 import ProductCard from './ProductCard'
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+import { CartContext } from '../../contexts/CartContext'
 
 function ProductList() {
+  const { dispatch } = useContext(CartContext)
   const [products, setProducts] = useState<Product[]>([])
+
+  const handleAddToCart = (cartProduct: CartProduct) => {
+    dispatch({
+      payload: cartProduct,
+      type: 'ADD'
+    })
+  }
 
   const refreshProductList = async () => {
     setProducts(await getProducts())
@@ -34,7 +33,7 @@ function ProductList() {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {products.map((product) => {
-          return <ProductCard product={product} />
+          return <ProductCard product={product} handleAddToCart={handleAddToCart}/>
         })}
       </Grid>
     </Box>
