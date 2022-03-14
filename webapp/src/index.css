@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+
+.MuiContainer-root {
+  border: solid transparent;
+  min-height: calc(100% - 145px);
+}

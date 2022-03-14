@@ -14,13 +14,16 @@ import MenuItem from '@mui/material/MenuItem'
 import HomeIcon from '@mui/icons-material/Home'
 import ShoppingCart from '../Cart/ShoppingCart';
 
+import { Link, useNavigate } from 'react-router-dom';
+
 const pages = ['Women', 'Men', 'Kids']
-const settings = ['Profile', 'Orders', 'Logout']
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
  
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
@@ -44,8 +47,9 @@ const NavBar = () => {
     <AppBar position="static">
       <Container maxWidth="md">
         <Toolbar disableGutters>
-          <IconButton
+          <IconButton 
             size="large"
+            onClick={() => navigate('/')}
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -135,11 +139,15 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={() => navigate('/profile')}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => navigate('/orders')}>
+                <Typography textAlign="center">Orders</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => navigate('/signIn')}>
+                <Typography textAlign="center">Signin</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           
