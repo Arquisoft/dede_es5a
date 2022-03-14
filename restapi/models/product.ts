@@ -1,5 +1,6 @@
 // External dependencies
 import { ObjectId } from "mongodb";
+import { Disponibility } from "../models/disponibility";
 
 // Class Implementation
 export default class Product {
@@ -8,8 +9,10 @@ export default class Product {
         public price: number, 
         public type: string, 
         public brand: string,
-        public size: number,
-        public stock: number,
+        public disponibility: Set<Disponibility>, 
         public description: string, 
         public id?: ObjectId) {}
 }
+
+
+
