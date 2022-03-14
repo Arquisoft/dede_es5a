@@ -14,6 +14,11 @@ export type Product = {
       _id:string
 }
 
+export interface Login {
+  email: string;
+  password: string;
+}
+
 export type Disponibility = {
   size: number,
   stock: number

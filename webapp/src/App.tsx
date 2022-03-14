@@ -17,14 +17,12 @@ function App(): JSX.Element {
     <Router>
       <Navbar/>
       <Container maxWidth="lg">
-        <main> 
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/home" element={<Home />}/>
             <Route path="/products" element={<ProductList />}/>
             <Route path="/signIn" element={<UserLogIn />}/>
           </Routes>
-        </main>
       </Container>
       <Footer/>
     </Router>

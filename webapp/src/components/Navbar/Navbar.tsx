@@ -46,7 +46,7 @@ const NavBar = () => {
         <Toolbar disableGutters>
           <IconButton 
             size="large"
-            href="/"
+            onClick={() => navigate('/')}
             edge="start"
             color="inherit"
             aria-label="open drawer"

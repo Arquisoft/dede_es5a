@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 export default function Footer(): JSX.Element{
     return(
-        <Grid container spacing={5}>
+        <Grid container spacing={0}>
             <Grid item sm={4}></Grid>
             <Grid item sm={4}><Typography align="center">© 2022 ArquiSocks</Typography></Grid>
             <Grid item sm={4}>

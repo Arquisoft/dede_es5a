@@ -17,5 +17,8 @@ html, body, #root, .App {
 }
 
 .MuiContainer-root {
+  border: solid transparent;
   min-height: calc(100% - 145px);
 }
+
+
