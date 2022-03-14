@@ -19,6 +19,24 @@ export interface Login {
   password: string;
 }
 
+export type CartProduct = {
+  name: string, 
+  price: number, 
+  size: number,
+  quantity: number,
+  image: string,
+  _id:string
+}
+
+export type CartReducerAction = {
+  payload: CartProduct, 
+  type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR'
+}
+
+export type CartContextType = {
+  cartProducts: CartProduct[],
+  dispatch: React.Dispatch<CartReducerAction>
+}
 export type Disponibility = {
   size: number,
   stock: number

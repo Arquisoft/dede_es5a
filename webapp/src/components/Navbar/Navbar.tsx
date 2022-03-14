@@ -12,16 +12,16 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import HomeIcon from '@mui/icons-material/Home'
+import ShoppingCart from '../Cart/ShoppingCart';
 
 import { Link, useNavigate } from 'react-router-dom';
 
 const pages = ['Women', 'Men', 'Kids']
 
 const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null,
-  )
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+ 
 
   const navigate = useNavigate();
 
@@ -32,6 +32,7 @@ const NavBar = () => {
     setAnchorElUser(event.currentTarget)
   }
 
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
@@ -39,6 +40,8 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+
+
 
   return (
     <AppBar position="static">
@@ -147,6 +150,9 @@ const NavBar = () => {
               </MenuItem>
             </Menu>
           </Box>
+          
+          <ShoppingCart />
+
         </Toolbar>
       </Container>
     </AppBar>
