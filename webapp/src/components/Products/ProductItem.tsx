@@ -4,11 +4,12 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
+
 interface Props {
     product: Product
 }
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }:any) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
