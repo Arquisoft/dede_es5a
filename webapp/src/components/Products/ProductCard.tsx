@@ -17,7 +17,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 interface Props {
   product: Product
-  handleAddToCart: (cartProduct: CartProduct) => void;
+  handleAddToCart: (cartProduct: CartProduct) => void
 }
 
 export default function ImgMediaCard({ product, handleAddToCart }: Props) {
@@ -26,9 +26,11 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
 
   const disponibility = product.disponibility
 
-  const sizesList = disponibility
-    .sort((n1, n2) => n1.size - n2.size)
-    .map((s) => <MenuItem value={s.size}>{s.size}</MenuItem>)
+  const sortedSizesList = disponibility.sort((n1, n2) => n1.size - n2.size)
+
+  const sizesList = sortedSizesList.map((s) => (
+    <MenuItem value={s.size}>{s.size}</MenuItem>
+  ))
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
@@ -45,8 +47,6 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
     }
   }
 
-  //const checkStock = () => {}
-
   const [addable, setAddable] = React.useState(false)
 
   const handleClick = () => {
@@ -56,7 +56,7 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
       size: parseInt(size),
       quantity: 0,
       image: product.image,
-      _id: product._id
+      _id: product._id,
     }
     handleAddToCart(addToCartProduct)
     setAddable(true)
@@ -81,7 +81,11 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
 
   return (
     <Grid item xs={4}>
-      <Card elevation={3} style={{ backgroundColor: '#1976D2' }}>
+      <Card
+        elevation={3}
+        style={{ backgroundColor: '#365073', borderColor: '#365073' }}
+        sx={{ border: 5 }}
+      >
         <CardMedia
           component="img"
           alt={product.name + " image can't be loaded"}

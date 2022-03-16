@@ -1,17 +1,21 @@
+import {
+  Stack,
+  Divider,
+  Box,
+  Tooltip,
+  Badge,
+  IconButton,
+  Drawer,
+  Container,
+  Typography,
+  Button,
+} from '@mui/material'
 import React, { useContext } from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import Drawer from '@mui/material/Drawer'
-import Box from '@mui/material/Box'
-import Tooltip from '@mui/material/Tooltip'
-import { IconButton, Button } from '@mui/material'
-import Divider from '@mui/material/Divider'
 import { CartContext } from '../../contexts/CartContext'
-import CartItem from './CartItem'
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
-import Stack from '@mui/material/Stack'
-import { Container, Badge } from '@mui/material'
-import Typography from '@mui/material/Typography'
+import CartItem from './CartItem'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
 export default function ShoppingCart() {
   const { cartProducts } = useContext(CartContext)

@@ -1,11 +1,13 @@
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
-import Typography from '@mui/material/Typography'
+import { Grid, Typography, Box, Link } from '@mui/material'
+
 export default function Footer(): JSX.Element {
   return (
-    <Grid container spacing={0}>
+    <Grid
+      container
+      spacing={0}
+      style={{ background: '#365073', marginTop: '25px' }}
+      sx={{ border: 2 }}
+    >
       <Grid item sm={4}></Grid>
       <Grid item sm={4}>
         <Typography align="center">© 2022 ArquiSocks</Typography>
