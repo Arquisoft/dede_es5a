@@ -48,22 +48,28 @@ const NavBar = () => {
     <AppBar position="static" style={{ background: '#365073' }}>
       <Container>
         <Toolbar disableGutters>
-          <IconButton
-            size="large"
-            onClick={() => navigate('/')}
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 4 }}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <img
-              height="100px"
-              src="/images/logo.jpg"
-              alt="logo"
-              className="logo"
-            />
-          </IconButton>
-
+            <IconButton
+              size="large"
+              onClick={() => navigate('/')}
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 4 }}
+            >
+              <img
+                height="100px"
+                src="/images/logo.jpg"
+                alt="logo"
+                className="logo"
+              />
+            </IconButton>
+          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -106,7 +112,21 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            <IconButton
+              size="large"
+              onClick={() => navigate('/')}
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 4 }}
+            >
+              <img
+                height="100px"
+                src="/images/logo.jpg"
+                alt="logo"
+                className="logo"
+              />
+            </IconButton>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

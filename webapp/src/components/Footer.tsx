@@ -10,17 +10,17 @@ export default function Footer(): JSX.Element {
     >
       <Grid item sm={4}></Grid>
       <Grid item sm={4}>
-        <Typography align="center">© 2022 ArquiSocks</Typography>
+        <Typography align="center" color="white">© 2022 ArquiSocks</Typography>
       </Grid>
       <Grid item sm={4}>
-        <Box borderBottom={1}>About the project:</Box>
+        <Box borderBottom={1} color="white">About the project:</Box>
         <Box>
-          <Link href="https://arquisoft.github.io/dede_es5a/" underline="none">
+          <Link color="#fcf355" href="https://arquisoft.github.io/dede_es5a/" underline="none">
             Documentation
           </Link>
         </Box>
         <Box>
-          <Link href="https://github.com/Arquisoft/dede_es5a" underline="none">
+          <Link color="#fcf355" href="https://github.com/Arquisoft/dede_es5a" underline="none">
             Source code
           </Link>
         </Box>
