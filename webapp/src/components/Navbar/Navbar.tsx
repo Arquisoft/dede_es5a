@@ -1,29 +1,33 @@
 import * as React from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
-import Container from '@mui/material/Container'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import Tooltip from '@mui/material/Tooltip'
-import MenuItem from '@mui/material/MenuItem'
-import HomeIcon from '@mui/icons-material/Home'
-import ShoppingCart from '../Cart/ShoppingCart';
+import ShoppingCart from '../Cart/ShoppingCart'
 
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  AppBar,
+  Container,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Menu,
+  MenuItem,
+  Button,
+  Tooltip,
+  Avatar,
+} from '@mui/material'
+
+import MenuIcon from '@mui/icons-material/Menu'
+
+import { useNavigate } from 'react-router-dom'
 
 const pages = ['Women', 'Men', 'Kids']
 
 const NavBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
- 
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null,
+  )
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
@@ -31,7 +35,6 @@ const NavBar = () => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
-
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
@@ -41,26 +44,32 @@ const NavBar = () => {
     setAnchorElUser(null)
   }
 
-
-
   return (
-    <AppBar position="static">
-      <Container maxWidth="md">
+    <AppBar position="static" style={{ background: '#365073' }}>
+      <Container>
         <Toolbar disableGutters>
-          <IconButton 
-            size="large"
-            onClick={() => navigate('/')}
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 4 }}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <HomeIcon></HomeIcon>
-          </IconButton>
-          <Typography variant="h6" sx={{ mr: 8 }}>
-            ArquiSocks
+            <IconButton
+              size="large"
+              onClick={() => navigate('/')}
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 4 }}
+            >
+              <img
+                height="100px"
+                src="/images/logo.jpg"
+                alt="logo"
+                className="logo"
+              />
+            </IconButton>
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -103,7 +112,21 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            <IconButton
+              size="large"
+              onClick={() => navigate('/')}
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 4 }}
+            >
+              <img
+                height="100px"
+                src="/images/logo.jpg"
+                alt="logo"
+                className="logo"
+              />
+            </IconButton>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -150,9 +173,8 @@ const NavBar = () => {
               </MenuItem>
             </Menu>
           </Box>
-          
-          <ShoppingCart />
 
+          <ShoppingCart />
         </Toolbar>
       </Container>
     </AppBar>
