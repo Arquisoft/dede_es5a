@@ -26,11 +26,9 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
 
   const disponibility = product.disponibility
 
-  const sortedSizesList = disponibility.sort((n1, n2) => n1.size - n2.size)
-
-  const sizesList = sortedSizesList.map((s) => (
-    <MenuItem value={s.size}>{s.size}</MenuItem>
-  ))
+  disponibility
+    .sort((n1, n2) => n1.size - n2.size)
+    .map((s) => <MenuItem value={s.size}>{s.size}</MenuItem>)
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
