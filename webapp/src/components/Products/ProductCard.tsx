@@ -28,7 +28,9 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
     (n1, n2) => n1.size - n2.size,
   )
 
-  disponibility.map((s) => <MenuItem value={s.size}>{s.size}</MenuItem>)
+  const sizesList = disponibility.map((s) => (
+    <MenuItem value={s.size}>{s.size}</MenuItem>
+  ))
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
