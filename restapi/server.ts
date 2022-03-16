@@ -1,27 +1,34 @@
 import express, { Application, RequestHandler } from "express";
 import cors from 'cors';
-import bp from 'body-parser';
 import promBundle from 'express-prom-bundle';
-import api from "./api"; 
+import dotenv from "dotenv";
+
+
+dotenv.config();
 
 const app: Application = express();
-const port: number = 5000;
+module.exports = app;
+
+const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
+
 
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:3000']
+    origin: ['http://localhost:3000']
 };
 
-const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
+const metricsMiddleware: RequestHandler = promBundle({ includeMethod: true });
 app.use(metricsMiddleware);
 
 app.use(cors(options));
-app.use(bp.json());
+app.use(express.json()); //El servidor trabaja con json
 
-app.use("/api", api)
+//Rutas a los controladores
+require("./routes/products_router");
+require("./routes/orders_router");
+require("./routes/users_router");
 
-app.listen(port, ():void => {
-    console.log('Restapi listening on '+ port);
-}).on("error",(error:Error)=>{
-    console.error('Error occured: ' + error.message);
+//El servidor empieza a escuchar
+app.listen(port, () => {
+    console.log(`Server started at http://localhost:${port}`);
 });
 

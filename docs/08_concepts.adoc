@@ -51,9 +51,7 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 
 === Domain model
-
-image:UmlDiagram.png["Example UML Diagram"]
-
+image:domain_model.png["Domain model"]
 
 
 === _<Concept 2>_
