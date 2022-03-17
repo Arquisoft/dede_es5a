@@ -56,7 +56,7 @@ Since there are so many ways to specify interfaces why do not provide a specific
 In the best case you will get away with examples or simple signatures.
 
 ****
-Here is the building block view which shows the static decomposition of the system into building blocks, it includes libraries, modules, components... An also the dependencies among them.
+Building block view shows the static decomposition of the system into building blocks, it includes libraries, modules, components... An also the dependencies among them.
 
 image:whitebox_overall_system.png["Whitebox Overall System of ArquiSocks"]
 
@@ -74,74 +74,13 @@ Contained Building Blocks::
 | _ArquiSocks_ | The main core of the application.
 |===
 
-[role="arc42help"]
-****
-Insert your explanations of black boxes from level 1:
-
-If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:
-
-[cols="1,2" options="header"]
+Important Interfaces::
 |===
-| **Name** | **Responsibility**
-| _<black box 1>_ | _<Text>_
-| _<black box 2>_ | _<Text>_
+|Interface |Description
+| _Picker Express API_ | Useful to manage orders and shipping prices. 
+| _mongodb and  mongoose_ | Optimize database connections and data management
+| _Still to decide_ | _TODO_
 |===
-
-
-
-If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.
-****
-
-
-==== <Name black box 1>
-
-[role="arc42help"]
-****
-Here you describe <black box 1>
-according the the following black box template:
-
-* Purpose/Responsibility
-* Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.
-* (Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, ....
-* (Optional) directory/file location
-* (Optional) Fulfilled requirements (if you need traceability to requirements).
-* (Optional) Open issues/problems/risks
-
-****
-
-_<Purpose/Responsibility>_
-
-_<Interface(s)>_
-
-_<(Optional) Quality/Performance Characteristics>_
-
-_<(Optional) Directory/File Location>_
-
-_<(Optional) Fulfilled Requirements>_
-
-_<(optional) Open Issues/Problems/Risks>_
-
-
-
-
-==== <Name black box 2>
-
-_<black box template>_
-
-==== <Name black box n>
-
-_<black box template>_
-
-
-==== <Name interface 1>
-
-...
-
-==== <Name interface m>
-
-
 
 === Level 2
 
@@ -154,28 +93,28 @@ Please prefer relevance over completeness. Specify important, surprising, risky,
 Leave out normal, simple, boring or standardized parts of your system
 ****
 
-==== White Box _<building block 1>_
+==== White Box _ArquiSocks_
 
-[role="arc42help"]
-****
-...describes the internal structure of _building block 1_.
-****
+image:whitebox_arquisocks.png["Whitebox ArquiSocks"]
 
-_<white box template>_
+Motivation::
 
-==== White Box _<building block 2>_
+This diagram shows the relations between the restapi and the webapp. Both building blocks will be explained more detailed in next paragraphs.
 
+Contained Building Blocks::
+|===
+|Building block |Description
+| _React_ | Library used in order to improve development of Graphic User Interfaces. 
+| _Webapp_ | Contains the GUI of the application which is useful for clients usability. 
+| _Restapi_ | Contains controllers (routers) in order to manage CRUD requests. Generates responses to the requests.
 
-_<white box template>_
+|===
 
-...
-
-==== White Box _<building block m>_
-
-
-_<white box template>_
-
-
+Important Interfaces::
+|===
+|Interface |Description
+| _Server_ | this element has the responsability of manage requests of application's clients. These requests come from the webapp.
+|===
 
 === Level 3
 
@@ -187,24 +126,36 @@ When you need more detailed levels of your architecture please copy this
 part of arc42 for additional levels.
 ****
 
+==== White Box _Restapi_
 
-==== White Box <_building block x.1_>
+image:whitebox_restapi.png["Whitebox Restapi"]
 
-[role="arc42help"]
-****
-Specifies the internal structure of _building block x.1_.
-****
+Motivation::
 
+This diagram shows the relations among restapi components and libraries used.
 
-_<white box template>_
+Contained Building Blocks::
+|===
+|Building block |Description
+| _Models_ | Stores classes which represent objects form databse. Packages (npm): mongodb.
+| _Routes_ | Admin requests and redirect to the service. Includes business logic. Packages (npm): express, mongodb.
+| _Service_ | Connects to database. Packages (npm): mongoose, dotenv.
+| _Server_ | Manage users' requests. Packages (npm): express, dotenv.
+|===
 
+==== White Box _Webapp_
 
-==== White Box <_building block x.2_>
+image:whitebox_webapp.png["Whitebox Webapp"]
 
-_<white box template>_
+Motivation::
 
+This diagram shows the relations among webapp components and libraries used. The main lirary is mui used for optimize the development of many components.
 
-
-==== White Box <_building block y.1_>
-
-_<white box template>_
+Contained Building Blocks::
+|===
+|Building block |Description
+| _Api_ | Contains functions to connect with the restapi.
+| _App_ | The main page of the web. Packages (npm): mui.
+| _Components_ | Contains all of the components of the webapp, from the cart to the products list. Packages (npm): mui.
+| _Contexts_ | It is like the session of the user, it stores products selected.
+|===

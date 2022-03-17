@@ -2,7 +2,6 @@
 import express, { Request, Response } from "express";
 import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
-import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
 var app = require("../server");
