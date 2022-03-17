@@ -56,19 +56,23 @@ Since there are so many ways to specify interfaces why do not provide a specific
 In the best case you will get away with examples or simple signatures.
 
 ****
+Here is the building block view which shows the static decomposition of the system into building blocks, it includes libraries, modules, components... An also the dependencies among them.
 
-_**<Overview Diagram>**_
+image:whitebox_overall_system.png["Whitebox Overall System of ArquiSocks"]
 
 Motivation::
 
-_<text explanation>_
-
+This diagram shows the relations of the application among many others systems. It also shws dependency relations with clients. This diagram provides readers a general static vision of the project.
 
 Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
-
-Important Interfaces::
-_<Description of important interfaces>_
+|===
+|Building block |Description
+| _Client_ | Interacts with the application. He also takes care of his data using pods. 
+| _Database System_ | Service to store data. It is used through mongoDB atlas. Packages (npm): mongodb, mongoose.
+| _Solid infrestructure_ | Mechanism to store data taking care of privacy. Packages (npm): _still to decide_.
+| _Shipping business_ | Business which makes products' delivery. Developed with picker express API.
+| _ArquiSocks_ | The main core of the application.
+|===
 
 [role="arc42help"]
 ****
