@@ -16,11 +16,33 @@ const options: cors.CorsOptions = {
     origin: ['http://localhost:3000']
 };
 
+//Sesión de express
+var expressSession = require('express-session');
+app.use(expressSession({
+    secret: 'abcdefg',
+    resave: true,
+    saveUninitialized: true
+}));
+
+declare global {
+    namespace Express {
+      interface Request {
+        // currentUser might not be defined if it is not logged in
+        session: typeof expressSession;
+      }
+    }
+  }
+//---------------------------------------------------------------
+
 const metricsMiddleware: RequestHandler = promBundle({ includeMethod: true });
 app.use(metricsMiddleware);
 
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
+
+//RouterAdministrador
+//var routerUsuarioAdministrador = express.Router();
+
 
 //Encriptación de contraseñas
 var crypto = require('crypto');

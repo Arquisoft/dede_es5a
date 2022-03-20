@@ -2,7 +2,6 @@
 import express, { Request, Response } from "express";
 import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
-import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
 var app = require("../server");
@@ -89,4 +88,33 @@ app.delete("/user/:id", async (req: Request, res: Response) => {
         console.error(error.message);
         res.status(400).send(error.message);
     }
+});
+
+app.post("/identificarse", async (req: Request, res: Response) => {
+    try {
+        var pass = app.get("crypto").createHmac('sha256', app.get('clave')).update(req.body.password).digest('hex');
+        var filter = { username : req.body.username, password : pass };
+        
+        var user = await service.findBy("Usuario", filter);
+
+        if(user == null || user.length == 0){
+            res.status(500).send("Usuario y/o contraseña no coinciden");
+        }
+        else{
+            //Metemos al usuario en sesión
+            req.session.usuario = { user: user[0].username, role: user[0].role };
+            
+            //Redirigir a otra pagina
+            console.log(req.session);
+            res.status(200).send();
+
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+app.get("/desconectarse", async (req: Request, res: Response) => {
+    req.session.usuario = null;
+    res.send("Usuario desconectado");
 });
