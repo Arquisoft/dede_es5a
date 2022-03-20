@@ -7,7 +7,7 @@ import sanitizeHtml from "sanitize-html";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/order/", async (_req: Request, res: Response) => {
+app.get("/orders", async (_req: Request, res: Response) => {
     try {
         var documents = await service.getCollection("Pedido"); //Se obtienen los datos del servicio
         
@@ -18,7 +18,7 @@ app.get("/order/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/order/:id", async (req: Request, res: Response) => {
+app.get("/orders/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -34,7 +34,7 @@ app.get("/order/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/order/", async (req: Request, res: Response) => {
+app.post("/order/add", async (req: Request, res: Response) => {
     try {
         //Todavía podría cambiarse para que la empresa de distribución calcule las fechas  (calculateShipping)
         var newOrder = new Order.default(new Date(req.body.arrivalDate), new Date(req.body.confirmDate), 
@@ -55,7 +55,7 @@ app.post("/order/", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/order/:id", async (req: Request, res: Response) => {
+app.put("/order/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -75,7 +75,7 @@ app.put("/order/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/order/:id", async (req: Request, res: Response) => {
+app.delete("/order/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
