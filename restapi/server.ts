@@ -22,6 +22,11 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
+//Encriptación de contraseñas
+var crypto = require('crypto');
+app.set('clave','abcdefg');
+app.set('crypto', crypto);
+
 //Rutas a los controladores
 require("./routes/products_router");
 require("./routes/orders_router");
