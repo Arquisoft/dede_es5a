@@ -3,6 +3,7 @@ import cors from 'cors';
 import promBundle from 'express-prom-bundle';
 import dotenv from "dotenv";
 
+
 dotenv.config();
 
 const app: Application = express();
@@ -23,6 +24,7 @@ app.use(express.json()); //El servidor trabaja con json
 
 //Rutas a los controladores
 require("./routes/products_router");
+require("./routes/orders_router");
 require("./routes/users_router");
 
 //El servidor empieza a escuchar

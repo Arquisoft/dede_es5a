@@ -8,8 +8,36 @@ export type Product = {
       price: number, 
       type: string, 
       brand: string,
-      size: number,
-      stock: number,
+      disponibility: Array<Disponibility>,
       description: string,
+      image: string,
       _id:string
+}
+
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export type CartProduct = {
+  name: string, 
+  price: number, 
+  size: number,
+  quantity: number,
+  image: string,
+  _id:string
+}
+
+export type CartReducerAction = {
+  payload: CartProduct, 
+  type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR'
+}
+
+export type CartContextType = {
+  cartProducts: CartProduct[],
+  dispatch: React.Dispatch<CartReducerAction>
+}
+export type Disponibility = {
+  size: number,
+  stock: number
 }
