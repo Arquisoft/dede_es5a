@@ -40,9 +40,38 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
-//RouterAdministrador
-//var routerUsuarioAdministrador = express.Router();
+//RouterSession
+var routerUsuarioSession = express.Router();
+routerUsuarioSession.use(function(req, res, next) {
+    if(req.session.usuario){
+        next();
+    } else {
+        console.log("Nope");
+        //redireccionar al inicio
+    }
+});
 
+//Aplicar RouterAdministrador
+app.use("/desconectarse",routerUsuarioSession);
+
+//RouterAdministrador
+var routerUsuarioAdministrador = express.Router();
+routerUsuarioAdministrador.use(function(req, res, next) {
+    if(req.session.usuario && req.session.usuario.role == "admin"){
+        next();
+    } else {
+        console.log("Nope");
+        //redireccionar al inicio
+    }
+});
+
+//Aplicar RouterAdministrador
+app.use("/product/add",routerUsuarioAdministrador);
+app.use("/product/update",routerUsuarioAdministrador);
+app.use("/product/delete",routerUsuarioAdministrador);
+app.use("/user/add",routerUsuarioAdministrador);
+app.use("/user/update",routerUsuarioAdministrador);
+app.use("/user/delete",routerUsuarioAdministrador);
 
 //Encriptación de contraseñas
 var crypto = require('crypto');
