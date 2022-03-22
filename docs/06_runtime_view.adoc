@@ -37,7 +37,7 @@ There are many notations for describing scenarios, e.g.
 @startuml
 actor User
 participant WebApp
-database Restapi
+participant Restapi
 database SOLID
 User-> WebApp: Enter credentials
 WebApp -> Restapi: Create user
@@ -71,16 +71,18 @@ end
 @startuml
 actor User
 User -> Webapp: Request orders done
-
-database Restapi
+participant Restapi
+database Database
 Webapp -> Restapi: Get orders by user
-Webapp <- Restapi: List of user's orders
+Webapp <-- Restapi: List of user's orders
+Restapi -> Database: Get orders
 
 ... **non related temporally** ...
 
 User -> Webapp: Show products
 Webapp -> Restapi: Get products
-Webapp <- Restapi: List of products
+Restapi -> Database: Get products
+Webapp <-- Restapi: List of products
 @enduml
 ----
 Many details to keep in mind:
@@ -95,18 +97,10 @@ Many details to keep in mind:
 @startuml
 actor User
 participant Webapp
-database Restapi
-database Server
-database Database
+participant Restapi
 
 User -> Webapp: Click on a product
-Webapp -> Restapi: Add product to cart
-alt User is logged in
-    Restapi -> Database: Add product to database
-else Else
-    Restapi -> Server: Add product to server's session
-end
-
+Webapp -> Restapi: Add product
 User <-- Webapp: Product added correctly
 @enduml
 ----
@@ -122,7 +116,7 @@ actor User
 User -> Webapp: Enter shopping cart
 User <-- Webapp: Show cart
 User -> Webapp: Click on delete product
-database Restapi
+participant Restapi
 Webapp -> Restapi: Delete product from cart
 alt Deletion confirmed
 Webapp <-- Restapi: Product deleted
@@ -140,8 +134,9 @@ end
 @startuml
 actor User
 participant WebApp
-database Restapi
+participant Restapi
 database SOLID
+database Database
 User-> WebApp: Enter shopping cart
 User<-- WebApp: Return shopping cart
 User-> WebApp: Checkout order
@@ -152,7 +147,7 @@ alt Checkout confirmed
     Restapi-> SOLID: Get information
     Restapi<-- SOLID: Return information
 ... **Payment process** ...
-    Restapi-> Restapi: Save order
+    Restapi-> Database: Save order
     Restapi--> WebApp: Order saved
     WebApp--> User: Order confirmed
 else Checkout error
