@@ -1,17 +1,29 @@
+import {
+  Stack,
+  Divider,
+  Box,
+  Tooltip,
+  Badge,
+  IconButton,
+  Drawer,
+  Container,
+  Typography,
+  Button,
+  styled,
+} from '@mui/material'
 import React, { useContext } from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import Drawer from '@mui/material/Drawer'
-import Box from '@mui/material/Box'
-import Tooltip from '@mui/material/Tooltip'
-import { IconButton, Button } from '@mui/material'
-import Divider from '@mui/material/Divider'
 import { CartContext } from '../../contexts/CartContext'
-import CartItem from './CartItem'
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
-import Stack from '@mui/material/Stack'
-import { Container, Badge } from '@mui/material'
-import Typography from '@mui/material/Typography'
+import CartItem from './CartItem'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+
+const StyledBadge = styled(Badge)({
+  "& .MuiBadge-badge": {
+    color: "black",
+    backgroundColor: "#f29f05"
+  }
+});
 
 export default function ShoppingCart() {
   const { cartProducts } = useContext(CartContext)
@@ -35,14 +47,13 @@ export default function ShoppingCart() {
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open cart">
-        <Badge
+        <StyledBadge
           badgeContent={calculateTotalQuantity(cartProducts)}
-          color="secondary"
         >
           <IconButton onClick={toggleDrawer(true)} sx={{ p: 0 }}>
-            <ShoppingCartIcon fontSize="large"></ShoppingCartIcon>
+            <ShoppingCartIcon fontSize="large" style={{ color: 'white' }}></ShoppingCartIcon>
           </IconButton>
-        </Badge>
+        </StyledBadge>
       </Tooltip>
       <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
         <Container>

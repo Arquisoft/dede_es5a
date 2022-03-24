@@ -17,22 +17,24 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 
 interface Props {
   product: Product
-  handleAddToCart: (cartProduct: CartProduct) => void;
+  handleAddToCart: (cartProduct: CartProduct) => void
 }
 
 export default function ImgMediaCard({ product, handleAddToCart }: Props) {
   const [size, setSize] = React.useState('')
   const [available, setAvailable] = React.useState(true)
 
-  const disponibility = product.disponibility
+  product.disponibility.sort((n1, n2) => n1.size - n2.size)
 
-  const sizesList = disponibility
-    .sort((n1, n2) => n1.size - n2.size)
-    .map((s) => <MenuItem value={s.size}>{s.size}</MenuItem>)
+  const sizesList = product.disponibility.map((s) => (
+    <MenuItem value={s.size}>{s.size}</MenuItem>
+  ))
 
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
-    var currentSize = disponibility.find((s) => s.size === parseInt(size))
+    var currentSize = product.disponibility.find(
+      (s) => s.size === parseInt(size),
+    )
 
     if (currentSize === undefined) {
       throw new TypeError('The value was promised to always be there!')
@@ -45,8 +47,6 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
     }
   }
 
-  //const checkStock = () => {}
-
   const [addable, setAddable] = React.useState(false)
 
   const handleClick = () => {
@@ -56,7 +56,7 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
       size: parseInt(size),
       quantity: 0,
       image: product.image,
-      _id: product._id
+      _id: product._id,
     }
     handleAddToCart(addToCartProduct)
     setAddable(true)
@@ -81,7 +81,11 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
 
   return (
     <Grid item xs={4}>
-      <Card elevation={3} style={{ backgroundColor: '#1976D2' }}>
+      <Card
+        elevation={3}
+        style={{ backgroundColor: '#365073', borderColor: '#365073' }}
+        sx={{ border: 5 }}
+      >
         <CardMedia
           component="img"
           alt={product.name + " image can't be loaded"}

@@ -13,7 +13,7 @@ function ProductList() {
   const handleAddToCart = (cartProduct: CartProduct) => {
     dispatch({
       payload: cartProduct,
-      type: 'ADD'
+      type: 'ADD',
     })
   }
 
@@ -33,7 +33,9 @@ function ProductList() {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {products.map((product) => {
-          return <ProductCard product={product} handleAddToCart={handleAddToCart}/>
+          return (
+            <ProductCard product={product} handleAddToCart={handleAddToCart} />
+          )
         })}
       </Grid>
     </Box>
