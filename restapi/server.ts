@@ -9,6 +9,8 @@ dotenv.config();
 const app: Application = express();
 module.exports = app;
 
+app.use(cors());
+
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
 
 
