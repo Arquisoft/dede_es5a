@@ -35,53 +35,55 @@ when your infrastructure is more complex.
 ****
 
 === Infrastructure Level 1
-image:deployment_view.png["Deployment diagram"]
 
-[role="arc42help"]
-****
-Describe (usually in a combination of diagrams, tables, and text):
+[plantuml,"Deployment_view_diagram", png]
+----
+@startuml
+node "<<device>> \n Client" as client{
+component "<<execution enviroment>> \n Browser"{
+rectangle Website
+}
+}
 
-*  the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them
-*  important justification or motivation for this deployment structure
-* Quality and/or performance features of the infrastructure
-*  the mapping of software artifacts to elements of the infrastructure
+node "Web server (Heroku)" as webserver{
+component "<<execution enviroment>> \n DeDe"{
+node WebApp
+node RestAPI
+}
+}
 
-For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
-****
+node "<<device>> \n Database Server" as db{
+component "<<execution enviroment>> \n MongoDB Atlas"{
+database MongoDB
+}
+}
 
-_**<Overview Diagram>**_
+node "<<device>> \n Solid Pod Server" as solid{
+component "<<execution enviroment>> \n Inrupt Pod Spaces"{
+database UserPods
+}
+}
 
+client --> webserver : http
+WebApp --> RestAPI : use
+RestAPI --> db : use
+RestAPI --> solid : use
+@enduml
+----
 Motivation::
+The user will access our app through a website which will communicate with the Web server hosted by Heroku. Then, the Webapp will use the RestAPI to respond the user's requests. The RestAPI will use both MongoDB and the Solid pod from the user in order to correctly respond the WebApp request.
 
-_<explanation in text form>_
+Quality and/or performance features::
+The performance will depend mostly on the user's internet connection and device hardware, since most of the infraestructure depends on external services (MongoDB, Inrupt, etc.). However, we can increase the performance of the application focusing on writing better and most efficient code.
 
-Quality and/or Performance Features::
+.Mapping of building blocks to infrastructure
+|===
+|Element|Description
+| Client | Device use by the user to interact with the app.
+| Web server | Server where we will have the app running, in our case, Heroku.
+| WebApp | Frontend of the app. 
+| RestAPI | Backend of the app. 
+| Database Server | Server with our Database, in our case, MongoDB Atlas.
+| Solid Pod Server | Solid pods used by the users to store their personal information.
+|===
 
-_<explanation in text form>_
-
-Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
-
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-
-==== _<Infrastructure Element 1>_
-
-_<diagram + explanation>_
-
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_
