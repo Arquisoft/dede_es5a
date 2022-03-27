@@ -11,7 +11,7 @@ module.exports = app;
 
 app.use(cors());
 
-const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : -1;
+const port: number = 5000;
 
 
 const options: cors.CorsOptions = {
