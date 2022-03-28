@@ -147,7 +147,7 @@ async function calculateCoordinates (addressInfo : any){
     
     if(white_list.includes(mapBoxUri.hostname)){
         //Utilizar coordenadas
-        var coordinates = await fetch(mapBoxUri)
+       return await fetch(mapBoxUri)
             .then(function(response) {
                 return response.json();
             })
@@ -158,7 +158,6 @@ async function calculateCoordinates (addressInfo : any){
                     "lat" : addressInfoResult.features[0].center[1],
                 }
             });
-        return coordinates;
     }
         
 }
@@ -175,15 +174,12 @@ async function calculateDistance(coordinatesClientAddress: any) {
     var distributionCentreLong : number = centrosDistribucion[0].longitude
     var distributionCentreLat : number = centrosDistribucion[0].latitude
 
-    //var distance = await fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
-    var distance = await fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
+    return await fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
     .then(function(response) {
         return response.json();
     })
     .then(function(distanceInfo) {
         return (distanceInfo.routes[0].distance)/1000; //Distancia obtenida en km
     }); 
-
-    return distance;
 }
 
