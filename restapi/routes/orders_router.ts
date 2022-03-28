@@ -140,9 +140,12 @@ app.delete("/orders/delete/:id", async (req: Request, res: Response) => {
  * @returns the coordinates of clients address
  */
 async function calculateCoordinates (addressInfo : any){
-    var mapBoxUri = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY;
+
+    var white_list = ["mapbox"];
+
+    var mapBoxUri = new URL('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY);
     
-    if(mapBoxUri.includes("mapbox")){
+    if(white_list.includes(mapBoxUri.hostname)){
         //Utilizar coordenadas
         var coordinates = await fetch(mapBoxUri)
             .then(function(response) {
@@ -157,7 +160,7 @@ async function calculateCoordinates (addressInfo : any){
             });
         return coordinates;
     }
-    
+        
 }
 
 /**
