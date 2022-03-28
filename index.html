@@ -471,6 +471,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_add_product_to_cart">6.3. Add product to cart</a></li>
 <li><a href="#_delete_product_from_cart">6.4. Delete product from cart</a></li>
 <li><a href="#_confirm_purchase">6.5. Confirm purchase</a></li>
+<li><a href="#_register_the_sale_event">6.6. Register the sale event</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -1492,7 +1493,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_sign_up_and_sign_in">6.1. Sign up and sign in</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram_signUp_signIn.png" alt="Sequence diagram signUp signIn" width="421" height="757">
+<img src="./images/Sequence%20diagram_signUp_signIn.png" alt="Sequence diagram signUp signIn" width="451" height="732">
 </div>
 </div>
 </div>
@@ -1500,7 +1501,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_view_orders_and_products">6.2. View orders and products</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="436" height="476">
+<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="473" height="463">
 </div>
 </div>
 <div class="paragraph">
@@ -1521,25 +1522,15 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_add_product_to_cart">6.3. Add product to cart</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram_AddProduct.png" alt="Sequence diagram AddProduct" width="320" height="283">
+<img src="./images/Sequence%20diagram_AddProduct.png" alt="Sequence diagram AddProduct" width="346" height="276">
 </div>
-</div>
-<div class="paragraph">
-<p>Many details to keep in mind:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_delete_product_from_cart">6.4. Delete product from cart</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram_DeleteProduct.png" alt="Sequence diagram DeleteProduct" width="413" height="483">
+<img src="./images/Sequence%20diagram_DeleteProduct.png" alt="Sequence diagram DeleteProduct" width="449" height="468">
 </div>
 </div>
 </div>
@@ -1547,7 +1538,15 @@ You will mainly capture scenarios in your documentation to communicate your arch
 <h3 id="_confirm_purchase">6.5. Confirm purchase</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram_Confirm_purchase.png" alt="Sequence diagram Confirm purchase" width="667" height="646">
+<img src="./images/Sequence%20diagram_Confirm_purchase.png" alt="Sequence diagram Confirm purchase" width="542" height="596">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_register_the_sale_event">6.6. Register the sale event</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Sequence%20diagram_Register_sale_event.png" alt="Sequence diagram Register sale event" width="844" height="550">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1611,7 +1610,7 @@ when your infrastructure is more complex.</p>
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Deployment_view_diagram.png" alt="Deployment view diagram" width="688" height="916">
+<img src="./images/Deployment_view_diagram.png" alt="Deployment view diagram" width="302" height="205">
 </div>
 </div>
 <div class="dlist">
@@ -1911,7 +1910,7 @@ concrete and measurable.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/mindmap.svg" alt="mindmap" width="367" height="425">
+<img src="./images/mindmap.svg" alt="mindmap" width="375" height="416">
 </div>
 </div>
 </div>
@@ -2311,7 +2310,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-12 13:10:45 +0100
+Last updated 2022-02-19 12:12:49 +0100
 </div>
 </div>
 </body>
