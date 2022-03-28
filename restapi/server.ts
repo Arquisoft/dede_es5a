@@ -9,10 +9,9 @@ dotenv.config();
 const app: Application = express();
 module.exports = app;
 
-app.use(cors());
+//app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
 
 const port: number = 5000;
-
 
 const options: cors.CorsOptions = {
     origin: ['http://localhost:3000']

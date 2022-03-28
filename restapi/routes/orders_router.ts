@@ -140,19 +140,24 @@ app.delete("/orders/delete/:id", async (req: Request, res: Response) => {
  * @returns the coordinates of clients address
  */
 async function calculateCoordinates (addressInfo : any){
-    //Utilizar coordenadas
-    var coordinates = await fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(addressInfoResult) {
-        //Se obtienen las coordenadas del cliente
-            return { 
-                "long" : addressInfoResult.features[0].center[0],
-                "lat" : addressInfoResult.features[0].center[1],
-            }
-        });
-    return coordinates;
+    var mapBoxUri = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY;
+    
+    if(mapBoxUri.includes("mapbox")){
+        //Utilizar coordenadas
+        var coordinates = await fetch(mapBoxUri)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(addressInfoResult) {
+            //Se obtienen las coordenadas del cliente
+                return { 
+                    "long" : addressInfoResult.features[0].center[0],
+                    "lat" : addressInfoResult.features[0].center[1],
+                }
+            });
+        return coordinates;
+    }
+    
 }
 
 /**
