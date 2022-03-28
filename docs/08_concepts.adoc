@@ -68,10 +68,19 @@ image:domain_model.png["Domain model"]
 
 === Arquitecture and Design Patterns
 ¿MVC?
+Modular por entidades
+funcionalidades por separado
+client servidor
 _<explanation>_
 
 === Package Structure
 una foto y algo de explicacion
+
+restapi:
+    routes: logica de negocio, separado por entidad
+    models: representaciones
+    service: ba
+
 _<explanation>_
 
 === User Experience (UX)
@@ -106,7 +115,25 @@ Tools to use are:
 
 ==== User interface
 User interfaces should be designed with usability and accessibility in mind. 
-_<falta mocks>_
+
+===== Mockups
+They may not exactly match the final design, but they offer an idea of the functionality and design of the pages that the application will have. 
+
+====== Main page
+image:main.png["Main page"]
+
+====== Cart screen
+image:cart.png["Cart screen"]
+
+====== Product's detail screen
+image:productDetail.png["Product's detail screen"]
+
+====== Sign up/Log in screen
+image:signUp.png["Sign up screen"]
+image:logIn.png["Log in screen"]
+
+====== User's profile screen
+image:userProfile.png["User's profile screen"]
 
 === Security
 Security is another key aspect to consider. Some of the measures to ensure sacurity are:
@@ -123,7 +150,8 @@ To achieve high availability:
 * On the other hand, enable autoscaling on the application's service providers in case of anticipating the success of the application. 
 
 === Efficiency
-no se que decir
+codigo de calidad para que se ejecute mas rapido
+no se que decir, 
 
 === Development concept 
 ==== Build, Test, Deploy
