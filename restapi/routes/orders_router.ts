@@ -43,7 +43,7 @@ app.get("/orders/:id", async (req: Request, res: Response) => {
 
 // POST calculates order shipping price 
 // Recibe en el cuerpo de la petición los datos del pedido así como los del usuario para el que se envía el pedido
-app.post("/order/price", async (req: Request, res: Response) => {
+app.post("/orders/price", async (req: Request, res: Response) => {
     try {    
 
         var addressInfo = {
@@ -74,7 +74,7 @@ app.post("/order/price", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/order/add", async (req: Request, res: Response) => {
+app.post("/orders/add", async (req: Request, res: Response) => {
     try {
         //Todavía podría cambiarse para que la empresa de distribución calcule las fechas  (calculateShipping)
         var newOrder = new Order.default(new Date(req.body.arrivalDate), new Date(req.body.confirmDate), 
@@ -94,7 +94,7 @@ app.post("/order/add", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/order/update/:id", async (req: Request, res: Response) => {
+app.put("/orders/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -114,7 +114,7 @@ app.put("/order/update/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/order/delete/:id", async (req: Request, res: Response) => {
+app.delete("/orders/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {

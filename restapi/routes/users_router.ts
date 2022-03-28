@@ -7,7 +7,7 @@ import User from "../models/user";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/users", async (_req: Request, res: Response) => {
+app.get("/user", async (_req: Request, res: Response) => {
     try {
        var users = await service.getCollection("Usuario"); //Se obtienen los datos del servicio
 
@@ -18,7 +18,7 @@ app.get("/users", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/users/:id", async (req: Request, res: Response) => {
+app.get("/user/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
