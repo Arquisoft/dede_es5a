@@ -16,7 +16,6 @@ beforeAll(async () => {
     };
     app.use(cors(options));
     app.use(bp.json());
-    //app.use("/api", api)
 
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
