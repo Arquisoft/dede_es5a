@@ -28,12 +28,20 @@ export async function getProducts():Promise<Product[]>{
   return response.json()
 }
 
+export async function getProductById(id:string):Promise<Product>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/products/'+id);
+  //The objects returned by the api are directly convertible to Product objects
+  return response.json()
+}
+
 export async function getOrders():Promise<Order[]>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders');
   //The objects returned by the api are directly convertible to Product objects
   return response.json()
 }
+
 
 export async function login(login: Login): Promise<boolean> {
   return login.email == 'prueba@prueba.es' && login.password=='123';

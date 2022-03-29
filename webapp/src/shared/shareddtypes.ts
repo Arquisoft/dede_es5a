@@ -14,12 +14,18 @@ export type Product = {
       _id:string
 }
 
+export type ProductOrdered = {
+  product_id:string,
+  size:string,
+  quantity:number
+}
+
 export type Order = {
   arrivalDate: string,
   confirmDate: string,
   deliveryDate: string,
   totalAmount: number,
-  productsOrdered: Array<Product>,
+  productsOrdered: Array<ProductOrdered>,
   user: User,
   code: string
 }

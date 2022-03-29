@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Navbar from './components/Navbar/Navbar'
 import { CartProvider } from './contexts/CartContext'
 import Container from '@mui/material/Container'
+import Orders from './components/Orders/Orders'
 
 function App(): JSX.Element {
   return (
@@ -18,6 +19,7 @@ function App(): JSX.Element {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/signIn" element={<UserLogIn />} />
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           </Container>
         </CartProvider>
