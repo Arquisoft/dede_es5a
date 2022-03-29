@@ -77,7 +77,7 @@ Contained Building Blocks::
 Important Interfaces::
 |===
 |Interface |Description
-| _nedo-fetch_ | Allow us to make asynchronous requests to the maps API so we can get information about coordinates and distances among many addresses. 
+| _nodo-fetch_ | Allow us to make asynchronous requests to the maps API so we can get information about coordinates and distances among many addresses. 
 | _mongodb and  mongoose_ | Optimize database connections and data management
 | _inrupt/solid-ui-react_ | Dependency which allows us to have a connection to solid. In this way we can get information from the pods.
 |===
