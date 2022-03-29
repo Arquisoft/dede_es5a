@@ -38,8 +38,6 @@ app.post("/user/add", async (req: Request, res: Response) => {
     try {
         var newUser = req.body as User;
 
-        newUser.password = app.get("crypto").createHmac('sha256', app.get('clave')).update(req.body.password).digest('hex');
-
         var result = await service.addElement("Usuario", newUser); //Añade a la collección
 
         result
