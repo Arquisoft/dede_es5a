@@ -66,7 +66,7 @@ image:domain_model.png["Domain model"]
 |===
 
 === Architecture and Design Patterns
-image:https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png?auto=format%2Ccompress["MERN Stack Architecture"]
+image:https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png?auto=format%2Ccompress["MERN Stack Architecture, by MongoDB"]
 
 MERN Stack is being used in the application which allows to easily create 3-tier architecture.
 
