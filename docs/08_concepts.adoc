@@ -53,13 +53,12 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 === Domain model
 image:domain_model.png["Domain model"]
 
-
 [options="header"]
 .Elements of the domain model
 |===
 |Element|Meaning
 |User|Representation of users who are logged in.
-|Product|Represention of socks of the on-line shop.
+|Product|Representation of socks of the on-line shop.
 |Availability|Save the stock and size of the product.
 |OrderProduct|Represents products in orders.
 |Order|Represents confirmed orders.
@@ -95,7 +94,7 @@ image:packageLevel2.png["Package level 2"]
 
     * *routes* defines API endpoints and they are separated by database collections. 
     * *models* are representations of the data in the database. 
-    * *services* contains global services like database conection.
+    * *services* contains global services like database connection.
 
 *webapp* mainly contains:
 
@@ -109,10 +108,10 @@ image:packageLevel2.png["Package level 2"]
 
 
 === User Experience (UX)
-A good User Experience is a key aspect for the success of the application. The application must satisfy the needs of the users in an effective way. For this, several concepts must be taken into account when designing user interfaces  like:
+A good User Experience is a key aspect for the success of the application. The application must satisfy the needs of the users effectively. For this, several concepts must be taken into account when designing user interfaces like:
 
 * Usability
-* Accesibility
+* Accessibility
 
 ==== Usability
 Throughout development, usability tests are carried out on different users. Each test consists of small tasks that test the implemented functionalities. 
@@ -127,7 +126,7 @@ Usability problems make the application difficult to use and understand for user
 |Detected problem | Solution
 |===
 
-==== Accesibility
+==== Accessibility
 There are different standards to follow to achieve accessibility. One of the standards is WCAG 2.0 (Level AA) which is the most used worldwide. Therefore, it is the one used in this application. 
 
 Tools to use are:
@@ -161,7 +160,7 @@ image:logIn.png["Log in screen"]
 image:userProfile.png["User's profile screen"]
 
 === Security
-Security is another key aspect to consider. Some of the measures to ensure sacurity are:
+Security is another key aspect to consider. Some measures to ensure security are:
 
 * The application does not store private data of the user. To obtain it, the application asks the user for permission to access the Solid POD where the data is stored at the time it is needed. In this way, control of the user's own data is guaranteed. 
 
@@ -202,7 +201,7 @@ _<can be added later>_
 _<can be added later >_
 
 ==== Logging
-Users just need to login to any Solid Pod provider to use the app. There are several advantages:
+Users just need to log in to any Solid Pod provider to use the app. There are several advantages:
 
 * The user does not have to register an account in the application. So he does not have to remember the password.
 * Developers do not have to deal with passwords. 

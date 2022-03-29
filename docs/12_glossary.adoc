@@ -56,4 +56,5 @@ Potentially more columns in case you need translations.
 |Mockup| A static design of a web page or application that shows general layout and functionality.
 |MERN| MERN stands for MongoDB, Express, React and Node.
 |3-tier architecture| It is a client-server architecture which separates the application into three logical and three physical tiers: presentation tier, application tier and data tier.
+|WCAG| Web Content Accessibility Guidelines
 |===
