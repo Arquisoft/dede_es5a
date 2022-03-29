@@ -14,6 +14,16 @@ export type Product = {
       _id:string
 }
 
+export type Order = {
+  arrivalDate: string,
+  confirmDate: string,
+  deliveryDate: string,
+  totalAmount: number,
+  productsOrdered: Array<Product>,
+  user: User,
+  code: string
+}
+
 export interface Login {
   email: string;
   password: string;
