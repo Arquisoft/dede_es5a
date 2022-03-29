@@ -66,22 +66,47 @@ image:domain_model.png["Domain model"]
 |DistributionCenter|Represents distribution centers that are in charge of send orders.
 |===
 
-=== Arquitecture and Design Patterns
-¿MVC?
-Modular por entidades
-funcionalidades por separado
-client servidor
-_<explanation>_
+=== Architecture and Design Patterns
+image:https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png?auto=format%2Ccompress["MERN Stack Architecture"]
+
+MERN Stack is being used in the application which allows to easily create 3-tier architecture.
+
+* **R**eact.js is used to work with the presentation layer.
+* **E**xpress.js and **N**ode.js are used to make up the middle or application layer.
+* **M**ongoDB is used to create the database layer.
 
 === Package Structure
-una foto y algo de explicacion
 
-restapi:
-    routes: logica de negocio, separado por entidad
-    models: representaciones
-    service: ba
+==== Level 1
 
-_<explanation>_
+image:packageLevel1.png["Package level 1"]
+
+The project is named dede_5a and contains the following main folders:
+
+* *docs* is the folder that stores the files related to this documentation.
+* *restapi* is the folder where the REST API that obtains data from the database is.
+* *webapp* is the folder that stores everything related to the application itself.
+
+==== Level 2
+
+image:packageLevel2.png["Package level 2"]
+
+*restapi* mainly contains:
+
+    * *routes* defines API endpoints and they are separated by database collections. 
+    * *models* are representations of the data in the database. 
+    * *services* contains global services like database conection.
+
+*webapp* mainly contains:
+
+    * *public* is the folder where the static and necessary resources for the application are located: images, scripts, etc. 
+    * *src* contains the code part.
+
+        - *api* contains calls to REST API to get data. 
+        - *components* are UI components that can be used across various files in the project.
+        - *contexts* contains the state which has to be shared across these components.
+        - *helpers* contains commonly used functions in the project.
+
 
 === User Experience (UX)
 A good User Experience is a key aspect for the success of the application. The application must satisfy the needs of the users in an effective way. For this, several concepts must be taken into account when designing user interfaces  like:
@@ -150,8 +175,8 @@ To achieve high availability:
 * On the other hand, enable autoscaling on the application's service providers in case of anticipating the success of the application. 
 
 === Efficiency
-codigo de calidad para que se ejecute mas rapido
-no se que decir, 
+Try to have a good code quality for better performance.
+_<more>_
 
 === Development concept 
 ==== Build, Test, Deploy
