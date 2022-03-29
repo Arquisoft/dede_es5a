@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import React,{ useState} from "react";
 import { LoginButton } from "@inrupt/solid-ui-react";
-import { Button, TextField, FormGroup, Container, Box, Avatar } from "@mui/material";
-import React from "react";
+import { Button, TextField, Container, Box, Avatar } from "@mui/material";
 
 const LoginForm = () => {
   const [idp, setIdp] = useState("https://broker.pod.inrupt.com");
