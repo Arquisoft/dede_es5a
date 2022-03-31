@@ -6,10 +6,12 @@ import Home from './components/Home'
 import Navbar from './components/Navbar/Navbar'
 import { CartProvider } from './contexts/CartContext'
 import Container from '@mui/material/Container'
+import { SessionProvider } from "@inrupt/solid-ui-react";
 
 function App(): JSX.Element {
   return (
     <div className="App">
+      <SessionProvider sessionId="login">
       <Router>
         <CartProvider>
           <Navbar />
@@ -23,6 +25,7 @@ function App(): JSX.Element {
         </CartProvider>
         <Footer />
       </Router>
+      </SessionProvider>
     </div>
   )
 }
