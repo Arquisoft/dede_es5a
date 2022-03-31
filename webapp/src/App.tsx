@@ -7,8 +7,15 @@ import Navbar from './components/Navbar/Navbar'
 import { CartProvider } from './contexts/CartContext'
 import Container from '@mui/material/Container'
 import { SessionProvider } from "@inrupt/solid-ui-react";
+import { useState } from 'react';
+import Alert from '@mui/material/Alert'
+import { Button, Collapse, IconButton, Stack } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
 
 function App(): JSX.Element {
+
+  const [open, setOpen] = useState(true);
+
   return (
     <div className="App">
       <SessionProvider sessionId="login">
