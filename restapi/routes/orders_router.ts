@@ -48,7 +48,7 @@ app.post("/orders/price", async (req: Request, res: Response) => {
 
         var addressInfo = {
             "number": req.body.number,
-            "street": req.body.address,
+            "street": req.body.street,
             "city": req.body.city,
             "country": req.body.country,
             "zipcode": req.body.zipcode
@@ -141,7 +141,7 @@ app.delete("/orders/delete/:id", async (req: Request, res: Response) => {
  */
 async function calculateCoordinates (addressInfo : any){
 
-    var white_list = ["mapbox"];
+    var white_list = ["api.mapbox.com"];
 
     var mapBoxUri = new URL('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY);
     
@@ -158,6 +158,7 @@ async function calculateCoordinates (addressInfo : any){
                     "lat" : addressInfoResult.features[0].center[1],
                 }
             });
+
     }
         
 }
