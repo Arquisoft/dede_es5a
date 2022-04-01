@@ -5,14 +5,16 @@ import { login } from '../../api/api'
 import { useNavigate } from 'react-router-dom'
 import { Container, Box, Avatar, TextField, Button } from '@mui/material'
 
+/*
 interface SignInPops {
   setPage: (page: string) => void
 }
+*/
 
 export default function UserLogIn(): JSX.Element {
   const {
     register,
-    formState: { errors },
+    //formState: { errors },
     handleSubmit,
   } = useForm()
   const navigate = useNavigate()

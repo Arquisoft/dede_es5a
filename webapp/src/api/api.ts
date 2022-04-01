@@ -29,5 +29,5 @@ export async function getProducts():Promise<Product[]>{
 }
 
 export async function login(login: Login): Promise<boolean> {
-  return login.email == 'prueba@prueba.es' && login.password=='123';
+  return login.email === 'prueba@prueba.es' && login.password === '123';
 }
