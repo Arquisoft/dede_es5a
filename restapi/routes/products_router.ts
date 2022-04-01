@@ -35,9 +35,17 @@ app.get("/products/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/product/add", async (req: Request, res: Response) => {
+app.post("/products/add", async (req: Request, res: Response) => {
     try {
-        var newProduct = req.body as Product;
+        var newProduct = new Product(
+            req.body.name,
+            req.body.price,
+            req.body.type,
+            req.body.brand,
+            req.body.disponibility,
+            req.body.description 
+        );
+       
         var result = await service.addElement("Producto", newProduct); //Añade a la collección
 
         result
@@ -50,7 +58,7 @@ app.post("/product/add", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/product/update/:id", async (req: Request, res: Response) => {
+app.put("/products/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -71,7 +79,7 @@ app.put("/product/update/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/product/delete/:id", async (req: Request, res: Response) => {
+app.delete("/products/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
