@@ -51,6 +51,10 @@ Potentially more columns in case you need translations.
 | mui | Npm library used to optimize the development of GUI. It gives us a lot of improvements while creating buttons, panels and many other things. The link to the webpage can be found link:https://mui.com/[here].
 | mongodb | Official mongodb driver for Node.js. Usage documentation can be found in this link:https://www.npmjs.com/package/mongodb[webpage].
 |mongoose| Object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks. Here is the link to the link:https://www.npmjs.com/package/mongoose[documentation].
-|Picker express API| Api which helps to calculate orders' price and many other things related to order's management. Here is the link:https://www.pickerexpress.com/[docuementation].
+|Picker express API| Api which helps to calculate orders' price and many other things related to order's management. Here is the link:https://www.pickerexpress.com/[documentation].
 |MongoDB Atlas| Service supported by mongoDB which allows the application to externalize the data storage. Data is stored using serverless architecture managed by mongoDB with AWS, Azure or Google Cloud. link:https://www.mongodb.com/cloud/atlas/migrate[MongoDB Atlas].
+|Mockup| A static design of a web page or application that shows general layout and functionality.
+|MERN| MERN stands for MongoDB, Express, React and Node.
+|3-tier architecture| It is a client-server architecture which separates the application into three logical and three physical tiers: presentation tier, application tier and data tier.
+|WCAG| Web Content Accessibility Guidelines
 |===
