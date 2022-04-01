@@ -9,6 +9,7 @@ import Container from '@mui/material/Container'
 import { SessionProvider } from "@inrupt/solid-ui-react";
 
 function App(): JSX.Element {
+
   return (
     <div className="App">
       <SessionProvider sessionId="login">
