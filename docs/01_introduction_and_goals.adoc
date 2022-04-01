@@ -12,13 +12,49 @@ Describes the relevant requirements and the driving forces that software archite
 
 === Requirements Overview
 
-The following diagram represents the functional requirements of the application... (Link here Use Case diagram).
+The following diagram represents the functional requirements of the application.
+
+[plantuml,"Sequence requirements_use_case_digram",png]
+----
+@startuml
+
+actor Client as c
+
+package Arquisocks {
+  usecase "Add to cart" as atc
+  usecase "Create order" as co
+  usecase "Login" as l
+  usecase "Signin" as s
+  usecase "View orders" as vo
+}
+
+cloud Database
+cloud SolidPod
+cloud MapsAPI
+
+c --> atc
+c --> co
+c --> l
+c --> s
+c --> vo
+
+Database -u-> co
+Database -u-> vo
+Database -u-> s
+Database -u-> l
+SolidPod -u--> l
+SolidPod -u--> s
+MapsAPI -u--> co
+
+
+@enduml
+----
 
 List of requirements:
 
 * The system will emulate an online shop where the users will be able to select and buy products.
 * The system will calculate the shipping costs of the selected products based on the shipping information provided by the 
-    user's pod.
+    user's pod. The price will be calculated based on distance between distribution center and client's address.
 * The system will show the user the total price for the products selected.
 * The system will register the user's order and will proceed with the shipping.
 * The system will show the user a list of all its orders.
