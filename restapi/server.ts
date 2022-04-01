@@ -9,7 +9,7 @@ dotenv.config();
 const app: Application = express();
 module.exports = app;
 
-//app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
+app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
 
 const port: number = 5000;
 
