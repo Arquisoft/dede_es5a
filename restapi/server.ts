@@ -49,6 +49,7 @@ routerUsuarioSession.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
+        res.redirect("/home");
     }
 });
 
@@ -63,6 +64,7 @@ routerUsuarioAdministrador.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
+        res.redirect("/home");
     }
 });
 

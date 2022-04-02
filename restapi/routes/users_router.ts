@@ -4,6 +4,8 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
+import Product from "../models/product";
+import session from "express-session";
 var app = require("../server");
 
 // GET (todos los productos)
@@ -90,22 +92,25 @@ app.delete("/users/delete/:id", async (req: Request, res: Response) => {
 
 app.post("/users/login", async (req: Request, res: Response) => {
     try {
-        var pass = app.get("crypto").createHmac('sha256', app.get('clave')).update(req.body.password).digest('hex');
-        var filter = { username : req.body.username, password : pass };
+        var filter = { webID : req.body.webID};
         
         var user = await service.findBy("Usuario", filter);
-
-        if(user == null || user.length == 0){
-            res.status(500).send("Usuario y/o contraseña no coinciden");
+        
+        if(user == null || user.length == 0){ // Usuario NO admin
+            //Metemos al usuario en sesión
+            req.session.usuario = { webID: req.body.webID, role: "user" };
+            req.session.cart = new Array<Product>();
+            
+            //Redirigir a otra pagina
+            res.redirect(200,"/home");
         }
         else{
             //Metemos al usuario en sesión
-            req.session.usuario = { user: user[0].username, role: user[0].role };
+            req.session.usuario = { webID: user[0].webID, role: user[0].role };
+            req.session.cart = new Array<Product>();
             
             //Redirigir a otra pagina
-            console.log(req.session);
-            res.status(200).send();
-
+            res.redirect(200,"/home");
         }
     } catch (error) {
         res.status(500).send(error.message);
@@ -114,5 +119,6 @@ app.post("/users/login", async (req: Request, res: Response) => {
 
 app.get("/users/logout", async (req: Request, res: Response) => {
     req.session.usuario = null;
+    req.session.cart = null;
     res.send("Usuario desconectado");
 });
