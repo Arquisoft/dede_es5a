@@ -104,9 +104,6 @@ Webapp -> Restapi: Add product
 User <-- Webapp: Product added correctly
 @enduml
 ----
-Many details to keep in mind:
-
-* Depending on whether the user is logged in or not, the product is stored temporarily in the session or persistently in the database. 
 
 === Delete product from cart 
 [plantuml,"Sequence diagram_DeleteProduct",png]
@@ -143,9 +140,8 @@ User-> WebApp: Checkout order
 alt Checkout confirmed
     User<- WebApp: Ask for personal information
     User-> WebApp: Grant permission
-    WebApp-> Restapi: Check necessary information
-    Restapi-> SOLID: Get information
-    Restapi<-- SOLID: Return information
+    WebApp-> SOLID: Get information
+    WebApp<-- SOLID: Return information
 ... **Payment process** ...
     Restapi-> Database: Save order
     Restapi--> WebApp: Order saved
@@ -153,5 +149,31 @@ alt Checkout confirmed
 else Checkout error
     WebApp--> User: Error with payment
 end
+@enduml
+----
+
+=== Register the sale event
+[plantuml,"Sequence diagram_Register_sale_event",png]
+----
+@startuml
+actor User
+participant WebApp
+participant Restapi
+participant MapsAPI
+database SOLID
+database Database
+User -> WebApp: Request to confirm order
+WebApp -> SOLID: Get user's directions
+WebApp <-- SOLID: Return directions
+User -> WebApp: Select direction
+WebApp -> Restapi: Get shipping price
+Restapi -> MapsAPI: Calculate distance
+Restapi <-- MapsAPI: Returns distance
+WebApp <-- Restapi: Returns shipping cost
+User <-- WebApp: Show total and shipping price
+User -> WebApp: Confirm order
+... **Payment process** ...
+Restapi -> Database: Save order
+WebApp --> User: Show success message
 @enduml
 ----
