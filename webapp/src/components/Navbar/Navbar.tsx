@@ -1,5 +1,7 @@
 import * as React from 'react'
 import ShoppingCart from '../Cart/ShoppingCart'
+import { useSession } from "@inrupt/solid-ui-react";
+
 
 import {
   AppBar,
@@ -26,6 +28,7 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   )
+  const {session, logout} = useSession();
 
   const navigate = useNavigate()
 
@@ -168,9 +171,15 @@ const NavBar = () => {
               <MenuItem onClick={() => navigate('/orders')}>
                 <Typography textAlign="center">Orders</Typography>
               </MenuItem>
-              <MenuItem onClick={() => navigate('/signIn')}>
+              {!session.info.isLoggedIn ? (
+                <MenuItem onClick={() => navigate('/signIn')}>
                 <Typography textAlign="center">Signin</Typography>
               </MenuItem>
+              ):(
+                <MenuItem onClick={logout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
+              )}
             </Menu>
           </Box>
           <ShoppingCart />
