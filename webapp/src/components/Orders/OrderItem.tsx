@@ -1,18 +1,39 @@
 import { Grid, Card, CardContent, Paper, Typography } from '@mui/material'
-import { Order } from '../../shared/shareddtypes'
+import { useEffect, useState } from 'react'
+import { getProducts } from '../../api/api'
+import { Order, Product } from '../../shared/shareddtypes'
 
 interface Props {
   order: Order
 }
 
-export default function ImgMediaCard({ order }: Props) {
-  const productsList = order.productsOrdered.map((p) => (
-    <Paper sx={{ margin: 1.2 }}>
-      <Typography variant="h5">
-        Size: {p.size}, Quantity: {p.quantity}
-      </Typography>
-    </Paper>
-  ))
+export default function OrderItem({ order }: Props) {
+  const [products, setProducts] = useState<Product[]>([])
+
+  const refreshProductList = async () => {
+    setProducts(await getProducts())
+  }
+
+  useEffect(() => {
+    refreshProductList()
+  }, [])
+
+  const productsPaperList = order.productsOrdered.map((p) => {
+    const prod = products.find((p2) => p2._id === p.product_id)
+
+    return (
+      <Paper sx={{ margin: 1.2 }} key={order.code + p.product_id}>
+        {console.log('CODE: ' + order.code + '| ID: ' + p.product_id)}
+
+        <Typography variant="h5">
+          {prod?.name} - {prod?.brand}
+        </Typography>
+        <Typography variant="h6">
+          Size: {p.size}, Quantity: {p.quantity}
+        </Typography>
+      </Paper>
+    )
+  })
 
   return (
     <Grid item xs={12}>
@@ -39,7 +60,7 @@ export default function ImgMediaCard({ order }: Props) {
               Arrival: {new Date(order.arrivalDate).toLocaleString()}
             </Typography>
           </Paper>
-          {productsList}
+          {productsPaperList}
         </CardContent>
       </Card>
     </Grid>

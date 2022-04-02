@@ -1,6 +1,8 @@
 export type User = {
-    name:string;
-    email:string;
+   username: string, 
+   webID: string, 
+   password: string,
+   id: string
   }
 
 export type Product = {
@@ -26,7 +28,7 @@ export type Order = {
   deliveryDate: string,
   totalAmount: number,
   productsOrdered: Array<ProductOrdered>,
-  user: User,
+  user_id: string,
   code: string
 }
 

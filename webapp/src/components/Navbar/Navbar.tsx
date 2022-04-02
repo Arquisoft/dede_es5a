@@ -173,7 +173,6 @@ const NavBar = () => {
               </MenuItem>
             </Menu>
           </Box>
-
           <ShoppingCart />
         </Toolbar>
       </Container>
