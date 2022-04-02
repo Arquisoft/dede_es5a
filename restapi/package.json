@@ -21,7 +21,8 @@
     "mongoose": "^6.2.4",
     "prom-client": "^14.0.1",
     "sanitize-html": "^2.7.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ts-node-dev": "^1.1.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -34,7 +35,6 @@
     "jest": "^27.4.7",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.2",
-    "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   }
 }
