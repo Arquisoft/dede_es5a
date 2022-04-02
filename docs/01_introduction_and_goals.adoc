@@ -47,6 +47,7 @@ Database -u-> signin
 Database -u-> login
 SolidPod -u--> login
 SolidPod -u--> signin
+SolidPod -u--> placeOrder
 MapsAPI -u--> placeOrder
 
 @enduml
