@@ -18,34 +18,37 @@ The following diagram represents the functional requirements of the application.
 ----
 @startuml
 
-actor Client as c
+actor Client as client
 
-package Arquisocks {
-  usecase "Add to cart" as atc
-  usecase "Create order" as co
-  usecase "Login" as l
-  usecase "Signin" as s
-  usecase "View orders" as vo
+package ArquiSocks {
+  usecase "Add to cart" as addToCart
+  usecase "Place order" as placeOrder
+  usecase "Login" as login
+  usecase "Signin" as signin
+  usecase "View orders" as viewOrders
+  usecase "View products" as viewProducts
 }
 
 cloud Database
 cloud SolidPod
 cloud MapsAPI
 
-c --> atc
-c --> co
-c --> l
-c --> s
-c --> vo
+client --> viewProducts
+client --> addToCart
+client --> placeOrder
+client --> login
+client --> signin
+client --> viewOrders
 
-Database -u-> co
-Database -u-> vo
-Database -u-> s
-Database -u-> l
-SolidPod -u--> l
-SolidPod -u--> s
-MapsAPI -u--> co
-
+Database -u-> viewProducts
+Database -u-> placeOrder
+Database -u-> viewOrders
+Database -u-> signin
+Database -u-> login
+SolidPod -u--> login
+SolidPod -u--> signin
+SolidPod -u--> placeOrder
+MapsAPI -u--> placeOrder
 
 @enduml
 ----
