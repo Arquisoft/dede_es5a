@@ -30,36 +30,21 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== Sign up and sign in
+=== Sign in
 
-[plantuml,"Sequence diagram_signUp_signIn", png]
+[plantuml,"Sequence diagram_signIn", png]
 ----
 @startuml
 actor User
 participant WebApp
-database Restapi
 database SOLID
-User-> WebApp: Enter credentials
-WebApp -> Restapi: Create user
-Restapi -> Restapi: Exists
-alt User already exists
-    Restapi -> WebApp: Error
-else Not registered
-    Restapi -> SOLID: Exists
-    alt Exists in SOLID
-        Restapi -> Restapi: Insert
-        Restapi -> WebApp: Created
-    else Doesn't exist in SOLID
-        Restapi -> WebApp: Error
-    end
-end
-User-> WebApp: Enter credentials
-WebApp-> Restapi: Login request
+User-> SOLID: Login request
+User-> SOLID: Enter credentials
 alt User exists
-    Restapi-> WebApp: Returns the user
+    SOLID--> WebApp: Returns the user
     WebApp-> User: User logged in
 else User doesn't exists
-    Restapi-> WebApp: Denied authentication
+    SOLID--> WebApp: Denied authentication
 end
 @enduml
 ----
