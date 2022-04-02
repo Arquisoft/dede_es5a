@@ -20,7 +20,7 @@ The following diagram represents the functional requirements of the application.
 
 actor Client as client
 
-package Arquisocks {
+package ArquiSocks {
   usecase "Add to cart" as addToCart
   usecase "Place order" as placeOrder
   usecase "Login" as login
