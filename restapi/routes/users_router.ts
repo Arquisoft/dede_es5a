@@ -7,7 +7,7 @@ import User from "../models/user";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/user", async (_req: Request, res: Response) => {
+app.get("/users", async (_req: Request, res: Response) => {
     try {
        var users = await service.getCollection("Usuario"); //Se obtienen los datos del servicio
 
@@ -18,7 +18,7 @@ app.get("/user", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/user/:id", async (req: Request, res: Response) => {
+app.get("/users/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -34,7 +34,7 @@ app.get("/user/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/user/add", async (req: Request, res: Response) => {
+app.post("/users/add", async (req: Request, res: Response) => {
     try {
         var newUser = req.body as User;
 
@@ -50,7 +50,7 @@ app.post("/user/add", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/user/update/:id", async (req: Request, res: Response) => {
+app.put("/users/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -68,7 +68,7 @@ app.put("/user/update/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/user/delete/:id", async (req: Request, res: Response) => {
+app.delete("/users/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -88,7 +88,7 @@ app.delete("/user/delete/:id", async (req: Request, res: Response) => {
     }
 });
 
-app.post("/identificarse", async (req: Request, res: Response) => {
+app.post("/users/login", async (req: Request, res: Response) => {
     try {
         var pass = app.get("crypto").createHmac('sha256', app.get('clave')).update(req.body.password).digest('hex');
         var filter = { username : req.body.username, password : pass };
@@ -112,7 +112,7 @@ app.post("/identificarse", async (req: Request, res: Response) => {
     }
 });
 
-app.get("/desconectarse", async (req: Request, res: Response) => {
+app.get("/users/logout", async (req: Request, res: Response) => {
     req.session.usuario = null;
     res.send("Usuario desconectado");
 });
