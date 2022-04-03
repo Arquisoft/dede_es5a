@@ -12,7 +12,7 @@ const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) 
 
 
 const options: cors.CorsOptions = {
-    origin: ['http://localhost:3000']
+    origin: ['http://localhost:3000','https://dede-es5a.herokuapp.com']
 };
 
 //Sesión de express
