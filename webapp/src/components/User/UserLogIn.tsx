@@ -34,7 +34,10 @@ const LoginForm = () => {
                         </MenuItem>
                         <MenuItem onChange={(e) => setIdp("https://inrupt.net")} value={"https://inrupt.net"}>
                             https://inrupt.net
-                        </MenuItem>                  
+                        </MenuItem> 
+                        <MenuItem onChange={(e) => setIdp("https://solidcommunity.net/")} value={"https://solidcommunity.net/"}>
+                            https://solidcommunity.net/
+                        </MenuItem>                 
                     </Select>
                 </FormControl>
  
