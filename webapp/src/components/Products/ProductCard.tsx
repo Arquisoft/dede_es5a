@@ -82,6 +82,7 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
   return (
     <Grid item xs={4}>
       <Card
+        key={product._id}
         elevation={3}
         style={{ backgroundColor: '#365073', borderColor: '#365073' }}
         sx={{ border: 5 }}
