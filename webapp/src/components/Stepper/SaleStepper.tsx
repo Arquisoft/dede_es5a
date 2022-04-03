@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ShoppingCart from '../Cart/ShoppingCart';
 import { Container } from '@mui/material';
+import DirectionStepPage from './DirectionStepPage';
 
 
 const steps = ['Review cart', 'Select delivery address', 'Pay'];
@@ -25,9 +26,9 @@ export default function HorizontalLinearStepper() {
   function choosePage(pageNumber: number) {
     switch (pageNumber) {
       case 1:
-        return 'ooh';
+        return <DirectionStepPage/>;
       case 2:
-        return 'bar';
+        return 'ooh';
       default:
         return (<Container><ShoppingCart /></Container>);
     }

@@ -59,3 +59,16 @@ export type Disponibility = {
   size: number,
   stock: number
 }
+
+export type Address = {
+  id: number,
+  number: number,
+  street: string,
+  city: string,
+  country: string,
+  zipcode: string
+}
+
+export type ShippingPriceResponse = {
+  shippingPrice: number
+}
