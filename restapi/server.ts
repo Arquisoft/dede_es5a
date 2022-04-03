@@ -8,13 +8,11 @@ dotenv.config();
 const app: Application = express();
 module.exports = app;
 
-app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
+const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : 5000;
 
-const port: number = 5000;
-
-//const options: cors.CorsOptions = {
-  //  origin: ['http://localhost:3000']
-//};
+const options: cors.CorsOptions = {
+    origin: ['http://localhost:3000','https://dede-es5a.herokuapp.com']
+};
 
 //Sesión de express
 var expressSession = require('express-session');
