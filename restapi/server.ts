@@ -9,13 +9,13 @@ dotenv.config();
 const app: Application = express();
 module.exports = app;
 
-//app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
+app.use(cors()); //Da una vulnerabilidad pero se necesita para depsliegue
 
 const port: number = 5000;
 
-const options: cors.CorsOptions = {
-    origin: ['http://localhost:3000']
-};
+//const options: cors.CorsOptions = {
+  //  origin: ['http://localhost:3000']
+//};
 
 //Sesión de express
 var expressSession = require('express-session');
@@ -38,7 +38,7 @@ declare global {
 const metricsMiddleware: RequestHandler = promBundle({ includeMethod: true });
 app.use(metricsMiddleware);
 
-app.use(cors(options));
+//app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
 //RouterSession
