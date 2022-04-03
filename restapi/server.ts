@@ -3,7 +3,6 @@ import cors from 'cors';
 import promBundle from 'express-prom-bundle';
 import dotenv from "dotenv";
 
-
 dotenv.config();
 
 const app: Application = express();
