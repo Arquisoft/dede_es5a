@@ -1,6 +1,6 @@
 import React,{ useState} from "react";
 import { LoginButton } from "@inrupt/solid-ui-react";
-import { Button, TextField, Container, Box, Avatar, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Button, Container, Box, Avatar, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const LoginForm = () => {
   const [idp, setIdp] = useState("https://broker.pod.inrupt.com");
@@ -29,13 +29,13 @@ const LoginForm = () => {
                         label="Age"
                         onChange={(e) => setIdp(e.target.value)}
                     >
-                        <MenuItem onChange={(e) => setIdp("https://broker.pod.inrupt.com")} value={"https://broker.pod.inrupt.com"}>
+                        <MenuItem onChange={() => setIdp("https://broker.pod.inrupt.com")} value={"https://broker.pod.inrupt.com"}>
                             https://broker.pod.inrupt.com
                         </MenuItem>
-                        <MenuItem onChange={(e) => setIdp("https://inrupt.net")} value={"https://inrupt.net"}>
+                        <MenuItem onChange={() => setIdp("https://inrupt.net")} value={"https://inrupt.net"}>
                             https://inrupt.net
                         </MenuItem> 
-                        <MenuItem onChange={(e) => setIdp("https://solidcommunity.net/")} value={"https://solidcommunity.net/"}>
+                        <MenuItem onChange={() => setIdp("https://solidcommunity.net/")} value={"https://solidcommunity.net/"}>
                             https://solidcommunity.net/
                         </MenuItem>                 
                     </Select>
