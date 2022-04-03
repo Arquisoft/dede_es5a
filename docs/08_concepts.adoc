@@ -53,13 +53,158 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 === Domain model
 image:domain_model.png["Domain model"]
 
+[options="header"]
+.Elements of the domain model
+|===
+|Element|Meaning
+|User|Representation of users who are logged in.
+|Product|Representation of socks of the on-line shop.
+|Availability|Save the stock and size of the product.
+|OrderProduct|Represents products in orders.
+|Order|Represents confirmed orders.
+|DistributionCenter|Represents distribution centers that are in charge of send orders.
+|===
 
-=== _<Concept 2>_
+=== Architecture and Design Patterns
+image:https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png?auto=format%2Ccompress["MERN Stack Architecture, by MongoDB"]
 
-_<explanation>_
+MERN Stack is being used in the application which allows to easily create 3-tier architecture.
 
-...
+* **R**eact.js is used to work with the presentation layer.
+* **E**xpress.js and **N**ode.js are used to make up the middle or application layer.
+* **M**ongoDB is used to create the database layer.
 
-=== _<Concept n>_
+=== Package Structure
 
-_<explanation>_
+==== Level 1
+
+image:packageLevel1.png["Package level 1"]
+
+The project is named dede_5a and contains the following main folders:
+
+* *docs* is the folder that stores the files related to this documentation.
+* *restapi* is the folder where the REST API that obtains data from the database is.
+* *webapp* is the folder that stores everything related to the application itself.
+
+==== Level 2
+
+image:packageLevel2.png["Package level 2"]
+
+*restapi* mainly contains:
+
+    * *routes* defines API endpoints and they are separated by database collections. 
+    * *models* are representations of the data in the database. 
+    * *services* contains global services like database connection.
+
+*webapp* mainly contains:
+
+    * *public* is the folder where the static and necessary resources for the application are located: images, scripts, etc. 
+    * *src* contains the code part.
+
+        - *api* contains calls to REST API to get data. 
+        - *components* are UI components that can be used across various files in the project.
+        - *contexts* contains the state which has to be shared across these components.
+        - *helpers* contains commonly used functions in the project.
+
+
+=== User Experience (UX)
+A good User Experience is a key aspect for the success of the application. The application must satisfy the needs of the users effectively. For this, several concepts must be taken into account when designing user interfaces like:
+
+* Usability
+* Accessibility
+
+==== Usability
+Throughout development, usability tests are carried out on different users. Each test consists of small tasks that test the implemented functionalities. 
+
+Thanks to the user's interactions with the application, usability problems can be detected and it makes it possible to make improvements in this regard. 
+
+Usability problems make the application difficult to use and understand for users. So, it is important to avoid or reduce it.
+
+[options="header"]
+.Detected usability problems
+|===
+|Detected problem | Solution
+|===
+
+==== Accessibility
+There are different standards to follow to achieve accessibility. One of the standards is WCAG 2.0 (Level AA) which is the most used worldwide. Therefore, it is the one used in this application. 
+
+Tools to use are:
+
+* http://www.tawdis.net/[TAW]
+* http://wave.webaim.org/[WAVE]
+* https://achecker.achecks.ca/checker/index.php[ACHECKER]
+* https://color.mediaandme.be/es[Color Test]
+
+
+==== User interface
+User interfaces should be designed with usability and accessibility in mind. 
+
+===== Mockups
+They may not exactly match the final design, but they offer an idea of the functionality and design of the pages that the application will have. 
+
+====== Main page
+image:main.png["Main page"]
+
+====== Cart screen
+image:cart.png["Cart screen"]
+
+====== Product's detail screen
+image:productDetail.png["Product's detail screen"]
+
+====== Sign up/Log in screen
+image:signUp.png["Sign up screen"]
+image:logIn.png["Log in screen"]
+
+====== User's profile screen
+image:userProfile.png["User's profile screen"]
+
+=== Security
+Security is another key aspect to consider. Some measures to ensure security are:
+
+* The application does not store private data of the user. To obtain it, the application asks the user for permission to access the Solid POD where the data is stored at the time it is needed. In this way, control of the user's own data is guaranteed. 
+
+* _<more>_
+
+=== Availability
+To achieve high availability:
+
+* On the one hand, try to avoid making software errors by applying the code review process by other team members. The process is carried out before joining the new code with the code that already works correctly.
+
+* On the other hand, enable autoscaling on the application's service providers in case of anticipating the success of the application. 
+
+=== Efficiency
+Try to have a good code quality for better performance.
+_<more>_
+
+=== Development concept 
+==== Build, Test, Deploy
+_<can be added later>_
+
+=== "Under the hood"
+
+==== Persistency
+The database management system used is MongoDB and the main reason is the easiness of data passing between the database and the application based on node.js. Another reason is the feature it offers: flexible schema. 
+
+==== Session handling
+A node.js module, express-session, is used to handle the application session. There are many reasons:
+
+* Easy to incorporate into the project as it is a node.js module.
+* The session of this module is stored on the server, therefore it is more secure. 
+
+=== Operation concepts
+
+==== Administration
+_<can be added later>_
+
+==== Management
+_<can be added later >_
+
+==== Logging
+Users just need to log in to any Solid Pod provider to use the app. There are several advantages:
+
+* The user does not have to register an account in the application. So he does not have to remember the password.
+* Developers do not have to deal with passwords. 
+
+==== Monitoring
+_<can be added later>_

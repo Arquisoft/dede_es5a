@@ -12,7 +12,46 @@ Describes the relevant requirements and the driving forces that software archite
 
 === Requirements Overview
 
-The following diagram represents the functional requirements of the application... (Link here Use Case diagram).
+The following diagram represents the functional requirements of the application.
+
+[plantuml,"Sequence requirements_use_case_digram",png]
+----
+@startuml
+
+actor Client as client
+
+package ArquiSocks {
+  usecase "Add to cart" as addToCart
+  usecase "Place order" as placeOrder
+  usecase "Login" as login
+  usecase "Signin" as signin
+  usecase "View orders" as viewOrders
+  usecase "View products" as viewProducts
+}
+
+cloud Database
+cloud SolidPod
+cloud MapsAPI
+
+client --> viewProducts
+client --> addToCart
+client --> placeOrder
+client --> login
+client --> signin
+client --> viewOrders
+
+Database -u-> viewProducts
+Database -u-> placeOrder
+Database -u-> viewOrders
+Database -u-> signin
+Database -u-> login
+SolidPod -u--> login
+SolidPod -u--> signin
+SolidPod -u--> placeOrder
+MapsAPI -u--> placeOrder
+
+@enduml
+----
 
 List of requirements:
 

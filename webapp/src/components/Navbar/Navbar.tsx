@@ -204,7 +204,6 @@ const NavBar = () => {
               )}
             </Menu>
           </Box>
-
           <ShoppingCart />
         </Toolbar>
       </Container>

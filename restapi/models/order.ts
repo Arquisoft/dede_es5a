@@ -15,6 +15,7 @@ export default class Order {
         public confirmDate: Date, 
         public deliveryDate: Date,
         public totalAmount: number,
+        public shippingPrice : number,
         public productsOrdered: Set<ProductOrdered>,
         public user_id: ObjectId){}
     
@@ -27,17 +28,11 @@ export default class Order {
     }
 
     /**
-    * Calcula el precio total en base al precio de los productos y las direcciones de envío
-    * ¿Nos conectaríamos a SOLID aquí para obtener los datos?
-    * ¿Nos conectaríamos con la empresa de distribución y calcularíamos el coste de envío?
-    * El resultado se suma a totalAmount
+    * Se añade el coste de envío
+    * @param shippingPrice coste envío a añadir
     */
-     calculateShipping (){
-
-        //Precio
-
-        //Fechas
-        
+     setShippingPrice ( shippingPrice : number ) {
+        this.shippingPrice = shippingPrice;
     }
 
 }

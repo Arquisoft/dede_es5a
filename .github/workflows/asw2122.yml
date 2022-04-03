@@ -47,6 +47,8 @@ jobs:
     name: Push webapp Docker Image to GitHub Packages
     runs-on: ubuntu-latest
     needs: [e2e-tests]
+    env:
+      API_URI: http://${{ secrets.DEPLOY_HOST }}:5000
     steps:
     - uses: actions/checkout@v2
     - name: Publish to Registry
@@ -61,6 +63,9 @@ jobs:
     name: Push restapi Docker Image to GitHub Packages
     runs-on: ubuntu-latest
     needs: [e2e-tests]
+    env:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+      DATABASE_URI: ${{ secrets.DATABASE_URI }}
     steps:
     - uses: actions/checkout@v2
     - name: Publish to Registry
@@ -71,3 +76,20 @@ jobs:
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
           workdir: restapi
+  deploy:
+    name: Deploy over SSH
+    runs-on: ubuntu-latest
+    needs: [docker-push-restapi,docker-push-webapp]
+    steps:
+    - name: Deploy over SSH
+      uses: fifsky/ssh-action@master
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        user: ${{ secrets.DEPLOY_USER }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        command: |
+          wget https://raw.githubusercontent.com/Arquisoft/dede_es5a/diego/docker-compose-deploy.yml -O docker-compose.yml
+          docker-compose stop
+          docker-compose rm -f
+          docker-compose pull   
+          docker-compose up -d
