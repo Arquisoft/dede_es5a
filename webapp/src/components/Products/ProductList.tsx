@@ -34,7 +34,11 @@ function ProductList() {
       >
         {products.map((product) => {
           return (
-            <ProductCard product={product} handleAddToCart={handleAddToCart} />
+            <ProductCard
+              key={product._id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
           )
         })}
       </Grid>
