@@ -7,7 +7,7 @@ import User from "../models/user";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/users", async (_req: Request, res: Response) => {
+app.get("/user", async (_req: Request, res: Response) => {
     try {
        var users = await service.getCollection("Usuario"); //Se obtienen los datos del servicio
 
@@ -18,7 +18,7 @@ app.get("/users", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/users/:id", async (req: Request, res: Response) => {
+app.get("/user/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -37,8 +37,6 @@ app.get("/users/:id", async (req: Request, res: Response) => {
 app.post("/user/add", async (req: Request, res: Response) => {
     try {
         var newUser = req.body as User;
-
-        newUser.password = app.get("crypto").createHmac('sha256', app.get('clave')).update(req.body.password).digest('hex');
 
         var result = await service.addElement("Usuario", newUser); //Añade a la collección
 

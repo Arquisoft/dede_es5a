@@ -69,17 +69,17 @@ Contained Building Blocks::
 |Building block |Description
 | _Client_ | Interacts with the application. He also takes care of his data using pods. 
 | _Database System_ | Service to store data. It is used through mongoDB atlas. Packages (npm): mongodb, mongoose.
-| _Solid infrastructure_ | Mechanism to store data taking care of privacy. Packages (npm): _still to decide_.
-| _Shipping business_ | Business which makes products' delivery. Developed with picker express API.
+| _Solid infrastructure_ | Mechanism to store data taking care of privacy. Packages (npm): inrupt/solid-ui-react
+| _Maps API_ | API which allow us to manage distances and many other aspects related to addresses.
 | _ArquiSocks_ | The main core of the application.
 |===
 
 Important Interfaces::
 |===
 |Interface |Description
-| _Picker Express API_ | Useful to manage orders and shipping prices. 
+| _nodo-fetch_ | Allow us to make asynchronous requests to the maps API so we can get information about coordinates and distances among many addresses. 
 | _mongodb and  mongoose_ | Optimize database connections and data management
-| _Still to decide_ | _TODO_
+| _inrupt/solid-ui-react_ | Dependency which allows us to have a connection to solid. In this way we can get information from the pods.
 |===
 
 === Level 2

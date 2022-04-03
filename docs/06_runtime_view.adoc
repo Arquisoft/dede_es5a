@@ -159,7 +159,7 @@ end
 actor User
 participant WebApp
 participant Restapi
-participant ShippingBusiness
+participant MapsAPI
 database SOLID
 database Database
 User -> WebApp: Request to confirm order
@@ -167,8 +167,9 @@ WebApp -> SOLID: Get user's directions
 WebApp <-- SOLID: Return directions
 User -> WebApp: Select direction
 WebApp -> Restapi: Get shipping price
-Restapi -> ShippingBusiness: Calculate shipping price
-WebApp -> Restapi: Calculate the order's total price
+Restapi -> MapsAPI: Calculate distance
+Restapi <-- MapsAPI: Returns distance
+WebApp <-- Restapi: Returns shipping cost
 User <-- WebApp: Show total and shipping price
 User -> WebApp: Confirm order
 ... **Payment process** ...

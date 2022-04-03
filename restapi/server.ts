@@ -10,7 +10,6 @@ module.exports = app;
 
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : 5000;
 
-
 const options: cors.CorsOptions = {
     origin: ['http://localhost:3000','https://dede-es5a.herokuapp.com']
 };
