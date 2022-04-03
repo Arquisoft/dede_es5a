@@ -35,7 +35,7 @@ declare global {
 const metricsMiddleware: RequestHandler = promBundle({ includeMethod: true });
 app.use(metricsMiddleware);
 
-//app.use(cors(options));
+app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
 //RouterSession
