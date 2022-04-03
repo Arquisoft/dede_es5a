@@ -22,5 +22,10 @@ body,
 
 .MuiContainer-root {
   border: solid transparent;
-  min-height: calc(100% - 145px);
+  min-height: calc(100% - 223px);
+}
+
+label,input {
+  background-color: white !important;
+  border-radius: 4px !important;
 }
