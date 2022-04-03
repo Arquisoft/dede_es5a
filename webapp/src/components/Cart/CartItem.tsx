@@ -63,7 +63,7 @@ export default function CartItem({ product }: Props) {
               variant="subtitle1"
               color="#787878"
             >
-              {product.quantity === 1 ? '' : product.quantity + 'x'}
+              {product.quantity == 1 ? '' : product.quantity + 'x'}
             </Typography>
             <Typography display="inline" variant="subtitle1">
               {product.price} €
