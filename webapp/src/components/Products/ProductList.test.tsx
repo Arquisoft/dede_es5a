@@ -1,6 +1,4 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../../App';
 import ProductList from "./ProductList";
 import {Product} from "../../shared/shareddtypes";
 
@@ -64,7 +62,7 @@ test('check that the list of products renders propertly', async () => {
   ];
 
   // Act
-  const {getByText} = render(<ProductList products={productList}/>);
+  render(<ProductList products={productList}/>);
 
 
   // Assert
