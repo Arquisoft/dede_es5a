@@ -5,7 +5,6 @@ import { Button, Container, Box, Avatar, FormControl, InputLabel, MenuItem, Sele
 const LoginForm = () => {
   const [idp, setIdp] = useState("https://broker.pod.inrupt.com");
 
-  console.log(idp)
   return (
       <React.Fragment>
           <Container component="main" maxWidth="xs">

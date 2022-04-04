@@ -57,8 +57,6 @@ const NavBar = () => {
     setMessage('Sesión cerrada satisfactoriamente')
   }
 
-  console.log(session.info)
-
   return (
     <>
       <Snackbar
