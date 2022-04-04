@@ -187,20 +187,20 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => navigate('/profile')}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate('/orders')}>
-                <Typography textAlign="center">Orders</Typography>
-              </MenuItem>
               {!session.info.isLoggedIn ? (
                 <MenuItem onClick={() => navigate('/signIn')}>
                 <Typography textAlign="center">Signin</Typography>
               </MenuItem>
               ):(
-                <MenuItem onClick={handleLogout}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
+                <><MenuItem onClick={() => navigate('/profile')}>
+                      <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/orders')}>
+                    <Typography textAlign="center">Orders</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                      <Typography textAlign="center">Logout</Typography>
+                  </MenuItem></>
               )}
             </Menu>
           </Box>
