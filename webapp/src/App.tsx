@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 import { CartProvider } from './contexts/CartContext'
 import Container from '@mui/material/Container'
 import { SessionProvider } from "@inrupt/solid-ui-react";
+import UserDetails from './components/User/UserDetails'
 
 function App(): JSX.Element {
 
@@ -21,6 +22,7 @@ function App(): JSX.Element {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/signIn" element={<UserLogIn />} />
+              <Route path="/profile" element={<UserDetails />} />
             </Routes>
           </Container>
         </CartProvider>
