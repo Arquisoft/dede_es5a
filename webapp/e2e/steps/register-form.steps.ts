@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
 
-const feature = loadFeature('./features/register-form.feature');
+const feature = loadFeature('e2e/features/register-form.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;

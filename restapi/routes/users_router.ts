@@ -2,13 +2,13 @@
 import express, { Request, Response } from "express";
 import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
-import Product from "../models/product";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
+import Product from "../models/product";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/user/", async (_req: Request, res: Response) => {
+app.get("/users", async (_req: Request, res: Response) => {
     try {
        var users = await service.getCollection("Usuario"); //Se obtienen los datos del servicio
 
@@ -19,7 +19,7 @@ app.get("/user/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/user/:id", async (req: Request, res: Response) => {
+app.get("/users/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -35,9 +35,10 @@ app.get("/user/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/user/", async (req: Request, res: Response) => {
+app.post("/users/add", async (req: Request, res: Response) => {
     try {
         var newUser = req.body as User;
+
         var result = await service.addElement("Usuario", newUser); //Añade a la collección
 
         result
@@ -50,7 +51,7 @@ app.post("/user/", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/user/:id", async (req: Request, res: Response) => {
+app.put("/users/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -68,7 +69,7 @@ app.put("/user/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/user/:id", async (req: Request, res: Response) => {
+app.delete("/users/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -86,4 +87,37 @@ app.delete("/user/:id", async (req: Request, res: Response) => {
         console.error(error.message);
         res.status(400).send(error.message);
     }
+});
+
+app.post("/users/login", async (req: Request, res: Response) => {
+    try {
+        var filter = { webID : req.body.webID};
+        
+        var user = await service.findBy("Usuario", filter);
+        
+        if(user == null || user.length == 0){ // Usuario NO admin
+            //Metemos al usuario en sesión
+            req.session.usuario = { webID: req.body.webID, role: "user" };
+            req.session.cart = new Array<Product>();
+            
+            //Redirigir a otra pagina
+            res.redirect(200,"/home");
+        }
+        else{
+            //Metemos al usuario en sesión
+            req.session.usuario = { webID: user[0].webID, role: user[0].role };
+            req.session.cart = new Array<Product>();
+            
+            //Redirigir a otra pagina
+            res.redirect(200,"/home");
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+app.get("/users/logout", async (req: Request, res: Response) => {
+    req.session.usuario = null;
+    req.session.cart = null;
+    res.send("Usuario desconectado");
 });

@@ -1,5 +1,7 @@
 import * as React from 'react'
 import ShoppingCart from '../Cart/ShoppingCart'
+import { useSession } from "@inrupt/solid-ui-react";
+
 
 import {
   AppBar,
@@ -13,11 +15,14 @@ import {
   Button,
   Tooltip,
   Avatar,
+  Snackbar,
+  Alert,
 } from '@mui/material'
 
 import MenuIcon from '@mui/icons-material/Menu'
 
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 const pages = ['Women', 'Men', 'Kids']
 
@@ -26,6 +31,8 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   )
+  const {session, logout} = useSession();
+  const [message, setMessage] = useState(null as string|null);
 
   const navigate = useNavigate()
 
@@ -44,7 +51,25 @@ const NavBar = () => {
     setAnchorElUser(null)
   }
 
+  const handleLogout = () => {
+    logout();
+    handleCloseUserMenu();
+    setMessage('Sesión cerrada satisfactoriamente')
+  }
+
+  console.log(session.info)
+
   return (
+    <>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={message != null}
+        onClose={() => setMessage(null)}
+      >
+        <Alert onClose={() => setMessage(null)} severity="success" sx={{ width: '100%' }}>
+          {message}
+        </Alert>
+      </Snackbar>
     <AppBar position="static" style={{ background: '#365073' }}>
       <Container>
         <Toolbar disableGutters>
@@ -162,22 +187,28 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => navigate('/profile')}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate('/orders')}>
-                <Typography textAlign="center">Orders</Typography>
-              </MenuItem>
-              <MenuItem onClick={() => navigate('/signIn')}>
+              {!session.info.isLoggedIn ? (
+                <MenuItem onClick={() => navigate('/signIn')}>
                 <Typography textAlign="center">Signin</Typography>
               </MenuItem>
+              ):(
+                <><MenuItem onClick={() => navigate('/profile')}>
+                      <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/orders')}>
+                    <Typography textAlign="center">Orders</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                      <Typography textAlign="center">Logout</Typography>
+                  </MenuItem></>
+              )}
             </Menu>
           </Box>
-
           <ShoppingCart />
         </Toolbar>
       </Container>
     </AppBar>
+    </>
   )
 }
 export default NavBar

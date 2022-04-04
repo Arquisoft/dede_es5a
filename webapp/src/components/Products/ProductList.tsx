@@ -6,9 +6,13 @@ import Box from '@mui/material/Box'
 import ProductCard from './ProductCard'
 import { CartContext } from '../../contexts/CartContext'
 
-function ProductList() {
+type ProductListProps = {
+  products: Product[];
+}
+
+function ProductList(props: ProductListProps) {
   const { dispatch } = useContext(CartContext)
-  const [products, setProducts] = useState<Product[]>([])
+  const [products, setProducts] = useState<Product[]>(props.products)
 
   const handleAddToCart = (cartProduct: CartProduct) => {
     dispatch({
@@ -34,7 +38,11 @@ function ProductList() {
       >
         {products.map((product) => {
           return (
-            <ProductCard product={product} handleAddToCart={handleAddToCart} />
+            <ProductCard
+              key={product._id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
           )
         })}
       </Grid>

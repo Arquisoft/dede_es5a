@@ -1,6 +1,8 @@
 export type User = {
-    name:string;
-    email:string;
+   username: string, 
+   webID: string, 
+   password: string,
+   id: string
   }
 
 export type Product = {
@@ -12,6 +14,22 @@ export type Product = {
       description: string,
       image: string,
       _id:string
+}
+
+export type ProductOrdered = {
+  product_id:string,
+  size:string,
+  quantity:number
+}
+
+export type Order = {
+  arrivalDate: string,
+  confirmDate: string,
+  deliveryDate: string,
+  totalAmount: number,
+  productsOrdered: Array<ProductOrdered>,
+  user_id: string,
+  code: string
 }
 
 export interface Login {

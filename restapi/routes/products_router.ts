@@ -8,7 +8,7 @@ import sanitizeHtml from "sanitize-html";
 var app = require("../server");
 
 // GET (todos los productos)
-app.get("/product/", async (_req: Request, res: Response) => {
+app.get("/products", async (_req: Request, res: Response) => {
     try {
         var documents = await service.getCollection("Producto"); //Se obtienen los datos del servicio
         
@@ -19,7 +19,7 @@ app.get("/product/", async (_req: Request, res: Response) => {
 });
 
 //ByID
-app.get("/product/:id", async (req: Request, res: Response) => {
+app.get("/products/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -35,9 +35,17 @@ app.get("/product/:id", async (req: Request, res: Response) => {
 });
 
 // POST (Add)
-app.post("/product/", async (req: Request, res: Response) => {
+app.post("/products/add", async (req: Request, res: Response) => {
     try {
-        var newProduct = req.body as Product;
+        var newProduct = new Product(
+            req.body.name,
+            req.body.price,
+            req.body.type,
+            req.body.brand,
+            req.body.disponibility,
+            req.body.description 
+        );
+       
         var result = await service.addElement("Producto", newProduct); //Añade a la collección
 
         result
@@ -50,7 +58,7 @@ app.post("/product/", async (req: Request, res: Response) => {
 });
 
 // PUT (update)
-app.put("/product/:id", async (req: Request, res: Response) => {
+app.put("/products/update/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
@@ -71,7 +79,7 @@ app.put("/product/:id", async (req: Request, res: Response) => {
 });
 
 // DELETE
-app.delete("/product/:id", async (req: Request, res: Response) => {
+app.delete("/products/delete/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
 
     try {
