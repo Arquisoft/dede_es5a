@@ -29,3 +29,8 @@ label,input {
   background-color: white !important;
   border-radius: 4px !important;
 }
+
+.MuiOutlinedInput-root{
+  background-color: white !important;
+  border-radius: 4px !important;
+}
