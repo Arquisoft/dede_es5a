@@ -84,7 +84,8 @@ require("./routes/orders_router");
 require("./routes/users_router");
 
 //El servidor empieza a escuchar
-app.listen(port, () => {
+var server = app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
 
+module.exports = server;

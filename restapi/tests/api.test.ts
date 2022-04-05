@@ -1,48 +1,42 @@
 import request, {Response} from 'supertest';
 import express, { Application } from 'express';
 import * as http from 'http';
-import bp from 'body-parser';
+import bp, { json } from 'body-parser';
 import cors from 'cors';
+import { doesNotMatch } from 'assert';
 
-let app:Application;
-let server:http.Server;
+var app = require("../server");
+var server = require("../server");
 
 beforeAll(async () => {
-    app = express();
-    const port: number = 5000;
-    const options: cors.CorsOptions = {
-        origin: ['http://localhost:3000']
-    };
-    app.use(cors(options));
-    app.use(bp.json());
 
-    server = app.listen(port, ():void => {
-        console.log('Restapi server for testing listening on '+ port);
-    }).on("error",(error:Error)=>{
-        console.error('Error occured: ' + error.message);
-    });
 });
 
 afterAll(async () => {
     server.close() //close the server
 })
 
-describe('user ', () => {
+describe('Product ', () => {
     /**
-     * Test that we can list users without any error.
+     * Test that when we search a product by ID, we receive one
      */
-    it('can be listed',async () => {
-        const response:Response = await request(app).get("/api/users/list");
-        //expect(response.statusCode).toBe(200);
+     it('can be found',async () => {
+        var id = "6228ea24dc1289fc6e1c3b12";
+        const response:Response = await request(app).get("/products/"+id);
+
+        expect(response.statusCode).toBe(200);
+        expect(JSON.stringify(response.body).length).toBeGreaterThan(0);
     });
 
     /**
-     * Tests that a user can be created through the productService without throwing any errors.
+     * Test that when we search a product by ID, we receive one
      */
-    it('can be created correctly', async () => {
-        let username:string = 'Pablo'
-        let email:string = 'gonzalezgpablo@uniovi.es'
-        const response:Response = await request(app).post('/api/users/add').send({name: username,email: email}).set('Accept', 'application/json')
-        //expect(response.statusCode).toBe(200);
+     it('not found',async () => {
+        var id = "sdfsdfsdffmnth";
+        const response:Response = await request(app).get("/products/"+id);
+        expect(response.statusCode).toBe(404);
+        expect(JSON.stringify(response.body)).toBe("{}");
     });
+    
 });
+
