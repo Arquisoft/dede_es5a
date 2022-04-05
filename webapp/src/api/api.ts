@@ -1,4 +1,4 @@
-import { User, Login, Order, Address, ShippingPriceResponse } from '../shared/shareddtypes';
+import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 // export async function addUser(user:User):Promise<boolean>{
@@ -55,12 +55,35 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ number: address.number , street: address.street, city: address.city, country: address.country, zipcode: address.zipcode})
+    body: JSON.stringify(
+      { number: address.number , 
+        street: address.street, 
+        city: address.city, 
+        country: address.country,
+        zipcode: address.zipcode})
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
 
   return response.json()
+}
+
+
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
+  console.log("Entrando en llamada a place order");
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(orderToPlace)
+  };
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
+
+  console.log("Saliendo de la llamada de place order");
+  console.log("Estado " + response.status)
+  let result = response.text()
+  console.log("Texto" +result)
+  return result
 }
 
 

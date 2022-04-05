@@ -204,7 +204,7 @@ const NavBar = () => {
               )}
             </Menu>
           </Box>
-          <ShoppingCart />
+          <ShoppingCartDrawer />
         </Toolbar>
       </Container>
     </AppBar>

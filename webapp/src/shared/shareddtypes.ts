@@ -27,9 +27,19 @@ export type Order = {
   confirmDate: string,
   deliveryDate: string,
   totalAmount: number,
+  shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
   user_id: string,
   code: string
+}
+
+export type OrderToPlace = {
+  arrivalDate: string,
+  confirmDate: string,
+  totalAmount: number,
+  shippingPrice: number,
+  productsOrdered: Array<ProductOrdered>,
+  user_id: string
 }
 
 export interface Login {
@@ -40,7 +50,7 @@ export interface Login {
 export type CartProduct = {
   name: string, 
   price: number, 
-  size: number,
+  size: string,
   quantity: number,
   image: string,
   _id:string

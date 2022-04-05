@@ -36,15 +36,18 @@ const rows:Address[] = [
 ];
 
 
+type Props = {
+  getSelectedShippingPrice: (price:number) => void;
+}
 
 
-
-export default function DirectionStepPage() {
+export default function DirectionStepPage(props: Props) {
   const [shippingPrice, setShippingPrice] = useState<number>(999.99)
   const refreshShippingPrice = async () => {
-    let value = await getShippingPrice(selectedRows[0]);
+    let price:number = await getShippingPrice(selectedRows[0]).then(value => value.shippingPrice);
 
-    setShippingPrice(value.shippingPrice)
+    setShippingPrice(price)
+    props.getSelectedShippingPrice(price);
   }
   const [selectedRows, setSelectedRows] = useState<Address[]>([]);
 
