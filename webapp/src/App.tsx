@@ -10,6 +10,7 @@ import { SessionProvider } from '@inrupt/solid-ui-react'
 import Orders from './components/Orders/Orders'
 
 function App(): JSX.Element {
+
   return (
     <div className="App">
       <SessionProvider sessionId="login">
