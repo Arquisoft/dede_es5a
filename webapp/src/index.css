@@ -35,3 +35,8 @@ label,input {
   border-radius: 4px !important;
 }
 
+#grid1{
+  position: relative;
+  right: -101px;
+}
+
