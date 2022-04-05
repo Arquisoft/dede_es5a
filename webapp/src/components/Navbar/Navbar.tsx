@@ -165,49 +165,49 @@ const NavBar = () => {
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={() => navigate('/profile')}>
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                <MenuItem onClick={() => navigate('/orders')}>
-                  <Typography textAlign="center">Orders</Typography>
-                </MenuItem>
-                {!session.info.isLoggedIn ? (
-                  <MenuItem onClick={() => navigate('/signIn')}>
-                    <Typography textAlign="center">Signin</Typography>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {!session.info.isLoggedIn ? (
+                <MenuItem onClick={() => navigate('/signIn')}>
+                <Typography textAlign="center">Signin</Typography>
+              </MenuItem>
+              ):(
+                <><MenuItem onClick={() => navigate('/profile')}>
+                      <Typography textAlign="center">Profile</Typography>
                   </MenuItem>
-                ) : (
+                  <MenuItem onClick={() => navigate('/orders')}>
+                    <Typography textAlign="center">Orders</Typography>
+                  </MenuItem>
                   <MenuItem onClick={handleLogout}>
-                    <Typography textAlign="center">Logout</Typography>
-                  </MenuItem>
-                )}
-              </Menu>
-            </Box>
-            <ShoppingCartDrawer/>
-          </Toolbar>
-        </Container>
-      </AppBar>
+                      <Typography textAlign="center">Logout</Typography>
+                  </MenuItem></>
+              )}
+            </Menu>
+          </Box>
+          <ShoppingCart />
+        </Toolbar>
+      </Container>
+    </AppBar>
     </>
   )
 }

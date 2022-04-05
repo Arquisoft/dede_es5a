@@ -4,7 +4,7 @@ import ProductList from './Products/ProductList'
 const Home = () => {
   return (
     <Container maxWidth="lg">
-      <ProductList />
+      <ProductList products={[]}/>
     </Container>
   )
 }

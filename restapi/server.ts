@@ -46,11 +46,12 @@ routerUsuarioSession.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
+        res.redirect(""); //<--------- Probablemente mal
     }
 });
 
 //Aplicar RouterAdministrador
-app.use("/desconectarse",routerUsuarioSession);
+app.use("/users/logout",routerUsuarioSession);
 
 //RouterAdministrador
 var routerUsuarioAdministrador = express.Router();
@@ -60,16 +61,17 @@ routerUsuarioAdministrador.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
+        res.redirect(""); //<--------- Probablemente mal
     }
 });
 
 //Aplicar RouterAdministrador
-app.use("/product/add",routerUsuarioAdministrador);
-app.use("/product/update",routerUsuarioAdministrador);
-app.use("/product/delete",routerUsuarioAdministrador);
-app.use("/user/add",routerUsuarioAdministrador);
-app.use("/user/update",routerUsuarioAdministrador);
-app.use("/user/delete",routerUsuarioAdministrador);
+app.use("/products/add",routerUsuarioAdministrador);
+app.use("/products/update",routerUsuarioAdministrador);
+app.use("/products/delete",routerUsuarioAdministrador);
+app.use("/users/add",routerUsuarioAdministrador);
+app.use("/users/update",routerUsuarioAdministrador);
+app.use("/users/delete",routerUsuarioAdministrador);
 
 //Encriptación de contraseñas
 var crypto = require('crypto');
