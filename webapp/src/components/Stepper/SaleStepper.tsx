@@ -22,7 +22,7 @@ export default function HorizontalLinearStepper() {
   
   const { cartProducts, dispatch } = React.useContext(CartContext);
   const { session } = useSession()
-  const [shippingPrice, setshippingPrice] = React.useState(999.99);
+  const [shippingPrice, setshippingPrice] = React.useState(-1);
 
   function createOrder(){
     let orderPrice: number = calculateCartTotal(cartProducts);
@@ -73,9 +73,28 @@ export default function HorizontalLinearStepper() {
     setQuery('progress');
     timerRef.current = window.setTimeout(() => {
       setQuery('success');
-      handleClearCart();
     }, 5000);
+
+    if(activeStep == steps.length-1){
+      if(checkOrder()){
+        handleClearCart();
+      }
+
+    }
   };
+
+
+  function checkOrder(){
+    // Que exista productos
+    if(cartProducts.length == 0){
+      return false;
+    }
+    // Que tenga una direccion seleccionada
+    if(shippingPrice == -1){
+      return false
+    }
+    return true;
+  }
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -93,14 +112,30 @@ export default function HorizontalLinearStepper() {
       case 1:
         return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice}/>;
       case 2:
-        return 'Simulating the filling of payment data';
+        return (<Container>
+                <Typography variant="h6">Simulating the filling of payment data</Typography>
+                <Typography>Order's price: {calculateCartTotal(cartProducts).toFixed(2) + ' €'} </Typography>
+                <Typography>Shipping's price: {shippingPrice.toFixed(2) + ' €'} </Typography>
+                <Typography>Total: {(shippingPrice + calculateCartTotal(cartProducts)).toFixed(2) + ' €'} </Typography>
+                </Container>);
       default:
-        return 'Error';
+        return <Container>Error</Container>;
+    }
+  }
+
+  function checkState(){
+    switch (activeStep) {
+      case 0: 
+        return cartProducts.length == 0;
+      case 1:
+        return false;
+      default:
+        return false;
     }
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%'}} >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           return (
@@ -113,11 +148,11 @@ export default function HorizontalLinearStepper() {
       <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
 
         {activeStep ===steps.length ? 
-        <React.Fragment>
+        <Container>
                 <Box sx={{ height: 40 }}>
         {query === 'success' ? (
            <Typography sx={{ mt: 2, mb: 1 }}>
-           All steps completed - you&apos;re finished
+            The sale has been done and it can proceed with the delivery.
            </Typography>
           ) : (
             <Fade
@@ -135,7 +170,7 @@ export default function HorizontalLinearStepper() {
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
           </Box>
-        </React.Fragment>
+        </Container>
         :
         (
           <React.Fragment>
@@ -147,19 +182,12 @@ export default function HorizontalLinearStepper() {
           Back
         </Button>
           {choosePage(activeStep)}
-        <Box sx={{ flex: '1 1 auto' }} />
-       
-        <Button onClick={handleNext}>
+        <Button onClick={handleNext} disabled={checkState()}>
           {activeStep === steps.length - 1 ? 'Pay' : 'Next'}
         </Button>
         </React.Fragment>
         ) }
-
-
       </Box>
-
-
-
     </Box>
   );
 }

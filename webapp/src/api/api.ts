@@ -64,8 +64,9 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
+  let result = response.json()
 
-  return response.json()
+  return result
 }
 
 
@@ -82,7 +83,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   console.log("Saliendo de la llamada de place order");
   console.log("Estado " + response.status)
   let result = response.text()
-  console.log("Texto" +result)
+  console.log("Texto" + result)
   return result
 }
 
