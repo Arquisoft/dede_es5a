@@ -38,6 +38,7 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
+/** QUITAMOS ROUTERS TEMPORALMENTE 
 //RouterSession
 var routerUsuarioSession = express.Router();
 routerUsuarioSession.use(function(req, res, next) {
@@ -72,6 +73,7 @@ app.use("/products/delete",routerUsuarioAdministrador);
 app.use("/users/add",routerUsuarioAdministrador);
 app.use("/users/update",routerUsuarioAdministrador);
 app.use("/users/delete",routerUsuarioAdministrador);
+*/
 
 //Encriptación de contraseñas
 var crypto = require('crypto');
