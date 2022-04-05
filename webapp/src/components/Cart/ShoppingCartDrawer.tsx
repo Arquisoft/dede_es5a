@@ -1,21 +1,16 @@
 import {
-  Stack,
-  Divider,
   Box,
   Tooltip,
   Badge,
   IconButton,
   Drawer,
   Container,
-  Typography,
   Button,
   styled,
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
-import calculateCartTotal from '../../helpers/calculateCartTotal'
 import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
-import CartItem from './CartItem'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useNavigate } from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
@@ -52,7 +47,7 @@ export default function ShoppingCartDrawer() {
       </Tooltip>
       <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
         <Container>
-        <ShoppingCart />
+          <ShoppingCart />
         
             <Button
               disabled={cartProducts.length === 0}

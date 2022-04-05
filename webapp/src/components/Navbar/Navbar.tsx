@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ShoppingCart from '../Cart/ShoppingCartDrawer'
+import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
 import { useSession } from "@inrupt/solid-ui-react";
 
 
@@ -204,7 +204,7 @@ const NavBar = () => {
                 )}
               </Menu>
             </Box>
-            <ShoppingCart />
+            <ShoppingCartDrawer/>
           </Toolbar>
         </Container>
       </AppBar>

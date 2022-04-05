@@ -2,28 +2,12 @@ import {
   Stack,
   Divider,
   Box,
-  Tooltip,
-  Badge,
-  IconButton,
-  Drawer,
-  Container,
   Typography,
-  Button,
-  styled,
 } from '@mui/material'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import calculateCartTotal from '../../helpers/calculateCartTotal'
-import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
 import CartItem from './CartItem'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-
-const StyledBadge = styled(Badge)({
-  "& .MuiBadge-badge": {
-    color: "black",
-    backgroundColor: "#f29f05"
-  }
-});
 
 export default function ShoppingCart() {
   const { cartProducts } = useContext(CartContext)

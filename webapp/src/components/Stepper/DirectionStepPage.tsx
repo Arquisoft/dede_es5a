@@ -1,17 +1,13 @@
 import {useEffect, useRef, useState} from 'react';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+
 import Typography from '@mui/material/Typography';
-import ShoppingCart from '../Cart/ShoppingCart';
 import { Container } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { getShippingPrice } from '../../api/api';
-import { Address, ShippingPriceResponse } from '../../shared/shareddtypes';
+import { Address } from '../../shared/shareddtypes';
 
 
 const columns: GridColDef[] = [
@@ -46,9 +42,9 @@ const rows:Address[] = [
 export default function DirectionStepPage() {
   const [shippingPrice, setShippingPrice] = useState<number>(999.99)
   const refreshShippingPrice = async () => {
-    let valor = await getShippingPrice(selectedRows[0]);
+    let value = await getShippingPrice(selectedRows[0]);
 
-    setShippingPrice(valor.shippingPrice)
+    setShippingPrice(value.shippingPrice)
   }
   const [selectedRows, setSelectedRows] = useState<Address[]>([]);
 
