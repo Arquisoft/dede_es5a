@@ -105,18 +105,18 @@ export default function HorizontalLinearStepper() {
     console.log("Precio enviado a stepper ppal "+ price)
   }
 
-  function choosePage(pageNumber: number) {
-    switch (pageNumber) {
+  function choosePage() {
+    switch (activeStep) {
       case 0:
         return (<Container><ShoppingCart /></Container>);
       case 1:
         return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice}/>;
       case 2:
         return (<Container>
-                <Typography variant="h6">Simulating the filling of payment data</Typography>
-                <Typography>Order's price: {calculateCartTotal(cartProducts).toFixed(2) + ' €'} </Typography>
-                <Typography>Shipping's price: {shippingPrice.toFixed(2) + ' €'} </Typography>
-                <Typography>Total: {(shippingPrice + calculateCartTotal(cartProducts)).toFixed(2) + ' €'} </Typography>
+                  <Typography variant="h6">Simulating the filling of payment data</Typography>
+                  <Typography>Order's price: {calculateCartTotal(cartProducts).toFixed(2) + ' €'} </Typography>
+                  <Typography>Shipping's price: {shippingPrice.toFixed(2) + ' €'} </Typography>
+                  <Typography>Total: {(shippingPrice + calculateCartTotal(cartProducts)).toFixed(2) + ' €'} </Typography>
                 </Container>);
       default:
         return <Container>Error</Container>;
@@ -142,15 +142,19 @@ export default function HorizontalLinearStepper() {
         </Typography>
       )
     }
-      return (
-      <Fade
-        in={query === 'progress'}
-        style={{
-          transitionDelay: query === 'progress' ? '500ms' : '0ms',
-        }}
-        unmountOnExit>
-        <CircularProgress />
-      </Fade>)
+    return (
+    <Fade
+      in={query === 'progress'}
+      style={{
+        transitionDelay: query === 'progress' ? '500ms' : '0ms',
+      }}
+      unmountOnExit>
+      <CircularProgress />
+    </Fade>)
+  }
+
+  function getTextForNextButton(){
+    return activeStep === steps.length - 1 ? 'Pay' : 'Next'
   }
 
   return (
@@ -185,9 +189,9 @@ export default function HorizontalLinearStepper() {
             sx={{ mr: 1 }}>
             Back
           </Button>
-            {choosePage(activeStep)}
+            {choosePage()}
           <Button onClick={handleNext} disabled={checkState()}>
-            {activeStep === steps.length - 1 ? 'Pay' : 'Next'}
+            {getTextForNextButton()}
           </Button>
         </React.Fragment>
         ) }
