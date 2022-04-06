@@ -28,9 +28,7 @@ export default function ShoppingCartDrawer() {
   const { cartProducts } = useContext(CartContext)
   const [state, setState] = React.useState(false)
   const navigate = useNavigate()
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
+  const toggleDrawer = (open: boolean) => () => {
     setState(open)
   }
 

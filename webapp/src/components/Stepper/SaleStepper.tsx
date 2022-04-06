@@ -134,10 +134,29 @@ export default function HorizontalLinearStepper() {
     }
   }
 
+  function payProcess(){
+    if( query === 'success'){
+      return(
+        <Typography sx={{ mt: 2, mb: 1 }}>
+        The sale has been done and it can proceed with the delivery.
+        </Typography>
+      )
+    }
+      return (
+      <Fade
+        in={query === 'progress'}
+        style={{
+          transitionDelay: query === 'progress' ? '500ms' : '0ms',
+        }}
+        unmountOnExit>
+        <CircularProgress />
+      </Fade>)
+  }
+
   return (
     <Box sx={{ width: '100%'}} >
       <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+        {steps.map((label) => {
           return (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
@@ -149,42 +168,27 @@ export default function HorizontalLinearStepper() {
 
         {activeStep ===steps.length ? 
         <Container>
-                <Box sx={{ height: 40 }}>
-        {query === 'success' ? (
-           <Typography sx={{ mt: 2, mb: 1 }}>
-            The sale has been done and it can proceed with the delivery.
-           </Typography>
-          ) : (
-            <Fade
-              in={query === 'progress'}
-              style={{
-                transitionDelay: query === 'progress' ? '500ms' : '0ms',
-              }}
-              unmountOnExit
-            >
-              <CircularProgress />
-            </Fade>
-          )}
+          <Box sx={{ height: 40 }}>
+          {payProcess()}
           </Box>
-         
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
           </Box>
         </Container>
         :
         (
-          <React.Fragment>
-        <Button
-          color="inherit"
-          disabled={activeStep === 0}
-          onClick={handleBack}
-          sx={{ mr: 1 }}>
-          Back
-        </Button>
-          {choosePage(activeStep)}
-        <Button onClick={handleNext} disabled={checkState()}>
-          {activeStep === steps.length - 1 ? 'Pay' : 'Next'}
-        </Button>
+        <React.Fragment>
+          <Button
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            sx={{ mr: 1 }}>
+            Back
+          </Button>
+            {choosePage(activeStep)}
+          <Button onClick={handleNext} disabled={checkState()}>
+            {activeStep === steps.length - 1 ? 'Pay' : 'Next'}
+          </Button>
         </React.Fragment>
         ) }
       </Box>

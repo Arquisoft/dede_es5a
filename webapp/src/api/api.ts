@@ -64,9 +64,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
-  let result = response.json()
-
-  return result
+  return response.json()
 }
 
 

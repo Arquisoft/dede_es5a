@@ -3,9 +3,8 @@ import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
-import { v4 as uuid } from 'uuid';
 
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { getShippingPrice } from '../../api/api';
 import { Address } from '../../shared/shareddtypes';
 
@@ -79,12 +78,7 @@ export default function DirectionStepPage(props: Props) {
         rowsPerPageOptions={[5]}
         onSelectionModelChange={(ids) => {
           const selectedIDs = new Set(ids);
-          const selectedRows = rows.filter((row) =>
-            selectedIDs.has(row.id)
-            
-          );
-
-          setSelectedRows(selectedRows);
+          setSelectedRows(rows.filter((row) => selectedIDs.has(row.id)));
         }}
       />
     </div>
