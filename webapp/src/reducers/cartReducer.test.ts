@@ -70,7 +70,7 @@ test('add a product that previously exists in the cart with same size', () => {
     expect(cartReducer(initialState, action)).toEqual(expectedState);
 })
 
-// Creo que no afecta
+// Creo que no afecta al porcentaje
 test('add a product that previously exists in the cart with different size', () => {
     //arrange
     const initialState: CartProduct[] = [{
