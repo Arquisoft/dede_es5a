@@ -1,5 +1,5 @@
 // External Dependencies
-import dotenv, { config } from "dotenv";
+import dotenv from "dotenv";
 import mongoose = require("mongoose");
 
 dotenv.config();
