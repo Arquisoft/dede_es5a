@@ -41,6 +41,24 @@ app.get("/orders/:id", async (req: Request, res: Response) => {
     }
 });
 
+//By filter
+app.get("/orders/:field/:value", async (req: Request, res: Response) => {
+    var field = req.params.field;
+    var value = req.params.value;
+
+    try {
+        var query = { [field] : value };
+        
+        var order = await service.findBy("Pedido", query);
+
+        if (order) {
+            res.status(200).send(order);
+        }
+    } catch (error) {
+        res.status(404).send(sanitizeHtml(`Unable to find matching document`));
+    }
+});
+
 // POST calculates order shipping price 
 // Recibe en el cuerpo de la petición los datos del pedido así como los del usuario para el que se envía el pedido
 app.post("/orders/price", async (req: Request, res: Response) => {
@@ -107,7 +125,6 @@ app.put("/orders/update/:id", async (req: Request, res: Response) => {
             : res.status(304).send(sanitizeHtml(`Order with id: ${id} not updated`)); //Efectúa la operación de actualización
 
     } catch (error) {
-        console.error(error.message);
         res.status(400).send(error.message);
     }
     
@@ -129,7 +146,6 @@ app.delete("/orders/delete/:id", async (req: Request, res: Response) => {
             res.status(404).send(sanitizeHtml(`Order with id ${id} does not exist`));
         }
     } catch (error) {
-        console.error(error.message);
         res.status(400).send(error.message);
     }
 });
