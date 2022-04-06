@@ -9,6 +9,7 @@ import Container from '@mui/material/Container'
 import { SessionProvider } from "@inrupt/solid-ui-react";
 import UserDetails from './components/User/UserDetails'
 import Orders from './components/Orders/Orders'
+import SaleStepper from './components/Stepper/SaleStepper'
 
 function App(): JSX.Element {
 
@@ -25,6 +26,7 @@ function App(): JSX.Element {
               <Route path="/signIn" element={<UserLogIn />} />
               <Route path="/profile" element={<UserDetails />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="/saleprocess" element={<SaleStepper />} />
             </Routes>
           </Container>
         </CartProvider>
