@@ -14,16 +14,15 @@ type Props = {
     let myDataSet = await getSolidDataset(profileDocumentURI)
     let profile = getThing(myDataSet, webID)
     let hasAddress = getUrl(profile as Thing, VCARD.hasAddress) as string
-    let userAddress = getThing(myDataSet, hasAddress)
+    let addressOfTheUser = getThing(myDataSet, hasAddress)
 
-    let street_address= getStringNoLocale(userAddress as Thing, VCARD.street_address) as string
-    let locality= getStringNoLocale(userAddress as Thing, VCARD.locality) as string
-    let postal_code= getStringNoLocale(userAddress as Thing, VCARD.postal_code) as string
-    let region= getStringNoLocale(userAddress as Thing, VCARD.region) as string
-    let country= getStringNoLocale(userAddress as Thing, VCARD.country_name) as string;
-    let address=[street_address,locality,postal_code,region,country]
-
-    return address
+    let street_address= getStringNoLocale(addressOfTheUser as Thing, VCARD.street_address) as string
+    let locality= getStringNoLocale(addressOfTheUser as Thing, VCARD.locality) as string
+    let postal_code= getStringNoLocale(addressOfTheUser as Thing, VCARD.postal_code) as string
+    let region= getStringNoLocale(addressOfTheUser as Thing, VCARD.region) as string
+    let country= getStringNoLocale(addressOfTheUser as Thing, VCARD.country_name) as string;
+    
+    return [street_address,locality,postal_code,region,country]
   }
 function GetUserAddress({webID}: Props): JSX.Element  {
 

@@ -1,13 +1,10 @@
-import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
-import {Avatar, Box, Button, Container, Grid, Typography } from "@mui/material";
+import { useSession, CombinedDataProvider, Image,Text } from "@inrupt/solid-ui-react";
+import {Box, Container, Grid, Typography } from "@mui/material";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import UserAddress from "./UserAddress";
-import { getStringNoLocale } from "@inrupt/solid-client";
-
-
 
 const ProfileViewer = () => {
-  const {session, logout} = useSession();
+  const {session} = useSession();
   const { webId } = session.info as any;
 
   console.log(VCARD);
@@ -28,7 +25,7 @@ const ProfileViewer = () => {
                 <Grid id="grid1" container spacing={4}>
                 <Grid id="grid2" item xs={3}>
                     <Image property={VCARD.hasPhoto.iri.value} 
-                      errorComponent={({ error }) => <img src="/images/no-image-profile.png" style={{width: '100%'}}/>}
+                      errorComponent={() => <img src="/images/no-image-profile.png" style={{width: '100%'}}/>}
                       style={{width: '100%'}}
                     /> 
                 </Grid>
