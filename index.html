@@ -496,6 +496,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-design-decisions">9. Design Decisions</a>
 <ul class="sectlevel2">
 <li><a href="#_mern_stack_usage">9.1. MERN Stack usage</a></li>
+<li><a href="#_login_with_solid">9.2. Login with Solid</a></li>
+<li><a href="#_shopping_cart_in_session">9.3. Shopping cart in session</a></li>
 </ul>
 </li>
 <li><a href="#section-quality-scenarios">10. Quality Requirements</a>
@@ -1620,7 +1622,7 @@ when your infrastructure is more complex.</p>
 <h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Deployment_view_diagram.png" alt="Deployment view diagram" width="676" height="916">
+<img src="./images/Deployment_view_diagram.png" alt="Deployment view diagram" width="1188" height="595">
 </div>
 </div>
 <div class="dlist">
@@ -2203,6 +2205,52 @@ here in this central section or whether you better document it locally
 </dd>
 </dl>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_login_with_solid">9.2. Login with Solid</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Context</dt>
+<dd>
+<p>The constraint of Solid use in order to keep client&#8217;s privacy has to be done. We need something to manage the use of his data. Client must allow us to use his data when we are creating an order for example, address which is necessary to process those events.</p>
+</dd>
+<dt class="hdlist1">Decision</dt>
+<dd>
+<p>While looking for alternatives to solve this problem we found out that making a login system based in Solid was the best way. From our point of view, this decision is the easiest and also the most natural for the user while using the webapp.</p>
+</dd>
+<dt class="hdlist1">Status</dt>
+<dd>
+<p>Accepted.</p>
+</dd>
+<dt class="hdlist1">Consequences</dt>
+<dd>
+<p>This decision will improve the simplicity of the system because we will not have the need of developing an authentication system. We will only manage webIds from Solid and roles so that we will not store client&#8217;s personal info, usernames and passwords. Solid will be the responsible of users' accounts and credentials.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_shopping_cart_in_session">9.3. Shopping cart in session</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Context</dt>
+<dd>
+<p>Every e-commerce platform need a shoping cart where client can see his selection while preparing a purchase. In the same way, we have to take the decision of saving this data among many options such as database, user&#8217;s session&#8230;&#8203;</p>
+</dd>
+<dt class="hdlist1">Decision</dt>
+<dd>
+<p>Finally we tend to develop it using the session instead of database. It is more natural and it is also the most realistic solution.</p>
+</dd>
+<dt class="hdlist1">Status</dt>
+<dd>
+<p>Accepted.</p>
+</dd>
+<dt class="hdlist1">Consequences</dt>
+<dd>
+<p>This decision avoids us from having an entity called shopping cart and also the risk of collapsing the database with a lot of modifying operations. We understand that the cart is something depends on client&#8217;s session and it is very related to him so it should not persist when the client is not in the session.</p>
+</dd>
+</dl>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -2261,7 +2309,7 @@ concrete and measurable.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/mindmap.svg" alt="mindmap" width="369" height="425">
+<img src="./images/mindmap.svg" alt="mindmap" width="373" height="425">
 </div>
 </div>
 </div>
@@ -2475,6 +2523,26 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <th class="tableblock halign-left valign-top">Measures</th>
 </tr>
 </thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">There are many paths which should not be accesible for some users.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checking paths and improving role system in order to check and revert those dangerous requests. These will improve security and decrease hacking risks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Versions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During development we have used some old versions which have been quite useful. Npm has report many vulnerabilities, there are 6 moderate vulnerailities while installing webapp dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Updating dependencies in order to reduce those vulnerabilities which could be dangerous for application&#8217;s security.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration files are created but deployment could not be finished correctly due to many problems of GitHub actions while creating a release</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We will try to solve all this problems. However, webpage has been deployed using Heroku and now is available. Trying to have both deployments will be a challenge for us in order to reach some quality goals such as availability.</p></td>
+</tr>
+</tbody>
 </table>
 <div style="page-break-after: always;"></div>
 </div>
@@ -2685,7 +2753,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-22 23:59:29 +0100
+Last updated 2022-02-08 17:30:20 +0100
 </div>
 </div>
 </body>
