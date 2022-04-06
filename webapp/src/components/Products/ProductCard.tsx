@@ -53,7 +53,7 @@ export default function ImgMediaCard({ product, handleAddToCart }: Props) {
     const addToCartProduct = {
       name: product.name,
       price: product.price,
-      size: size,
+      size: parseInt(size),
       quantity: 0,
       image: product.image,
       _id: product._id,

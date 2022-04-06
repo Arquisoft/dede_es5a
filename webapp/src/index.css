@@ -34,18 +34,3 @@ label,input {
   background-color: white !important;
   border-radius: 4px !important;
 }
-
-#grid1{
-  position: relative;
-  right: -101px;
-}
-
-#grid2{
-  position: relative;
-  top: -4px
-}
-
-#grid3{
-  position: relative;
-  top: 8px
-}
