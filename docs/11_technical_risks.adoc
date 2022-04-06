@@ -33,5 +33,8 @@ List of risks and/or technical debts, probably including suggested measures to m
 .List of technical debts
 |===
 |Nº|Technical debts|Explanation|Measures
+|1|Security|There are many paths which should not be accesible for some users.|Checking paths and improving role system in order to check and revert those dangerous requests. These will improve security and decrease hacking risks.
+|2|Versions|During development we have used some old versions which have been quite useful. Npm has report many vulnerabilities, there are 6 moderate vulnerailities while installing webapp dependencies|Updating dependencies in order to reduce those vulnerabilities which could be dangerous for application's security.
+|3|Azure deployment|Configuration files are created but deployment could not be finished correctly due to many problems of GitHub actions while creating a release|We will try to solve all this problems. However, webpage has been deployed using Heroku and now is available. Trying to have both deployments will be a challenge for us in order to reach some quality goals such as availability.
 |===
 
