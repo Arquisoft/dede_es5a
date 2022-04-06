@@ -27,19 +27,9 @@ export type Order = {
   confirmDate: string,
   deliveryDate: string,
   totalAmount: number,
-  shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
   user_id: string,
   code: string
-}
-
-export type OrderToPlace = {
-  arrivalDate: string,
-  confirmDate: string,
-  totalAmount: number,
-  shippingPrice: number,
-  productsOrdered: Array<ProductOrdered>,
-  user_id: string
 }
 
 export interface Login {
@@ -50,14 +40,14 @@ export interface Login {
 export type CartProduct = {
   name: string, 
   price: number, 
-  size: string,
+  size: number,
   quantity: number,
   image: string,
   _id:string
 }
 
 export type CartReducerAction = {
-  payload: any, 
+  payload: CartProduct, 
   type: 'ADD' | 'REMOVE' | 'REMOVE-ALL' | 'CLEAR'
 }
 
@@ -68,17 +58,4 @@ export type CartContextType = {
 export type Disponibility = {
   size: number,
   stock: number
-}
-
-export type Address = {
-  id: number,
-  number: number,
-  street: string,
-  city: string,
-  country: string,
-  zipcode: string
-}
-
-export type ShippingPriceResponse = {
-  shippingPrice: number
 }
