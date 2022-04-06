@@ -7,7 +7,7 @@ test('calculate cart\'s total when there are some products in cart', () => {
     {
         name: "Producto 1", 
         price: 2.5, 
-        size: 26,
+        size: "26",
         quantity: 5,
         image: "imagen1",
         _id:"imagen1"
@@ -15,7 +15,7 @@ test('calculate cart\'s total when there are some products in cart', () => {
     {
         name: "Producto 2", 
         price: 2.5, 
-        size: 26,
+        size: "26",
         quantity: 2,
         image: "imagen1",
         _id:"imagen1"
