@@ -112,7 +112,6 @@ app.delete("/products/delete/:id", async (req: Request, res: Response) => {
             res.status(404).send(sanitizeHtml(`product with id ${id} does not exist`));
         }
     } catch (error) {
-        console.error(error.message);
         res.status(400).send(error.message);
     }
 });

@@ -1,10 +1,4 @@
 import request, {Response} from 'supertest';
-import express, { Application } from 'express';
-import * as http from 'http';
-import bp, { json } from 'body-parser';
-import cors from 'cors';
-import { doesNotMatch } from 'assert';
-import Product from '../models/product';
 import { Disponibility } from '../models/disponibility';
 
 var app = require("../server");
@@ -100,3 +94,75 @@ describe('Product ', () => {
     });
 });
 
+describe('User ', () => {
+    /**
+     * Test that when we search for a user by ID, we receive one
+     */
+     it('can be found',async () => {
+        var id = "621f6c62ecbf436ec7e015dc";
+        const response:Response = await request(app).get("/users/"+id);
+
+        expect(response.statusCode).toBe(200);
+        expect(JSON.stringify(response.body).length).toBeGreaterThan(0);
+    });
+
+    /**
+     * Test that when we search for a user by ID that does not exist, we receive none
+     */
+     it('not found, does not exist',async () => {
+        var id = "nobody_here";
+        const response:Response = await request(app).get("/users/"+id);
+        expect(response.statusCode).toBe(404);
+        expect(JSON.stringify(response.body)).toBe("{}");
+    });
+    
+    /**
+     * Test that when we add a user, it is correctly added
+     */
+     it('correctly added',async () => {
+        const newUser = {
+            "role":"test_role",
+            "webID":"url_test"
+        };
+
+        const response:Response = await request(app).post("/users/add").send(newUser);
+        expect(response.statusCode).toBe(201);
+    });
+
+    /**
+     * Test that when we update a user, it is correctly updated
+     */
+     it('correctly update',async () => {
+        const newUser = {
+            "role":"new_test_role",
+            "webID":"new_url_test"
+        };
+
+        var role = "test_role";
+        const aux:Response = await request(app).get("/users/role/"+role);
+        var id = JSON.stringify(aux.body);
+
+        const response:Response = await request(app).put("/users/update/"+JSON.parse(id)[0]._id).send(newUser);
+        expect(response.statusCode).toBe(200);
+    });
+
+    /**
+     * Test that when we delete a user, it is correctly deleted
+     */
+    it('correctly deleted',async () => {
+        var role = "new_test_role";
+        const aux:Response = await request(app).get("/users/role/"+role);
+        var id = JSON.stringify(aux.body);
+
+        const response:Response = await request(app).delete("/users/delete/"+JSON.parse(id)[0]._id);
+        expect(response.statusCode).toBe(202);
+    });
+
+    /**
+     * Test that when we delete a non-existing user, we receive the correct status code
+     */
+    it('deleted but does not exist',async () => {
+        const response:Response = await request(app).delete("/users/delete/nobody_here");
+        expect(response.statusCode).toBe(400);
+    });
+});
