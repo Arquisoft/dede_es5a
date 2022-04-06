@@ -41,3 +41,41 @@ Accepted.
 Consequences::
 
 Having this much information about how to combine these technologies will help the team during the development to create a much more robust application.
+
+=== Login with Solid
+
+Context:: 
+
+The constraint of Solid use in order to keep client's privacy has to be done. We need something to manage the use of his data. Client must allow us to use his data when we are creating an order for example, address which is necessary to process those events. 
+
+Decision::
+
+While looking for alternatives to solve this problem we found out that making a login system based in Solid was the best way. From our point of view, this decision is the easiest and also the most natural for the user while using the webapp.
+
+Status::
+
+Accepted.
+
+Consequences::
+
+This decision will improve the simplicity of the system because we will not have the need of developing an authentication system. We will only manage webIds from Solid and roles so that we will not store client's personal info, usernames and passwords. Solid will be the responsible of users' accounts and credentials.
+
+=== Shopping cart in session
+
+Context:: 
+
+Every e-commerce platform need a shoping cart where client can see his selection while preparing a purchase. In the same way, we have to take the decision of saving this data among many options such as database, user's session...
+
+Decision::
+
+Finally we tend to develop it using the session instead of database. It is more natural and it is also the most realistic solution.
+
+Status::
+
+Accepted.
+
+Consequences::
+
+This decision avoids us from having an entity called shopping cart and also the risk of collapsing the database with a lot of modifying operations. We understand that the cart is something depends on client's session and it is very related to him so it should not persist when the client is not in the session.
+
+

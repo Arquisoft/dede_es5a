@@ -39,6 +39,9 @@ when your infrastructure is more complex.
 [plantuml,"Deployment_view_diagram", png]
 ----
 @startuml
+
+left to right direction
+
 node "<<device>> \n Client" as client{
 component "<<execution enviroment>> \n Browser"{
 rectangle Website
@@ -67,7 +70,7 @@ database UserPods
 client --> webserver : http
 WebApp --> RestAPI : use
 RestAPI --> db : use
-RestAPI --> solid : use
+WebApp --> solid : use
 @enduml
 ----
 Motivation::
