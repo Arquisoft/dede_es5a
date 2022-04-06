@@ -166,3 +166,86 @@ describe('User ', () => {
         expect(response.statusCode).toBe(400);
     });
 });
+
+describe('Order ', () => {
+    /**
+     * Test that when we search for a order by ID, we receive one
+     */
+     it('can be found',async () => {
+        var id = "6229194ef5597f678b575782";
+        const response:Response = await request(app).get("/orders/"+id);
+
+        expect(response.statusCode).toBe(200);
+        expect(JSON.stringify(response.body).length).toBeGreaterThan(0);
+    });
+
+    /**
+     * Test that when we search for a order by ID that does not exist, we receive none
+     */
+     it('not found, does not exist',async () => {
+        var id = "skhdfkjshdkjfh";
+        const response:Response = await request(app).get("/orders/"+id);
+        expect(response.statusCode).toBe(404);
+        expect(JSON.stringify(response.body)).toBe("{}");
+    });
+    
+    /**
+     * Test that when we add a order, it is correctly added
+     */
+     it('correctly added',async () => {
+        var products = new Array();
+        const neworder = {
+            "arrivalDate":"2022-12-22",
+            "confirmDate":"2022-10-22",
+            "totalAmount":99.99,
+            "shippingPrice":2.50,
+            "productsOrdered":products,
+            "user_id":"url_test"
+        };
+
+        const response:Response = await request(app).post("/orders/add").send(neworder);
+        expect(response.statusCode).toBe(201);
+    });
+
+    /**
+     * Test that when we update a order, it is correctly updated
+     */
+     it('correctly update',async () => {
+        var products = new Array();
+        const neworder = {
+            "arrivalDate":"2022-12-22",
+            "confirmDate":"2022-10-22",
+            "totalAmount":1515.30,
+            "shippingPrice":2.50,
+            "productsOrdered":products,
+            "user_id":"new_url_test"
+        };
+
+        var user_id = "url_test";
+        const aux:Response = await request(app).get("/orders/user_id/"+user_id);
+        var id = JSON.stringify(aux.body);
+
+        const response:Response = await request(app).put("/orders/update/"+JSON.parse(id)[0]._id).send(neworder);
+        expect(response.statusCode).toBe(200);
+    });
+
+    /**
+     * Test that when we delete a order, it is correctly deleted
+     */
+    it('correctly deleted',async () => {
+        var user_id = "new_url_test";
+        const aux:Response = await request(app).get("/orders/user_id/"+user_id);
+        var id = JSON.stringify(aux.body);
+
+        const response:Response = await request(app).delete("/orders/delete/"+JSON.parse(id)[0]._id);
+        expect(response.statusCode).toBe(202);
+    });
+
+    /**
+     * Test that when we delete a non-existing order, we receive the correct status code
+     */
+    it('deleted but does not exist',async () => {
+        const response:Response = await request(app).delete("/orders/delete/noOrder_here");
+        expect(response.statusCode).toBe(404);
+    });
+});
