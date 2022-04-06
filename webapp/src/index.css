@@ -40,3 +40,12 @@ label,input {
   right: -101px;
 }
 
+#grid2{
+  position: relative;
+  top: -4px
+}
+
+#grid3{
+  position: relative;
+  top: 8px
+}

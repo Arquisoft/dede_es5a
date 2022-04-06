@@ -55,7 +55,7 @@ const NavBar = () => {
     logout();
     handleCloseUserMenu();
     navigate('/home')
-    setMessage('Sesión cerrada satisfactoriamente')
+    setMessage('Successful logout')
   }
 
   return (

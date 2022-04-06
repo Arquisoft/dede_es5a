@@ -1,7 +1,7 @@
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import {Avatar, Box, Button, Container, Grid, Typography } from "@mui/material";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import GetAddress from "./GetAddress";
+import UserAddress from "./UserAddress";
 import { getStringNoLocale } from "@inrupt/solid-client";
 
 
@@ -32,7 +32,7 @@ const ProfileViewer = () => {
                       style={{width: '100%'}}
                     /> 
                 </Grid>
-                <Grid id="grid3 "item xs={8}>
+                <Grid id="grid3"item xs={8}>
                   <Typography gutterBottom variant="h5" component="h2" style={{textAlign: 'left'}}>
                     <Text property={FOAF.name.iri.value} />
                   </Typography>
@@ -40,7 +40,7 @@ const ProfileViewer = () => {
                 </Grid>
                 <div>
                     <Typography gutterBottom component="p">
-                      <GetAddress webID={session.info.webId || ''}></GetAddress> 
+                      <UserAddress webID={session.info.webId || ''}></UserAddress> 
                     </Typography>
                 </div>
             </Box>

@@ -1,6 +1,4 @@
-import {
-    getSolidDataset, getStringNoLocale, getThing, Thing, getUrl
-} from "@inrupt/solid-client";
+import {getSolidDataset, getStringNoLocale, getThing, Thing, getUrl} from "@inrupt/solid-client";
 
 import Grid from "@mui/material/Grid";
 
@@ -24,6 +22,7 @@ type Props = {
     let region= getStringNoLocale(userAddress as Thing, VCARD.region) as string
     let country= getStringNoLocale(userAddress as Thing, VCARD.country_name) as string;
     let address=[street_address,locality,postal_code,region,country]
+
     return address
   }
 function GetUserAddress({webID}: Props): JSX.Element  {
@@ -34,28 +33,24 @@ function GetUserAddress({webID}: Props): JSX.Element  {
       useEffect(() => {
         getAddress();
       })
-
       return (
-        <>        
-          
+        <>                 
               <h3 style={{textAlign: 'left', margin: 1}}>Address:</h3>
-              {address[0] === undefined ? (
+              {address[0] === undefined || address[1] === undefined || address[2] ===undefined ? (
                 <div>      
                   <span style={{margin: 1}}>The user has no address</span>         
                 </div>
               ):(
-                <><Grid container>
-                  <p style={{margin: 1 }}>{address[0]}, {address[2]}</p>
-                </Grid><Grid container>
+                  <><Grid container>
+                    <p style={{margin: 1 }}>{address[0]}, {address[2]}</p>
+                  </Grid><Grid container>
                     <p style={{ margin: 0 }}>{address[1]}, ({address[3]})</p>
                   </Grid><Grid container>
                     <p style={{ textAlign: 'center', margin: 0 }}>{address[4]}</p>
                   </Grid></>   
-              )}
-          
+              )}  
         </>
       );
   }
-
 
 export default GetUserAddress;
