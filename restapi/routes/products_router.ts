@@ -34,6 +34,24 @@ app.get("/products/:id", async (req: Request, res: Response) => {
     }
 });
 
+//By filter
+app.get("/products/:field/:value", async (req: Request, res: Response) => {
+    var field = req.params.field;
+    var value = req.params.value;
+
+    try {
+        var query = { [field] : value };
+        
+        var product = await service.findBy("Producto", query);
+
+        if (product) {
+            res.status(200).send(product);
+        }
+    } catch (error) {
+        res.status(404).send(sanitizeHtml(`Unable to find matching document`));
+    }
+});
+
 // POST (Add)
 app.post("/products/add", async (req: Request, res: Response) => {
     try {
@@ -92,6 +110,27 @@ app.delete("/products/delete/:id", async (req: Request, res: Response) => {
             res.status(400).send(sanitizeHtml(`Failed to remove product with id ${id}`));
         } else if (!result.deletedCount) {
             res.status(404).send(sanitizeHtml(`product with id ${id} does not exist`));
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
+
+// DELETE by filter
+app.delete("/products/delete/:field/:value", async (req: Request, res: Response) => {
+    var field = req?.params?.field;
+    var value = req?.params?.value;
+
+    try {
+        var query = { [field]: value };
+        var result = await service.removeElement("Producto", query);
+
+        if (result && result.deletedCount) {
+            res.status(202).send(sanitizeHtml(`Successfully removed product`));
+        } else if (!result) {
+            res.status(400).send(sanitizeHtml(`Failed to remove product`));
+        } else if (!result.deletedCount) {
+            res.status(404).send(sanitizeHtml(`product does not exist`));
         }
     } catch (error) {
         console.error(error.message);

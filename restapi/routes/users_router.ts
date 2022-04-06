@@ -34,6 +34,24 @@ app.get("/users/:id", async (req: Request, res: Response) => {
     }
 });
 
+//By filter
+app.get("/users/:field/:value", async (req: Request, res: Response) => {
+    var field = req.params.field;
+    var value = req.params.value;
+
+    try {
+        var query = { [field] : value };
+        
+        var user = await service.findBy("Usuario", query);
+
+        if (user) {
+            res.status(200).send(user);
+        }
+    } catch (error) {
+        res.status(404).send(sanitizeHtml(`Unable to find matching document`));
+    }
+});
+
 // POST (Add)
 app.post("/users/add", async (req: Request, res: Response) => {
     try {
@@ -84,7 +102,6 @@ app.delete("/users/delete/:id", async (req: Request, res: Response) => {
             res.status(404).send(sanitizeHtml(`User with id ${id} does not exist`));
         }
     } catch (error) {
-        console.error(error.message);
         res.status(400).send(error.message);
     }
 });

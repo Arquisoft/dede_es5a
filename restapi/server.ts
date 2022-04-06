@@ -38,6 +38,7 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
+/** QUITAMOS ROUTERS TEMPORALMENTE 
 //RouterSession
 var routerUsuarioSession = express.Router();
 routerUsuarioSession.use(function(req, res, next) {
@@ -72,6 +73,7 @@ app.use("/products/delete",routerUsuarioAdministrador);
 app.use("/users/add",routerUsuarioAdministrador);
 app.use("/users/update",routerUsuarioAdministrador);
 app.use("/users/delete",routerUsuarioAdministrador);
+*/
 
 //Encriptación de contraseñas
 var crypto = require('crypto');
@@ -84,7 +86,8 @@ require("./routes/orders_router");
 require("./routes/users_router");
 
 //El servidor empieza a escuchar
-app.listen(port, () => {
+var server = app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
 
+module.exports = server;
