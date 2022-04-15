@@ -66,7 +66,7 @@ image:domain_model.png["Domain model"]
 |===
 
 === Architecture and Design Patterns
-image:arquitectura_arquiSocks.png["MERN Stack Architecture"]
+image:arquisocks_architecture.png["MERN Stack Architecture"]
 
 MERN Stack is being used in the application which allows to easily create 3-tier architecture.
 
