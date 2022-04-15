@@ -144,20 +144,13 @@ User interfaces should be designed with usability and accessibility in mind.
 They may not exactly match the final design, but they offer an idea of the functionality and design of the pages that the application will have. 
 
 ====== Main page
-image:main.png["Main page"]
+image:main.png["Main page", width=371, height=208]
 
 ====== Cart screen
-image:cart.png["Cart screen"]
+image:cart.png["Cart screen", width=221, height=314]
 
 ====== Product's detail screen
-image:productDetail.png["Product's detail screen"]
-
-====== Sign up/Log in screen
-image:signUp.png["Sign up screen"]
-image:logIn.png["Log in screen"]
-
-====== User's profile screen
-image:userProfile.png["User's profile screen"]
+image:productDetail.png["Product's detail screen", width=298, height=181]
 
 === Security
 Security is another key aspect to consider. Some measures to ensure security are:
