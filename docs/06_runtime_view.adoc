@@ -144,7 +144,7 @@ end
 actor User
 participant WebApp
 participant Restapi
-participant MapsAPI
+entity MapsAPI
 database SOLID
 database Database
 User -> WebApp: Request to confirm order
