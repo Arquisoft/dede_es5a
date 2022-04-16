@@ -100,15 +100,15 @@ image:whitebox_webapp.png["Whitebox Webapp"]
 
 Motivation::
 
-This diagram shows the relations among webapp components and libraries used. The main lirary is mui used for optimize the development of many components. It has been implemented using *React library for user interfaces*.
+This diagram shows the relations among webapp components and libraries used. The main library is mui used to optimize the development of many components. It has been implemented using *React library for user interfaces*.
 
 Contained Building Blocks::
 |===
 |Building block |Description
 | _Api_ | Contains functions to connect with the restapi.
-| _App_ | The main page of the web. Packages (npm): mui.
-| _Components_ | Contains all of the components of the webapp, from the cart to the products list. Packages (npm): mui, inrupt/solid-ui-react.
-| _Contexts_ | It is like the session of the user, it stores products selected.
+| _App_ | Main component which contains all other components. Packages (npm): mui.
+| _Components_ | Contains all ui components of the webapp, like cart, order, navbar, footer... Packages (npm): mui, inrupt/solid-ui-react.
+| _Contexts_ | it allows us to share data across the components more easily. For now, the context is sharing selected products in cart.
 |===
 
 ==== White Box _Restapi_
