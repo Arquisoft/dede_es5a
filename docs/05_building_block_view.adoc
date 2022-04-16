@@ -108,7 +108,7 @@ Contained Building Blocks::
 | _Api_ | Contains functions to connect with the restapi.
 | _App_ | Main component which contains all other components. Packages (npm): mui.
 | _Components_ | Contains all ui components of the webapp, like cart, order, navbar, footer... Packages (npm): mui, inrupt/solid-ui-react.
-| _Contexts_ | it allows us to share data across the components more easily. For now, the context is sharing selected products in cart.
+| _Contexts_ | It allows us to share data across the components more easily. For now, the context is sharing selected products in cart.
 |===
 
 ==== White Box _Restapi_
