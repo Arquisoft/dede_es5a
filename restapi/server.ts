@@ -84,6 +84,7 @@ app.set('crypto', crypto);
 require("./routes/products_router");
 require("./routes/orders_router");
 require("./routes/users_router");
+require("./routes/distributioncenter_router");
 
 //El servidor empieza a escuchar
 var server = app.listen(port, () => {
