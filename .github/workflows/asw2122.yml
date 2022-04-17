@@ -23,6 +23,9 @@ jobs:
     defaults:
       run:
         working-directory: restapi
+    env:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+      DATABASE_URI: ${{ secrets.DATABASE_URI }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
