@@ -49,7 +49,7 @@ function GetUserAddress({webID}: Props): JSX.Element  {
             address.map((dir,index) => 
               <>
               <Grid container>
-                <h4 style={{margin:1}}>Addres {index+1}:</h4>
+                <h4 style={{margin:1}}>Address {index+1}:</h4>
               </Grid>
               <Grid container>
                 <p style={{margin: 1 }}>{dir[0]}, {dir[2]}</p>
