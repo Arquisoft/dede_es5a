@@ -1,4 +1,4 @@
-import {getSolidDataset, getStringNoLocale, getThing, Thing, getUrl, getUrlAll, getThingAll} from "@inrupt/solid-client";
+import {getSolidDataset, getStringNoLocale, getThing, Thing, getUrlAll} from "@inrupt/solid-client";
 
 import Grid from "@mui/material/Grid";
 
