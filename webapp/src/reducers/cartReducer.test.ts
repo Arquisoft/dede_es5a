@@ -9,7 +9,7 @@ test('add a product that does not previously exist in the cart', () => {
     const toAddProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -23,7 +23,7 @@ test('add a product that does not previously exist in the cart', () => {
     const expectedState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -38,7 +38,7 @@ test('add a product that previously exists in the cart with same size', () => {
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -47,7 +47,7 @@ test('add a product that previously exists in the cart with same size', () => {
     const toAddProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -61,7 +61,7 @@ test('add a product that previously exists in the cart with same size', () => {
     const expectedState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 2,
         image: "imagen1",
         _id: "imagen1"
@@ -76,7 +76,7 @@ test('add a product that previously exists in the cart with different size', () 
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -85,7 +85,7 @@ test('add a product that previously exists in the cart with different size', () 
     const toAddProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 27,
+        size: "27",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -99,7 +99,7 @@ test('add a product that previously exists in the cart with different size', () 
     const expectedState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -107,7 +107,7 @@ test('add a product that previously exists in the cart with different size', () 
     {
         name: "Producto 1",
         price: 2.5,
-        size: 27,
+        size: "27",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -121,7 +121,7 @@ test('delete a certain product a unit', () => {
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 2,
         image: "imagen1",
         _id: "imagen1"
@@ -130,7 +130,7 @@ test('delete a certain product a unit', () => {
     const toRemoveProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -144,7 +144,7 @@ test('delete a certain product a unit', () => {
     const expectedState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -158,7 +158,7 @@ test('delete a certain product with a unit', () => {
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 1,
         image: "imagen1",
         _id: "imagen1"
@@ -167,7 +167,7 @@ test('delete a certain product with a unit', () => {
     const toRemoveProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -188,7 +188,7 @@ test('delete all units of a product', () => {
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 2,
         image: "imagen1",
         _id: "imagen1"
@@ -197,7 +197,7 @@ test('delete all units of a product', () => {
     const toRemoveAllProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
@@ -219,7 +219,7 @@ test('delete all products in cart', () => {
     const initialState: CartProduct[] = [{
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 2,
         image: "imagen1",
         _id: "imagen1"
@@ -227,7 +227,7 @@ test('delete all products in cart', () => {
     {
         name: "Producto 2",
         price: 5.5,
-        size: 28,
+        size: "28",
         quantity: 5,
         image: "imagen2",
         _id: "imagen2"
@@ -238,7 +238,7 @@ test('delete all products in cart', () => {
     const toRemoveAllProduct = {
         name: "Producto 1",
         price: 2.5,
-        size: 26,
+        size: "26",
         quantity: 0,
         image: "imagen1",
         _id: "imagen1"
