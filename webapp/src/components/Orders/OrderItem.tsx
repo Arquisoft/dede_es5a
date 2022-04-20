@@ -23,8 +23,6 @@ export default function OrderItem({ order }: Props) {
 
     return (
       <Paper sx={{ margin: 1.2 }} key={order.code + p.product_id}>
-        {console.log('CODE: ' + order.code + '| ID: ' + p.product_id)}
-
         <Typography variant="h5">
           {prod?.name} - {prod?.brand}
         </Typography>

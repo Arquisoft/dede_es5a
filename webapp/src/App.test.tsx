@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, waitFor } from '@testing-library/react'
+import App from './App'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Source code/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('Signin button available', async () => {
+  render(<App />)
+  const signIn = await screen.getByText('Signin')
+  await waitFor(() => expect(signIn).toBeInTheDocument())
+})
+
+test('Logo', async () => {
+  render(<App />)
+  const logo = await screen.getAllByAltText('logo')
+  await waitFor(() => expect(logo[0]).toBeInTheDocument())
+})

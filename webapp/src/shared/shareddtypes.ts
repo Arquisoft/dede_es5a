@@ -29,7 +29,8 @@ export type Order = {
   totalAmount: number,
   productsOrdered: Array<ProductOrdered>,
   user_id: string,
-  code: string
+  code: string,
+  _id: string
 }
 
 export interface Login {
