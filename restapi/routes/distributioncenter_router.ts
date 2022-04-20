@@ -3,7 +3,6 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import DistributionCenter from "../models/distributionCenter";
 import sanitizeHtml from "sanitize-html";
-import fetch from "node-fetch";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -20,6 +19,26 @@ app.get("/distributioncenters", async (_req: Request, res: Response) => {
         var documents = await service.getCollection("CentroDistribucion"); //Se obtienen los datos del servicio
         
         res.status(200).send(documents); //Envía los datos como respuesta en json
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// GET (Ubicación de los centros de distriución)
+// Retorna una img que contiene lla ubicación de los mismos
+app.get("/distributioncenters/map", async (_req: Request, res: Response) => {
+    try {
+        var centerZoomImg = "-3.9243,39.5862,4,0"
+        var dimensions = "400x300@2x"
+        var coordinates = await getCoordinates()
+        var imgURI = new URL("https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/" + coordinates + "/" + centerZoomImg + "/" + dimensions + "?before_layer=bridge-street-minor&access_token="+MAPBOX_API_KEY);
+        
+        res.status(200).send(
+            {
+                img: imgURI.toString()
+            }
+        )
+        
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -118,51 +137,22 @@ app.delete("/distributioncenters/delete/:id", async (req: Request, res: Response
 
 
 /**
- * Calculates coordinates based on the address given as parameter
- * @returns the coordinates of clients address
+ * Get the coordinates of all distribution centers
+ * @returns an string with specific format to paint the points
  */
-async function calculateCoordinates (addressInfo : any){
+async function getCoordinates (){
 
-    var white_list = ["api.mapbox.com"];
+    var res = "";
+    var distributionCenters = await service.getCollection("CentroDistribucion"); //Se obtienen los datos del servicio
 
-    var mapBoxUri = new URL('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY);
-    
-    if(white_list.includes(mapBoxUri.hostname)){
-        //Utilizar coordenadas
-       return await fetch(mapBoxUri)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(addressInfoResult) {
-            //Se obtienen las coordenadas del cliente
-                return { 
-                    "long" : addressInfoResult.features[0].center[0],
-                    "lat" : addressInfoResult.features[0].center[1],
-                }
-            });
+    distributionCenters.map(distributionCenter => {
+        res += "pin-s+555555(" + distributionCenter["longitude"] + "," + distributionCenter["latitude"] + "),"
 
-    }
-        
-}
-
-/**
- * 
- * @param coordinatesClientAddress client coordinates based in an object latitude and longitude
- * @returns distance from distribution centre and client location
- */
-async function calculateDistance(coordinatesClientAddress: any) {
-
-    var centrosDistribucion = await service.getCollection('CentroDistribucion') //Se buscan los centros de distribución, por ahora solo 1
-
-    var distributionCentreLong : number = centrosDistribucion[0].longitude
-    var distributionCentreLat : number = centrosDistribucion[0].latitude
-
-    return await fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
-    .then(function(response) {
-        return response.json();
     })
-    .then(function(distanceInfo) {
-        return (distanceInfo.routes[0].distance)/1000; //Distancia obtenida en km
-    }); 
+
+    return res.substring(0, res.length - 1); //Ajustamos eliminando el último caracter que es una coma que sobra
+    
 }
+
+
 
