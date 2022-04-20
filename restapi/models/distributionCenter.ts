@@ -1,6 +1,4 @@
 // External dependencies
-import { ObjectId } from "mongodb";
-
 // Class Implementation
 export default class DistributionCenter {
     constructor(
