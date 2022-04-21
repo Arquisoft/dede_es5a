@@ -1,7 +1,6 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { useSession } from "@inrupt/solid-ui-react";
-
+import { useSession} from "@inrupt/solid-ui-react";
 
 import {
   AppBar,
