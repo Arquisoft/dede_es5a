@@ -9,11 +9,11 @@ const app: Application = express();
 module.exports = app;
 
 const port: number = process.env.PORT != undefined ? parseInt(process.env.PORT) : 5000;
-const AZURE_URI = process.env.AZURE_URI != undefined ? process.env.AZURE_URI : "";
+const AZUREWEBAPP_URI = process.env.AZUREWEBAPP_URI != undefined ? process.env.AZUREWEBAPP_URI : "";
 
 //Se indican los hosts a los que permite el acceso, serían localhost, la webapp de heroko y la de azure por orden
 const options: cors.CorsOptions = {
-    origin: ['http://localhost:3000','https://dede-es5a.herokuapp.com', AZURE_URI]
+    origin: ['http://localhost:3000','https://dede-es5a.herokuapp.com', AZUREWEBAPP_URI]
 };
 
 //Sesión de express
