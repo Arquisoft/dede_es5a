@@ -10,12 +10,13 @@ import DirectionStepPage from './DirectionStepPage';
 import { CartContext } from '../../contexts/CartContext';
 import { useSession } from '@inrupt/solid-ui-react'
 import calculateCartTotal from '../../helpers/calculateCartTotal';
-import { CartProduct, OrderToPlace, ProductOrdered } from '../../shared/shareddtypes';
+import { Address, CartProduct, OrderToPlace, ProductOrdered } from '../../shared/shareddtypes';
 import { placeOrder } from '../../api/api';
+import userAddress from '../../helpers/userAddress';
 
 const steps = ['Review cart', 'Select delivery address', 'Pay'];
 
-export default function HorizontalLinearStepper() {
+export default function SaleStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
@@ -105,12 +106,43 @@ export default function HorizontalLinearStepper() {
     console.log("Precio enviado a stepper ppal "+ price)
   }
 
+  const { webId } = session.info as any;
+  const [addresses, setAddresses] = React.useState<Address[]>([]);
+  function getAddresses(){
+    console.log("cogiendo direcciones")
+    var addressesToReturn: Address[] = [];
+    console.log("webId: "+ webId)
+    userAddress(webId).then( response =>{
+        for(let i = 0; i < response.length; i++){
+          let address:Address = {
+            id: i,
+            number: 0,
+            street: response[i][0],
+            city: response[i][1],
+            country: response[i][4],
+            zipcode: response[i][2]
+          };
+          console.log("direccion"+i);
+          console.log(response);
+          addressesToReturn = [...addressesToReturn, address]
+        }
+       setAddresses(addressesToReturn)
+      }
+    )
+    console.log("Fuera metodo userAddress")
+    console.log(addressesToReturn)
+    return addressesToReturn;
+  }
+  React.useEffect(() => {
+    getAddresses()
+  }, [])
+
   function choosePage() {
     switch (activeStep) {
       case 0:
         return (<Container><ShoppingCart /></Container>);
       case 1:
-        return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice}/>;
+        return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice} addresses={addresses}/>;
       case 2:
         return (<Container>
                   <Typography variant="h6">Simulating the filling of payment data</Typography>

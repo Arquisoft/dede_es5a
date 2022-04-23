@@ -26,32 +26,28 @@ const columns: GridColDef[] = [
   }
 ];
 
-
-
-const rows:Address[] = [
-  {  id: 1, number: 1, street: 'Calle Valdés Salas', city: 'Oviedo', country: 'España', zipcode:'33007'},
-  { id: 2, number: 2, street: 'Calle Uría', city: 'Oviedo', country: 'España', zipcode:'33003'},
-  { id: 3, number: 60, street: 'Calle Rosal', city: 'Oviedo', country: 'España', zipcode:'33009'},
-];
-
-
 type Props = {
   getSelectedShippingPrice: (price:number) => void;
+  addresses: Address[];
 }
 
-
 export default function DirectionStepPage(props: Props) {
-  const [shippingPrice, setShippingPrice] = useState<number>(-1)
+  const [rows, setRows] = useState<Address[]>(props.addresses);
+  const [shippingPrice, setShippingPrice] = useState<number>(0)
+  let defaultAddress:Address[] = new Array<Address>();
+  if(!rows[0]){
+    defaultAddress.push(rows[0]);
+  }
+  const [selectedRows, setSelectedRows] = useState<Address[]>(defaultAddress);
+  const firstRender = useRef(true);
+
   const refreshShippingPrice = async () => {
     let price:number = await getShippingPrice(selectedRows[0]).then(value => value.shippingPrice);
 
     setShippingPrice(price)
     props.getSelectedShippingPrice(price);
   }
-  const [selectedRows, setSelectedRows] = useState<Address[]>([]);
-
-  const firstRender = useRef(true);
-
+  
   useEffect(() => {
     if(firstRender.current){
       firstRender.current = false;
@@ -60,7 +56,6 @@ export default function DirectionStepPage(props: Props) {
     }
   });
   
-
   return (
     <Container>
     <Box sx={{ mt: '1.25em', mb: '1.25em' }}>
