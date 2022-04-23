@@ -36,7 +36,6 @@ export default function SaleStepper() {
                              size: product.size
                           })
     });
-    console.log("Precio antes de crear el pedido " + shippingPrice)
     return {
       arrivalDate: "2022-04-11T00:00:00.000Z",
       confirmDate: "2022-04-08T00:00:00.000Z",
@@ -56,7 +55,6 @@ export default function SaleStepper() {
         payload: undefined,
         type: 'CLEAR'
       })
-    
     });
   }
   
@@ -103,35 +101,34 @@ export default function SaleStepper() {
 
   function getSelectedShippingPrice(price: number){
     setshippingPrice(price);
-    console.log("Precio enviado a stepper ppal "+ price)
   }
 
   const { webId } = session.info as any;
   const [addresses, setAddresses] = React.useState<Address[]>([]);
+  
+  /**
+   * Convert pod's addresses to objects with type Address
+   * @returns {Address[]} a list of addresses with type Address
+   */
   function getAddresses(){
-    console.log("cogiendo direcciones")
-    var addressesToReturn: Address[] = [];
-    console.log("webId: "+ webId)
-    userAddress(webId).then( response =>{
-        for(let i = 0; i < response.length; i++){
-          let address:Address = {
+    var addressesToReturn: Address[] = new Array<Address>();
+    userAddress(webId).then( podAddresses =>{
+        for(let i = 0; i < podAddresses.length; i++){
+          let convertedAddress:Address = {
             id: i,
-            street: response[i][0],
-            city: response[i][1],
-            country: response[i][4],
-            zipcode: response[i][2]
+            street: podAddresses[i][0],
+            city: podAddresses[i][1],
+            country: podAddresses[i][4],
+            zipcode: podAddresses[i][2]
           };
-          console.log("direccion"+i);
-          console.log(response);
-          addressesToReturn = [...addressesToReturn, address]
+          addressesToReturn = [...addressesToReturn, convertedAddress]
         }
        setAddresses(addressesToReturn)
       }
     )
-    console.log("Fuera metodo userAddress")
-    console.log(addressesToReturn)
     return addressesToReturn;
   }
+
   React.useEffect(() => {
     getAddresses()
   }, [])

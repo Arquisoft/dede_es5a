@@ -69,7 +69,6 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
 
 
 export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
-  console.log("Entrando en llamada a place order");
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -78,10 +77,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  console.log("Saliendo de la llamada de place order");
-  console.log("Estado " + response.status)
   let result = response.text()
-  console.log("Texto" + result)
   return result
 }
 
