@@ -30,7 +30,7 @@ type Props = {
 }
 
 export default function DirectionStepPage(props: Props) {
-  const [rows, setRows] = useState<Address[]>(props.addresses);
+  const rows = props.addresses;
   const [shippingPrice, setShippingPrice] = useState<number>(0)
   let defaultAddress:Address[] = new Array<Address>();
   if(!rows[0]){
