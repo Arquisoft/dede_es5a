@@ -10,19 +10,17 @@ import { Address } from '../../shared/shareddtypes';
 
 
 const columns: GridColDef[] = [
-  { field: 'number', headerName: 'Number', width: 70 },
-  { field: 'street', headerName: 'Street', width: 500 },
-  { field: 'city', headerName: 'City', width: 130 },
+  { field: 'street', headerName: 'Street', width: 400 },
+  { field: 'city', headerName: 'City', width: 150 },
   {
     field: 'country',
     headerName: 'Country',
-    type: 'number',
-    width: 90
+    width: 150
   },
   {
     field: 'zipcode',
     headerName: 'Zipcode',
-    width: 90
+    width: 150
   }
 ];
 

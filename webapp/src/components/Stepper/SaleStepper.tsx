@@ -116,7 +116,6 @@ export default function SaleStepper() {
         for(let i = 0; i < response.length; i++){
           let address:Address = {
             id: i,
-            number: 0,
             street: response[i][0],
             city: response[i][1],
             country: response[i][4],

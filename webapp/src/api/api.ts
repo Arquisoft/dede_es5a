@@ -56,7 +56,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(
-      { number: address.number , 
+      { 
         street: address.street, 
         city: address.city, 
         country: address.country,
