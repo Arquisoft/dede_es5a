@@ -187,7 +187,7 @@ async function calculateCoordinates (addressInfo : any){
 async function calculateDistance(coordinatesClientAddress: any, distributionCenterId: any) {
 
     var query = { _id: new mongodb.ObjectId(distributionCenterId) };
-    var centrosDistribucion = await service.findBy("CentroDistribucion",query); //Se buscan el centro de distribución
+    var centrosDistribucion = await service.findBy("CentroDistrib",query); //Se buscan el centro de distribución
     console.log(centrosDistribucion)
 
     var distributionCentreLong : number = centrosDistribucion[0].longitude

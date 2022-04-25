@@ -16,7 +16,7 @@ const URI: string = process.env.DATABASE_URI != undefined ? process.env.DATABASE
  * 
  */ 
 async function connectToDatabase() {
-    return await mongoose.connect(URI);
+    return mongoose.connect(URI);
 }
 
 /**
