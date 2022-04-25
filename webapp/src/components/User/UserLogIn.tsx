@@ -15,7 +15,6 @@ import { env } from 'process'
 const LoginForm = () => {
   const [idp, setIdp] = useState('https://broker.pod.inrupt.com')
 
-  console.log(idp)
   return (
     <React.Fragment>
       <Container component="main" maxWidth="xs">

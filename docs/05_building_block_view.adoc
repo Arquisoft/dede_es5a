@@ -60,6 +60,8 @@ Building block view shows the static decomposition of the system into building b
 
 image:whitebox_overall_system.png["Whitebox Overall System of ArquiSocks"]
 
+Restapi and webapp are both balck boxes which are explained more detailed scrolling down a little. 
+
 Motivation::
 
 This diagram shows the relations of the application among many others systems. It also shows dependency relations with clients. This diagram provides readers a general static vision of the project.
@@ -86,45 +88,28 @@ Important Interfaces::
 
 [role="arc42help"]
 ****
-Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.
-
-You have to decide which building blocks of your system are important enough to justify such a detailed description.
-Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
-Leave out normal, simple, boring or standardized parts of your system
-****
-
-==== White Box _ArquiSocks_
-
-image:whitebox_arquisocks.png["Whitebox ArquiSocks"]
-
-Motivation::
-
-This diagram shows the relations between the restapi and the webapp. Both building blocks will be explained more detailed in next paragraphs.
-
-Contained Building Blocks::
-|===
-|Building block |Description
-| _React_ | Library used in order to improve development of Graphic User Interfaces. 
-| _Webapp_ | Contains the GUI of the application which is useful for clients usability. 
-| _Restapi_ | Contains controllers (routers) in order to manage CRUD requests. Generates responses to the requests.
-
-|===
-
-Important Interfaces::
-|===
-|Interface |Description
-| _Server_ | this element has the responsibility of manage requests of application's clients. These requests come from the webapp.
-|===
-
-=== Level 3
-
-[role="arc42help"]
-****
 Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.
 
 When you need more detailed levels of your architecture please copy this
 part of arc42 for additional levels.
 ****
+
+==== White Box _Webapp_
+
+image:whitebox_webapp.png["Whitebox Webapp"]
+
+Motivation::
+
+This diagram shows the relations among webapp components and libraries used. The main library is mui used to optimize the development of many components. It has been implemented using *React library for user interfaces*.
+
+Contained Building Blocks::
+|===
+|Building block |Description
+| _Api_ | Contains functions to connect with the restapi.
+| _App_ | Main component which contains all other components. Packages (npm): mui.
+| _Components_ | Contains all ui components of the webapp, like cart, order, navbar, footer... Packages (npm): mui, inrupt/solid-ui-react.
+| _Contexts_ | It allows us to share data across the components more easily. For now, the context is sharing selected products in cart.
+|===
 
 ==== White Box _Restapi_
 
@@ -138,24 +123,8 @@ Contained Building Blocks::
 |===
 |Building block |Description
 | _Models_ | Stores classes which represent objects from database. Packages (npm): mongodb.
-| _Routes_ | Admin requests and redirect to the service. Includes business logic. Packages (npm): express, mongodb.
+| _Routes_ | Admin requests and redirect to the service. Includes business logic. Packages (npm): express, mongodb, node-fetch.
 | _Service_ | Connects to database. Packages (npm): mongoose, dotenv.
 | _Server_ | Manage users' requests. Packages (npm): express, dotenv.
 |===
 
-==== White Box _Webapp_
-
-image:whitebox_webapp.png["Whitebox Webapp"]
-
-Motivation::
-
-This diagram shows the relations among webapp components and libraries used. The main lirary is mui used for optimize the development of many components.
-
-Contained Building Blocks::
-|===
-|Building block |Description
-| _Api_ | Contains functions to connect with the restapi.
-| _App_ | The main page of the web. Packages (npm): mui.
-| _Components_ | Contains all of the components of the webapp, from the cart to the products list. Packages (npm): mui.
-| _Contexts_ | It is like the session of the user, it stores products selected.
-|===
