@@ -10,12 +10,13 @@ import DirectionStepPage from './DirectionStepPage';
 import { CartContext } from '../../contexts/CartContext';
 import { useSession } from '@inrupt/solid-ui-react'
 import calculateCartTotal from '../../helpers/calculateCartTotal';
-import { CartProduct, OrderToPlace, ProductOrdered } from '../../shared/shareddtypes';
+import { Address, CartProduct, OrderToPlace, ProductOrdered } from '../../shared/shareddtypes';
 import { placeOrder } from '../../api/api';
+import userAddress from '../../helpers/userAddress';
 
 const steps = ['Review cart', 'Select delivery address', 'Pay'];
 
-export default function HorizontalLinearStepper() {
+export default function SaleStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
@@ -35,7 +36,6 @@ export default function HorizontalLinearStepper() {
                              size: product.size
                           })
     });
-    console.log("Precio antes de crear el pedido " + shippingPrice)
     return {
       arrivalDate: "2022-04-11T00:00:00.000Z",
       confirmDate: "2022-04-08T00:00:00.000Z",
@@ -55,7 +55,6 @@ export default function HorizontalLinearStepper() {
         payload: undefined,
         type: 'CLEAR'
       })
-    
     });
   }
   
@@ -102,15 +101,44 @@ export default function HorizontalLinearStepper() {
 
   function getSelectedShippingPrice(price: number){
     setshippingPrice(price);
-    console.log("Precio enviado a stepper ppal "+ price)
   }
+
+  const { webId } = session.info as any;
+  const [addresses, setAddresses] = React.useState<Address[]>([]);
+  
+  /**
+   * Convert pod's addresses to objects with type Address
+   * @returns {Address[]} a list of addresses with type Address
+   */
+  function getAddresses(){
+    var addressesToReturn: Address[] = new Array<Address>();
+    userAddress(webId).then( podAddresses =>{
+        for(let i = 0; i < podAddresses.length; i++){
+          let convertedAddress:Address = {
+            id: i,
+            street: podAddresses[i][0],
+            city: podAddresses[i][1],
+            country: podAddresses[i][4],
+            zipcode: podAddresses[i][2]
+          };
+          addressesToReturn = [...addressesToReturn, convertedAddress]
+        }
+       setAddresses(addressesToReturn)
+      }
+    )
+    return addressesToReturn;
+  }
+
+  React.useEffect(() => {
+    getAddresses()
+  }, [])
 
   function choosePage() {
     switch (activeStep) {
       case 0:
         return (<Container><ShoppingCart /></Container>);
       case 1:
-        return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice}/>;
+        return <DirectionStepPage getSelectedShippingPrice = {getSelectedShippingPrice} addresses={addresses}/>;
       case 2:
         return (<Container>
                   <Typography variant="h6">Simulating the filling of payment data</Typography>
