@@ -5,7 +5,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import ShoppingCart from '../Cart/ShoppingCart';
-import { Container, Typography, Fade, CircularProgress } from '@mui/material';
+import { Container, Typography, Fade, CircularProgress} from '@mui/material';
 import DirectionStepPage from './DirectionStepPage';
 import { CartContext } from '../../contexts/CartContext';
 import { useSession } from '@inrupt/solid-ui-react'
@@ -13,6 +13,8 @@ import calculateCartTotal from '../../helpers/calculateCartTotal';
 import { Address, CartProduct, OrderToPlace, ProductOrdered } from '../../shared/shareddtypes';
 import { placeOrder } from '../../api/api';
 import userAddress from '../../helpers/userAddress';
+import CustomisedStepIcon from './customisedComponents/CustomisedStepIcon';
+import CustomisedConnector from './customisedComponents/CustomisedConnector';
 
 const steps = ['Review cart', 'Select delivery address', 'Pay'];
 
@@ -184,14 +186,14 @@ export default function SaleStepper() {
   function getTextForNextButton(){
     return activeStep === steps.length - 1 ? 'Pay' : 'Next'
   }
-
+  
   return (
     <Box sx={{ width: '100%'}} >
-      <Stepper activeStep={activeStep}>
+      <Stepper alternativeLabel activeStep={activeStep}  connector={<CustomisedConnector/>}>
         {steps.map((label) => {
           return (
             <Step key={label}>
-              <StepLabel>{label}</StepLabel>
+              <StepLabel StepIconComponent={CustomisedStepIcon}>{label}</StepLabel>
             </Step>
           );
         })}
