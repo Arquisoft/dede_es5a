@@ -7,6 +7,7 @@ import {
   Container,
   Button,
   styled,
+  SwipeableDrawer,
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
@@ -48,7 +49,7 @@ export default function ShoppingCartDrawer() {
           </IconButton>
         </StyledBadge>
       </Tooltip>
-      <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
+      <SwipeableDrawer anchor={'right'} open={state}  onOpen={toggleDrawer(true)} onClose={toggleDrawer(false)}>
         <Container>
           <ShoppingCart />
         
@@ -61,7 +62,7 @@ export default function ShoppingCartDrawer() {
               Process Order
             </Button>
         </Container>
-      </Drawer>
+      </SwipeableDrawer>
     </Box>
     
   )
