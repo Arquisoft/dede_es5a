@@ -32,6 +32,11 @@ export default function ShoppingCartDrawer() {
     setState(open)
   }
 
+  const handleProcessOrderBtn = () =>{
+    toggleDrawer(false)();
+    navigate('/saleprocess');
+  }
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open cart">
@@ -51,7 +56,7 @@ export default function ShoppingCartDrawer() {
               disabled={cartProducts.length === 0}
               fullWidth
               variant="contained"
-              onClick={() => navigate('/saleprocess')}
+              onClick={handleProcessOrderBtn}
             >
               Process Order
             </Button>
