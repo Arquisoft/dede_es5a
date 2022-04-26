@@ -199,6 +199,13 @@ export default function SaleStepper() {
       >
       Back
       </Button>)
+    }else{
+      return(
+        <Button
+        color="inherit"
+        sx={{ mr: 1 }}
+        disabled>
+        </Button>)
     }
   }
 

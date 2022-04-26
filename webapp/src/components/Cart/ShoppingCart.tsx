@@ -17,13 +17,15 @@ export default function ShoppingCart() {
       {cartProducts.map((product) => (
         <CartItem key={product._id} product={product} />
       ))}
-      <Divider />
     </Stack>
   )
 
   return (
     <Box>
-      <Box sx={{ mt: '1.25em', mb: '1.25em' }}>
+      <Box 
+      borderBottom={2} 
+      borderColor="#c9c9c9"
+      sx={{ mt: '1.25em', mb: '1.25em' }}>
         <Typography align="center" variant="h5" component="h5">
           My Shopping Cart
         </Typography>
@@ -36,9 +38,12 @@ export default function ShoppingCart() {
         {cartProducts.length === 0 ? <p>No products in cart.</p> : null}
         {list()}
       </Box>
-      <Box display="grid" gridTemplateColumns="repeat(2, 1fr)">
-        <Typography variant="h6">Total</Typography>
-        <Typography variant="h6" align="right">
+      <Box borderTop={2} 
+      sx={{ mt: '1.25em', mb: '1.25em' }}
+        borderColor="#c9c9c9"
+        display="grid" gridTemplateColumns="repeat(2, 1fr)">
+        <Typography variant="h6" align="left" >Total</Typography>
+        <Typography variant="h5" align="right" style={{ fontWeight: 600 }}>
           {calculateCartTotal(cartProducts)} €
         </Typography>
       </Box>
