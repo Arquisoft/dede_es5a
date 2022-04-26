@@ -19,6 +19,12 @@ Sofía Yiyu Qiu - UO277360
 Gaspar Pisa Eyaralar - UO250825  
 María Urrutia Fernández - UO251282
 
+## Despliegue
+Nuestra propuesta de tienda virtual está desplegada tanto en Azure como en Heroku con el objetivo de incrementar la disponibilidad de la misma. Los enlaces son los siguientes:
+- [Heroku] (https://dede-es5a.herokuapp.com/)
+- [Azure] (http://20.228.137.74:3000)
+En caso de que alguno de los servicios no esté disponile. Póngase en contacto con nosotros y lo solucionaremos :))
+
 
 ## Guia de inicio rápido
 
