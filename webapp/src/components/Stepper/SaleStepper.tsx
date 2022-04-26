@@ -15,6 +15,8 @@ import { placeOrder } from '../../api/api';
 import userAddress from '../../helpers/userAddress';
 import CustomisedStepIcon from './customisedComponents/CustomisedStepIcon';
 import CustomisedConnector from './customisedComponents/CustomisedConnector';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const steps = ['Review cart', 'Select delivery address', 'Pay'];
 
@@ -183,8 +185,35 @@ export default function SaleStepper() {
     </Fade>)
   }
 
-  function getTextForNextButton(){
-    return activeStep === steps.length - 1 ? 'Pay' : 'Next'
+  /**
+   * Only shows back button where we are not in the first step
+   */
+  function getBackButton(){
+    if(activeStep !== 0){
+      return(
+      <Button
+      color="inherit"
+      onClick={handleBack}
+      sx={{ mr: 1 }}
+      startIcon={<ArrowBackIcon />}
+      >
+      Back
+      </Button>)
+    }
+  }
+
+  function getNextButton(){
+    if(activeStep === steps.length - 1){
+      return (
+      <Button color="inherit" variant="outlined" onClick={handleNext} disabled={checkState() } >
+        Pay
+      </Button>)
+    }else{
+      return(
+      <Button color="inherit" onClick={handleNext} disabled={checkState()} endIcon={<ArrowForwardIcon />}>
+        Next
+      </Button>)
+    }
   }
   
   return (
@@ -199,7 +228,6 @@ export default function SaleStepper() {
         })}
       </Stepper>
       <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-
         {activeStep ===steps.length ? 
         <Container>
           <Box sx={{ height: 40 }}>
@@ -212,17 +240,9 @@ export default function SaleStepper() {
         :
         (
         <React.Fragment>
-          <Button
-            color="inherit"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            sx={{ mr: 1 }}>
-            Back
-          </Button>
+            {getBackButton()}
             {choosePage()}
-          <Button onClick={handleNext} disabled={checkState()}>
-            {getTextForNextButton()}
-          </Button>
+            {getNextButton()}
         </React.Fragment>
         ) }
       </Box>
