@@ -1,6 +1,7 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { useSession} from "@inrupt/solid-ui-react";
+import { CombinedDataProvider, useSession,Image } from "@inrupt/solid-ui-react";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 import {
   AppBar,
@@ -56,6 +57,8 @@ const NavBar = () => {
     navigate('/home')
     setMessage('Successful logout')
   }
+
+  const { webId } = session.info as any;
 
   return (
     <>
@@ -166,7 +169,15 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              {!session.info.isLoggedIn ? (
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                ):(
+                  <CombinedDataProvider datasetUrl={webId} thingUrl={webId} >
+                    <Image className="imagen" property={VCARD.hasPhoto.iri.value} 
+                      errorComponent={() => <img className='img-noPhoto' src="/images/no-image-profile.png" style={{width: '100%'}}/>}
+                    /> 
+                  </CombinedDataProvider>
+                )}
               </IconButton>
             </Tooltip>
             <Menu
