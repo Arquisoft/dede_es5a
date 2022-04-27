@@ -8,7 +8,7 @@ test('check order renders propertly', async () => {
     _id: '1234',
     name: 'Blue',
     price: 5,
-    size: 40,
+    size: '40',
     quantity: 45,
     image: ''
   }
