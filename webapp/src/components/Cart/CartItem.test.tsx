@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { CartProduct, Order } from '../../shared/shareddtypes'
+import { CartProduct } from '../../shared/shareddtypes'
 import CartItem from './CartItem'
 
 test('check order renders propertly', async () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { Order, Product } from '../../shared/shareddtypes'
+import { Order } from '../../shared/shareddtypes'
 import OrderList from './OrderList'
 
 test('check that the list of orders renders propertly', async () => {

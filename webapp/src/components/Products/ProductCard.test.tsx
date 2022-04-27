@@ -1,14 +1,11 @@
 import { render, screen } from '@testing-library/react'
-import ProductList from './ProductList'
 import { CartProduct, Product } from '../../shared/shareddtypes'
 import ProductCard from './ProductCard'
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
 
 test('check product cards renders propertly', async () => {
   // Arrange
-  const handleAddToCart = (cartProduct: CartProduct) => {
-    
+  const handleAddToCart = () => {
+    console.log("ADD")
   }
 
   const product: Product = {
