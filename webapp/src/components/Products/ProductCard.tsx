@@ -55,7 +55,7 @@ export default function ProductCard({ product, handleAddToCart }: Props) {
     const addToCartProduct = {
       name: product.name,
       price: product.price,
-      size: parseInt(size),
+      size: size,
       quantity: 0,
       image: product.image,
       _id: product._id,

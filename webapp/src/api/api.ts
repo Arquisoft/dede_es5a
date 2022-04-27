@@ -1,4 +1,4 @@
-import { User, Login, Order } from '../shared/shareddtypes';
+import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 // export async function addUser(user:User):Promise<boolean>{
@@ -49,6 +49,36 @@ export async function getOrdersByUser(user_id:string):Promise<Order[]>{
   let response = await fetch(apiEndPoint+'/orders/'+user_id);
   //The objects returned by the api are directly convertible to Product objects
   return response.json()
+}
+
+export async function getShippingPrice(address: Address):Promise<ShippingPriceResponse>{
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(
+      { 
+        street: address.street, 
+        city: address.city, 
+        country: address.country,
+        zipcode: address.zipcode})
+  };
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
+  return response.json()
+}
+
+
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(orderToPlace)
+  };
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
+
+  let result = response.text()
+  return result
 }
 
 
