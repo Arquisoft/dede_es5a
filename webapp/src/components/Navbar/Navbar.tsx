@@ -175,7 +175,6 @@ const NavBar = () => {
                   <CombinedDataProvider datasetUrl={webId} thingUrl={webId} >
                     <Image className="imagen" property={VCARD.hasPhoto.iri.value} 
                       errorComponent={() => <img className='img-noPhoto' src="/images/no-image-profile.png" style={{width: '100%'}}/>}
-                      
                     /> 
                   </CombinedDataProvider>
                 )}
