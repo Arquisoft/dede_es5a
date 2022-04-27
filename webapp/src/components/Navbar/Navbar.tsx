@@ -1,7 +1,6 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { CombinedDataProvider, useSession,Image } from "@inrupt/solid-ui-react";
-import { VCARD } from "@inrupt/lit-generated-vocab-common";
+import { useSession} from "@inrupt/solid-ui-react";
 
 import {
   AppBar,
@@ -57,8 +56,6 @@ const NavBar = () => {
     navigate('/home')
     setMessage('Successful logout')
   }
-
-  const { webId } = session.info as any;
 
   return (
     <>
