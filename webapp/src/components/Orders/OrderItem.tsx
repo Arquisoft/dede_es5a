@@ -42,15 +42,11 @@ export default function OrderItem({ order }: Props) {
       >
         <CardContent sx={{ textAlign: 'left' }}>
           <Paper elevation={2}>
-            <Typography variant="h5" component="div" align="center">
-              {order.code.toLocaleUpperCase()}
-            </Typography>
-          </Paper>
-
-          <Paper elevation={1}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Confirmed: {new Date(order.confirmDate).toLocaleString()}
             </Typography>
+          </Paper>
+          <Paper elevation={1}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Delivered: {new Date(order.deliveryDate).toLocaleString()}
             </Typography>
@@ -59,6 +55,11 @@ export default function OrderItem({ order }: Props) {
             </Typography>
           </Paper>
           {productsPaperList}
+          <Paper elevation={2}>
+            <Typography variant="h5" component="div" sx={{ m: 1 }}>
+              Shipping price: {order.shippingPrice} €
+            </Typography>
+          </Paper>
         </CardContent>
       </Card>
     </Grid>
