@@ -24,7 +24,7 @@ export default function ShoppingCart() {
     <Box>
       <Box 
       borderBottom={2} 
-      borderColor="#c9c9c9"
+      borderColor="#365073"
       sx={{ mt: '1.25em', mb: '1.25em' }}>
         <Typography align="center" variant="h5" component="h5">
           My Shopping Cart
@@ -40,7 +40,7 @@ export default function ShoppingCart() {
       </Box>
       <Box borderTop={2} 
       sx={{ mt: '1.25em', mb: '1.25em' }}
-        borderColor="#c9c9c9"
+        borderColor="#365073"
         display="grid" gridTemplateColumns="repeat(2, 1fr)">
         <Typography variant="h6" align="left" >Total</Typography>
         <Typography variant="h5" align="right" style={{ fontWeight: 600 }}>

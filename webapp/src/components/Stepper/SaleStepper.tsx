@@ -27,7 +27,7 @@ export default function SaleStepper() {
   
   const { cartProducts, dispatch } = React.useContext(CartContext);
   const { session } = useSession()
-  const [shippingPrice, setshippingPrice] = React.useState(-1);
+  const [shippingPrice, setshippingPrice] = React.useState(0);
 
   function createOrder(){
     let orderPrice: number = calculateCartTotal(cartProducts);

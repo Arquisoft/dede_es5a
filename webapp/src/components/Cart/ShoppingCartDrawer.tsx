@@ -8,6 +8,13 @@ import {
   Button,
   styled,
   SwipeableDrawer,
+  Alert,
+  AlertTitle,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
@@ -15,6 +22,7 @@ import calculateTotalQuantity from '../../helpers/calculateTotalQuantity'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useNavigate } from 'react-router-dom'
 import ShoppingCart from './ShoppingCart'
+import { useSession} from "@inrupt/solid-ui-react";
 
 const StyledBadge = styled(Badge)({
   "& .MuiBadge-badge": {
@@ -32,10 +40,26 @@ export default function ShoppingCartDrawer() {
   const toggleDrawer = (open: boolean) => () => {
     setState(open)
   }
+  const {session} = useSession();
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   const handleProcessOrderBtn = () =>{
-    toggleDrawer(false)();
-    navigate('/saleprocess');
+    
+    if(session.info.isLoggedIn){
+      toggleDrawer(false)();
+      navigate('/saleprocess');
+    }else{
+      setOpenDialog(true);
+    }
+  }
+
+  const handleDialogClose = (toLogin:boolean) => {
+    setOpenDialog(false)
+    
+    if(toLogin){
+      toggleDrawer(false)();
+      navigate('/signIn');
+    }
   }
 
   return (
@@ -61,6 +85,28 @@ export default function ShoppingCartDrawer() {
             >
               Process Order
             </Button>
+
+            <Dialog
+              open={openDialog}
+              onClose={handleDialogClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"To continue"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  You need to log in first to process order
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => handleDialogClose(false)}>Cancel</Button>
+                <Button onClick={() => handleDialogClose(true)} autoFocus>
+                  Log in
+                </Button>
+              </DialogActions>
+            </Dialog>
         </Container>
       </SwipeableDrawer>
     </Box>
