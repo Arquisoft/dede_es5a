@@ -28,6 +28,12 @@ export default function SaleStepper() {
   const { cartProducts, dispatch } = React.useContext(CartContext);
   const { session } = useSession()
   const [shippingPrice, setshippingPrice] = React.useState(0);
+  const { webId } = session.info as any;
+  const [addresses, setAddresses] = React.useState<Address[]>([]);
+  
+  React.useEffect(() => {
+    getAddresses()
+  }, [])
 
   function createOrder(){
     let orderPrice: number = calculateCartTotal(cartProducts);
@@ -55,6 +61,7 @@ export default function SaleStepper() {
     let orderToPlace: OrderToPlace = createOrder();
     await placeOrder(orderToPlace).then(res => {
       console.log(res);
+      setQuery('success');
       dispatch({
         payload: undefined,
         type: 'CLEAR'
@@ -75,8 +82,8 @@ export default function SaleStepper() {
 
     setQuery('progress');
     timerRef.current = window.setTimeout(() => {
-      setQuery('success');
-    }, 5000);
+      setQuery('fail');
+    }, 10000);
 
     if(activeStep == steps.length-1){
       if(checkOrder()){
@@ -106,9 +113,6 @@ export default function SaleStepper() {
   function getSelectedShippingPrice(price: number){
     setshippingPrice(price);
   }
-
-  const { webId } = session.info as any;
-  const [addresses, setAddresses] = React.useState<Address[]>([]);
   
   /**
    * Convert pod's addresses to objects with type Address
@@ -133,9 +137,7 @@ export default function SaleStepper() {
     return addressesToReturn;
   }
 
-  React.useEffect(() => {
-    getAddresses()
-  }, [])
+
 
   function choosePage() {
     switch (activeStep) {
@@ -155,12 +157,12 @@ export default function SaleStepper() {
     }
   }
 
-  function checkState(){
+  function checkNextCondition(){
     switch (activeStep) {
       case 0: 
         return cartProducts.length == 0;
       case 1:
-        return false;
+        return addresses.length == 0;
       default:
         return false;
     }
@@ -171,6 +173,13 @@ export default function SaleStepper() {
       return(
         <Typography sx={{ mt: 2, mb: 1 }}>
         The sale has been done and it can proceed with the delivery.
+        </Typography>
+      )
+    }
+    if(query === 'fail'){
+      return(
+        <Typography sx={{ mt: 2, mb: 1 }}>
+        Oops! Something went wrong
         </Typography>
       )
     }
@@ -212,20 +221,20 @@ export default function SaleStepper() {
   function getNextButton(){
     if(activeStep === steps.length - 1){
       return (
-      <Button color="inherit" variant="outlined" onClick={handleNext} disabled={checkState() } >
+      <Button color="inherit" variant="outlined" onClick={handleNext} disabled={checkNextCondition() } >
         Pay
       </Button>)
     }else{
       return(
-      <Button color="inherit" onClick={handleNext} disabled={checkState()} endIcon={<ArrowForwardIcon />}>
+      <Button color="inherit" onClick={handleNext} disabled={checkNextCondition()} endIcon={<ArrowForwardIcon />}>
         Next
       </Button>)
     }
   }
   
   return (
-    <Box sx={{ width: '100%'}} >
-      <Stepper alternativeLabel activeStep={activeStep}  connector={<CustomisedConnector/>}>
+    <Box sx={{ width: '100%', mt: '1.25em', mb: '1.25em' }} >
+      <Stepper alternativeLabel activeStep={activeStep} connector={<CustomisedConnector/>}>
         {steps.map((label) => {
           return (
             <Step key={label}>
