@@ -25,6 +25,15 @@ app.get("/users", async (_req: Request, res: Response) => {
     res.status(200).send(req.session);
 });
 
+/**
+ * Actualiza el objeto sesión de express
+ */
+ app.get("/users/updateSession", async (req: Request, res: Response) => {
+    req.session = req.body.session;
+
+    res.status(200).send();
+});
+
 //ByID
 app.get("/users/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
