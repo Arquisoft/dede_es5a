@@ -9,6 +9,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Typography,
 } from '@mui/material'
 import { env } from 'process'
 
@@ -37,8 +38,9 @@ const LoginForm = () => {
               id="demo-simple-select"
               style={{ width: '270px' }}
               value={idp}
-              label="Age"
+              label="Provider"
               onChange={(e) => setIdp(e.target.value)}
+              data-testid="provider"
             >
               <MenuItem
                 onChange={() => setIdp('https://broker.pod.inrupt.com')}
