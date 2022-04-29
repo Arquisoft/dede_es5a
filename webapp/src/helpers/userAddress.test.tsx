@@ -1,13 +1,14 @@
 import GetUserAddress from "../helpers/userAddress";
 import * as solid from "@inrupt/solid-client";
+import { OfflinePin } from "@mui/icons-material";
 
 jest.mock('@inrupt/solid-client');
 
 test('check that adress is generated correctly', async () => {
 
 
-  jest.spyOn(solid, 'getUrlAll').mockImplementation((profile, type) => ['address1', 'address2']);
-  jest.spyOn(solid, 'getStringNoLocale').mockImplementation((profile, type) => 'field');
+  jest.spyOn(solid, 'getUrlAll').mockImplementation((_profile, _type) => ['address1', 'address2']);
+  jest.spyOn(solid, 'getStringNoLocale').mockImplementation((_profile, _type) => 'field');
 
   // Act
   const address = await GetUserAddress('');
@@ -25,8 +26,8 @@ test('check that adress is generated correctly', async () => {
 test('check that adress is generated correctly when there isn\'t one', async () => {
 
 
-  jest.spyOn(solid, 'getUrlAll').mockImplementation((profile, type) => []);
-  jest.spyOn(solid, 'getStringNoLocale').mockImplementation((profile, type) => 'field');
+  jest.spyOn(solid, 'getUrlAll').mockImplementation((_profile, _type) => []);
+  jest.spyOn(solid, 'getStringNoLocale').mockImplementation((_profile, _type) => 'field');
 
   // Act
   const address = await GetUserAddress('');

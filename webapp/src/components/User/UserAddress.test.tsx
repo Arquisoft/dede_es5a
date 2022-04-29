@@ -25,7 +25,7 @@ test('check that the user address renders propertly', async () => {
     ]
   ];
 
-  jest.spyOn(GetUserAddress, 'default').mockImplementation((webId) => Promise.resolve(address));
+  jest.spyOn(GetUserAddress, 'default').mockImplementation((_webId) => Promise.resolve(address));
 
   // Act
   await act(async () => {  

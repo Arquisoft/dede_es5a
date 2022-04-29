@@ -8,8 +8,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select,
-  Typography,
+  Select
 } from '@mui/material'
 import { env } from 'process'
 
