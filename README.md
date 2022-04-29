@@ -25,6 +25,8 @@ Nuestra propuesta de tienda virtual está desplegada tanto en Azure como en Hero
 - [Azure] (http://20.228.137.74:3000)
 En caso de que alguno de los servicios no esté disponile. Póngase en contacto con nosotros y lo solucionaremos :))
 
+## Tests de carga usando gatling
+Se pueden ver los resultados en la wiki del proyecto. Haciendo click (aquí)[https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling]
 
 ## Guia de inicio rápido
 

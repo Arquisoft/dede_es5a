@@ -159,9 +159,10 @@ To achieve high availability:
 
 * On the other hand, enable autoscaling on the application's service providers in case of anticipating the success of the application. 
 
+* Moreover, we will try to have more than one deployment technology in order to increase a high availability.
+
 === Efficiency
-Try to have a good code quality for better performance.
-_<more>_
+Try to have a good code quality for better performance. We will develop many load tests which are going to simulate the state of the application as it were deployed and used by many users. There are many tools to prove that. Gatling will be the reference tool to get information of the behaviour of the app. Results will be shown in the wiki which is available in our repository in GitHub. You can follow this https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling[link]
 
 === Development concept 
 ==== Build, Test, Deploy
