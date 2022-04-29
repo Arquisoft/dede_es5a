@@ -68,7 +68,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
 }
 
 
-export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -77,7 +77,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  let result = response.text()
+  let result = response.status
   return result
 }
 
