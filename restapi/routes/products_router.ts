@@ -18,6 +18,63 @@ app.get("/products", async (_req: Request, res: Response) => {
     }
 });
 
+/**
+ * Añadir producto al carrito
+ */
+ app.post("/products/addCart", async (req: Request, res: Response) => {
+    var newProduct = new Product(
+        req.body.name,
+        req.body.price,
+        req.body.type,
+        req.body.brand,
+        req.body.disponibility,
+        req.body.description 
+    );
+   
+    req.session.cart.push(newProduct);
+
+    res.status(200).send();
+});
+
+/**
+ * Actualizar producto al carrito
+ */
+ app.post("/products/updateCart", async (req: Request, res: Response) => {
+    var newProduct = new Product(
+        req.body.name,
+        req.body.price,
+        req.body.type,
+        req.body.brand,
+        req.body.disponibility,
+        req.body.description 
+    );
+   
+    req.session.cart = req.session.cart.filter((el: { name: string; }) => el.name != newProduct.name);
+    req.session.cart.push(newProduct);
+    
+    res.status(200).send();
+});
+
+/**
+ * Borrar del carrito
+ */
+app.delete("/products/deleteCart", async (req: Request, res: Response) => {
+    var name = req.body.name;
+
+    req.session.cart = req.session.cart.filter((el: { name: any; }) => el.name != name);
+
+    res.status(200).send();
+});
+
+/**
+ * Limpiar carrito
+ */
+ app.get("/products/cleanCart", async (req: Request, res: Response) => {
+    req.session.cart = new Array<Product>();
+    
+    res.status(200).send();
+});
+
 //ByID
 app.get("/products/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
@@ -137,3 +194,5 @@ app.delete("/products/delete/:field/:value", async (req: Request, res: Response)
         res.status(400).send(error.message);
     }
 });
+
+

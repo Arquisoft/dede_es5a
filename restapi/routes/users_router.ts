@@ -18,6 +18,13 @@ app.get("/users", async (_req: Request, res: Response) => {
     }
 });
 
+/**
+ * Devuelve el objeto sesión de express
+ */
+ app.get("/users/session", async (req: Request, res: Response) => {
+    res.status(200).send(req.session);
+});
+
 //ByID
 app.get("/users/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
@@ -116,6 +123,7 @@ app.post("/users/login", async (req: Request, res: Response) => {
             //Metemos al usuario en sesión
             req.session.usuario = { webID: req.body.webID, role: "user" };
             req.session.cart = new Array<Product>();
+            req.session.cart
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
@@ -138,3 +146,5 @@ app.get("/users/logout", async (req: Request, res: Response) => {
     req.session.cart = null;
     res.send("Usuario desconectado");
 });
+
+
