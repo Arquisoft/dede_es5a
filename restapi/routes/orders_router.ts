@@ -65,18 +65,18 @@ app.post("/orders/price", async (req: Request, res: Response) => {
     try {    
 
         var addressInfo = {
-            "number": req.body.number,
             "street": req.body.street,
             "city": req.body.city,
             "country": req.body.country,
-            "zipcode": req.body.zipcode
+            "zipcode": req.body.zipcode,
+
+            "distributionCenterId": req.body.distributionCenterId
         }
 
         //Calculamos las coordenadas del pedido en base a la direcci´on del cliente
         var coordinatesClientAddress = await calculateCoordinates(addressInfo);
-
         //Calculamos la distancia entre las coordenadas de la dirección del cliente y la dirección del centro de distribución
-        var distance = await calculateDistance(coordinatesClientAddress);
+        var distance = await calculateDistance(coordinatesClientAddress, addressInfo.distributionCenterId);
         
         //Se calcula el coste en base a la distancia. (0,30€/km)
         var shippingPrice = distance*shippingCost;
@@ -159,11 +159,11 @@ async function calculateCoordinates (addressInfo : any){
 
     var white_list = ["api.mapbox.com"];
 
-    var mapBoxUri = new URL('https://api.mapbox.com/geocoding/v5/mapbox.places/'+ addressInfo.number + '%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY);
+    var mapBoxUri = new URL('https://api.mapbox.com/geocoding/v5/mapbox.places/1%20' + addressInfo.street + '%20' + addressInfo.city +  '%20' + addressInfo.country + '%20' + addressInfo.zipcode + '.json?access_token=' + MAPBOX_API_KEY);
     
     if(white_list.includes(mapBoxUri.hostname)){
         //Utilizar coordenadas
-       return await fetch(mapBoxUri)
+       return fetch(mapBoxUri)
             .then(function(response) {
                 return response.json();
             })
@@ -184,14 +184,16 @@ async function calculateCoordinates (addressInfo : any){
  * @param coordinatesClientAddress client coordinates based in an object latitude and longitude
  * @returns distance from distribution centre and client location
  */
-async function calculateDistance(coordinatesClientAddress: any) {
+async function calculateDistance(coordinatesClientAddress: any, distributionCenterId: any) {
 
-    var centrosDistribucion = await service.getCollection('CentroDistribucion') //Se buscan los centros de distribución, por ahora solo 1
+    var query = { _id: new mongodb.ObjectId(distributionCenterId) };
+    var centrosDistribucion = await service.findBy("CentroDistrib",query); //Se buscan el centro de distribución
+    console.log(centrosDistribucion)
 
     var distributionCentreLong : number = centrosDistribucion[0].longitude
     var distributionCentreLat : number = centrosDistribucion[0].latitude
 
-    return await fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
+    return fetch('https://api.mapbox.com/directions/v5/mapbox/driving/'+distributionCentreLong+'%2C'+distributionCentreLat+'%3B'+ coordinatesClientAddress.long +'%2C'+ coordinatesClientAddress.lat +'?alternatives=false&geometries=geojson&language=en&overview=simplified&steps=false&access_token=' + MAPBOX_API_KEY)
     .then(function(response) {
         return response.json();
     })
