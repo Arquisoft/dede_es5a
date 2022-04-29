@@ -13,10 +13,10 @@ function PayStepPage(props: Props) {
 
   return (
     <Container>
-        <Typography variant="h6">Simulating the filling of payment data</Typography>
-        <Typography>Order's price: {calculateCartTotal(cartProducts).toFixed(2) + ' €'} </Typography>
-        <Typography>Shipping's price: {props.shippingPrice.toFixed(2) + ' €'} </Typography>
-        <Typography>Total: {(props.shippingPrice + calculateCartTotal(cartProducts)).toFixed(2) + ' €'} </Typography>
+        <Typography variant="h5">Simulating the filling of payment data</Typography>
+        <Typography variant="h6">Order's price: {calculateCartTotal(cartProducts).toFixed(2) + ' €'} </Typography>
+        <Typography variant="h6" >Shipping's price: {props.shippingPrice.toFixed(2) + ' €'} </Typography>
+        <Typography variant="h6" style={{ fontWeight: 600 }}>Total: {(props.shippingPrice + calculateCartTotal(cartProducts)).toFixed(2) + ' €'} </Typography>
     </Container>
   )
 }

@@ -125,7 +125,7 @@ export default function SaleStepper() {
     if (query === 'success') {
       return (
         <Container>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          <Typography sx={{ mt: 2, mb: 1 }} variant="h6">
             The sale has been done and it can proceed with the delivery.
           </Typography>
           <Button onClick={() => { restart(); navigate('/'); }} variant="contained">Finish</Button>
