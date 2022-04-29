@@ -96,7 +96,7 @@ export default function SaleStepper() {
       return false;
     }
     // Que tenga una direccion seleccionada
-    if (shippingPrice == -1) {
+    if (shippingPrice == 0) {
       return false
     }
     return true;
@@ -116,6 +116,8 @@ export default function SaleStepper() {
     if (activeStep === saleSteps.length - 1) {
       if (checkOrder()) {
         handleClearCart();
+      }else{
+        setQuery('fail');
       }
     }
   }

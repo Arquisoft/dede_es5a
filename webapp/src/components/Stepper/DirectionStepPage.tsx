@@ -7,7 +7,6 @@ import { Container } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { getShippingPrice } from '../../api/api';
 import { Address } from '../../shared/shareddtypes';
-import { GifBoxTwoTone } from '@mui/icons-material';
 
 
 const columns: GridColDef[] = [

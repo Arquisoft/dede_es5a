@@ -1,5 +1,5 @@
 import { Button, Container, Typography } from '@mui/material'
-import React, { Component } from 'react'
+import React from 'react'
 import { StepperContext } from '../../contexts/StepperContext';
 
 export default function ErrorPage()  {
