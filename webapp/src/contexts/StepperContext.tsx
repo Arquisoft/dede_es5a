@@ -17,8 +17,11 @@ const initialState = {
     activeStep: 0,
     // This is intentional to initialize the function 
     stepperDispatch: () => {},
+    // This is intentional to initialize the function 
     handleNext: () => {},
+    // This is intentional to initialize the function 
     handleBack: () => {},
+    // This is intentional to initialize the function 
     restart: () => {}
 }
 

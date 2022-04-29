@@ -84,8 +84,8 @@ export default function SaleStepper() {
       } else {
         setQuery('fail');
       }
-    }).catch(error => {
-      setQuery('fail');
+    }).catch((_error) => {
+        setQuery('fail');
       }
     );
   }

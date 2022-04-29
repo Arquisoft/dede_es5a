@@ -77,8 +77,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  let result = response.status
-  return result
+  return response.status
 }
 
 
