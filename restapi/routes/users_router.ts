@@ -132,7 +132,6 @@ app.post("/users/login", async (req: Request, res: Response) => {
             //Metemos al usuario en sesión
             req.session.usuario = { webID: req.body.webID, role: "user" };
             req.session.cart = new Array<Product>();
-            req.session.cart
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
