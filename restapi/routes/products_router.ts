@@ -22,14 +22,14 @@ app.get("/products", async (_req: Request, res: Response) => {
  * Añadir producto al carrito
  */
  app.post("/products/addCart", async (req: Request, res: Response) => {
-    var newProduct = new Product(
-        req.body.name,
-        req.body.price,
-        req.body.type,
-        req.body.brand,
-        req.body.disponibility,
-        req.body.description 
-    );
+    var newProduct = {
+        name: req.body.name,
+        price: req.body.price,
+        size: req.body.size,
+        quantity: req.body.quantity,
+        image: req.body.image,
+        _id: req.body._id,
+    }
    
     req.session.cart.push(newProduct);
 
@@ -40,16 +40,16 @@ app.get("/products", async (_req: Request, res: Response) => {
  * Actualizar producto al carrito
  */
  app.post("/products/updateCart", async (req: Request, res: Response) => {
-    var newProduct = new Product(
-        req.body.name,
-        req.body.price,
-        req.body.type,
-        req.body.brand,
-        req.body.disponibility,
-        req.body.description 
-    );
+    var newProduct = {
+        name: req.body.name,
+        price: req.body.price,
+        size: req.body.size,
+        quantity: req.body.quantity,
+        image: req.body.image,
+        _id: req.body._id,
+    }
    
-    req.session.cart = req.session.cart.filter((el: { name: string; }) => el.name != newProduct.name);
+    req.session.cart = req.session.cart.filter((el: { _id: string; }) => el._id != newProduct._id);
     req.session.cart.push(newProduct);
     
     res.status(200).send();
@@ -59,9 +59,9 @@ app.get("/products", async (_req: Request, res: Response) => {
  * Borrar del carrito
  */
 app.delete("/products/deleteCart", async (req: Request, res: Response) => {
-    var name = req.body.name;
+    var id = req.body._id;
 
-    req.session.cart = req.session.cart.filter((el: { name: any; }) => el.name != name);
+    req.session.cart = req.session.cart.filter((el: { _id: any; }) => el._id != id);
 
     res.status(200).send();
 });
@@ -70,7 +70,7 @@ app.delete("/products/deleteCart", async (req: Request, res: Response) => {
  * Limpiar carrito
  */
  app.get("/products/cleanCart", async (req: Request, res: Response) => {
-    req.session.cart = new Array<Product>();
+    req.session.cart = new Array<any>();
     
     res.status(200).send();
 });

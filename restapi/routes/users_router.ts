@@ -131,7 +131,7 @@ app.post("/users/login", async (req: Request, res: Response) => {
         if(user == null || user.length == 0){ // Usuario NO admin
             //Metemos al usuario en sesión
             req.session.usuario = { webID: req.body.webID, role: "user" };
-            req.session.cart = new Array<Product>();
+            req.session.cart = new Array<any>();
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
@@ -139,7 +139,7 @@ app.post("/users/login", async (req: Request, res: Response) => {
         else{
             //Metemos al usuario en sesión
             req.session.usuario = { webID: user[0].webID, role: user[0].role };
-            req.session.cart = new Array<Product>();
+            req.session.cart = new Array<any>();
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
