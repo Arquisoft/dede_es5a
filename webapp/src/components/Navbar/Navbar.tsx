@@ -22,7 +22,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useState } from 'react'
 
 const pages = ['Women', 'Men', 'Kids']
 
@@ -31,14 +31,15 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null,
   )
-  const { session, logout } = useSession();
-  const [message, setMessage] = useState(null as string | null);
+  const { session, logout } = useSession()
+  const [message, setMessage] = useState(null as string | null)
 
   const navigate = useNavigate()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
@@ -52,10 +53,9 @@ const NavBar = () => {
   }
 
   const handleLogout = () => {
-    logout();
-    handleCloseUserMenu();
-    navigate('/home')
-    setMessage('Successful logout')
+    logout()
+    handleCloseUserMenu()
+    setMessage('Sesión cerrada satisfactoriamente')
   }
 
   const { webId } = session.info as any;
@@ -67,7 +67,11 @@ const NavBar = () => {
         open={message != null}
         onClose={() => setMessage(null)}
       >
-        <Alert onClose={() => setMessage(null)} severity="success" sx={{ width: '100%' }}>
+        <Alert
+          onClose={() => setMessage(null)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
           {message}
         </Alert>
       </Snackbar>
@@ -166,6 +170,7 @@ const NavBar = () => {
               ))}
             </Box>
 
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -207,12 +212,20 @@ const NavBar = () => {
                   <MenuItem onClick={() => navigate('/orders')}>
                     <Typography textAlign="center">Orders</Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout}>
+                ) : (
+                  <>
+                    <MenuItem onClick={() => navigate('/profile')}>
+                      <Typography textAlign="center">Profile</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={() => navigate('/orders')}>
+                      <Typography textAlign="center">Orders</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout}>
                       <Typography textAlign="center">Logout</Typography>
-                  </MenuItem></>
-              )}
-            </Menu>
-          </Box>
+                    </MenuItem></>
+                )}
+              </Menu>
+            </Box>
           <ShoppingCartDrawer />
         </Toolbar>
       </Container>

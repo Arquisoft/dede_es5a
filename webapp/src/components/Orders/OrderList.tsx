@@ -6,9 +6,13 @@ import Box from '@mui/material/Box'
 import OrderItem from './OrderItem'
 import { useSession } from '@inrupt/solid-ui-react'
 
-function OrderList() {
+type OrderListProps = {
+  orderList: Order[];
+}
+
+function OrderList(props: OrderListProps) {
   const { session } = useSession()
-  const [orders, setOrders] = useState<Order[]>([])
+  const [orders, setOrders] = useState<Order[]>(props.orderList)
 
   const refreshOrderList = async () => {
     setOrders(await getOrders())
@@ -18,7 +22,12 @@ function OrderList() {
     refreshOrderList()
   }, [])
 
-  const userOrders = orders.filter((o) => o.user_id === session.info.webId)
+  let userOrders = orders.filter((o) => o.user_id === session.info.webId)
+
+  if(session.info.webId === undefined){
+    userOrders = props.orderList
+    console.log(userOrders)
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }} mt={2}>
