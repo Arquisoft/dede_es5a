@@ -10,13 +10,14 @@ import { SessionProvider } from "@inrupt/solid-ui-react";
 import UserDetails from './components/User/UserDetails'
 import Orders from './components/Orders/Orders'
 import SaleStepper from './components/Stepper/SaleStepper'
+import { StepperProvider } from './contexts/StepperContext'
 
 function App(): JSX.Element {
-
   return (
     <div className="App">
       <SessionProvider sessionId="login">
       <Router>
+        <StepperProvider>
         <CartProvider>
           <Navbar />
           <Container maxWidth="lg">
@@ -31,6 +32,7 @@ function App(): JSX.Element {
           </Container>
         </CartProvider>
         <Footer />
+        </StepperProvider>
       </Router>
       </SessionProvider>
     </div>

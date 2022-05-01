@@ -1,6 +1,7 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { useSession } from "@inrupt/solid-ui-react";
+import { CombinedDataProvider, useSession,Image } from "@inrupt/solid-ui-react";
+import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 import {
   AppBar,
@@ -56,6 +57,8 @@ const NavBar = () => {
     handleCloseUserMenu()
     setMessage('Sesión cerrada satisfactoriamente')
   }
+
+  const { webId } = session.info as any;
 
   return (
     <>
@@ -167,33 +170,46 @@ const NavBar = () => {
               ))}
             </Box>
 
-
-
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              {!session.info.isLoggedIn ? (
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {!session.info.isLoggedIn ? (
-                  <MenuItem onClick={() => navigate('/signIn')}>
-                    <Typography textAlign="center">Signin</Typography>
+                ):(
+                  <CombinedDataProvider datasetUrl={webId} thingUrl={webId} >
+                    <Image className="imagen" property={VCARD.hasPhoto.iri.value} 
+                      errorComponent={() => <img className='img-noPhoto' src="/images/no-image-profile.png" style={{width: '100%'}}/>}
+                    /> 
+                  </CombinedDataProvider>
+                )}
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {!session.info.isLoggedIn ? (
+                <MenuItem onClick={() => navigate('/signIn')}>
+                <Typography textAlign="center">Signin</Typography>
+              </MenuItem>
+              ):(
+                <><MenuItem onClick={() => navigate('/profile')}>
+                      <Typography textAlign="center">Profile</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate('/orders')}>
+                    <Typography textAlign="center">Orders</Typography>
                   </MenuItem>
                 ) : (
                   <>
