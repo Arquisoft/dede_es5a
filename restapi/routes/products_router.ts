@@ -30,7 +30,10 @@ app.get("/products", async (_req: Request, res: Response) => {
         image: req.body.image,
         _id: req.body._id,
     }
-   
+    
+    if(req.session.cart == undefined)
+        req.session.cart = new Array<any>();
+
     req.session.cart.push(newProduct);
 
     res.status(200).send();
