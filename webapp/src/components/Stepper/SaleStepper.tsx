@@ -62,8 +62,9 @@ export default function SaleStepper() {
       })
     });
     return {
-      deliveryDate: new Date(Date.now() +1).toLocaleString(),
-      arrivalDate: new Date(Date.now() +2).toLocaleString(),
+      confirmDate: new Date(Date.now()).toLocaleString(),
+      deliveryDate: new Date(Date.now() + 1).toLocaleString(),
+      arrivalDate: new Date(Date.now() + 2).toLocaleString(),
       totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,
