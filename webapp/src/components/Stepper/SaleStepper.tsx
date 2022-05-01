@@ -75,7 +75,7 @@ export default function HorizontalLinearStepper() {
       setQuery('success');
     }, 5000);
 
-    if(activeStep == steps.length-1){
+    if(activeStep === steps.length-1){
       if(checkOrder()){
         handleClearCart();
       }
@@ -86,11 +86,11 @@ export default function HorizontalLinearStepper() {
 
   function checkOrder(){
     // Que exista productos
-    if(cartProducts.length == 0){
+    if(cartProducts.length === 0){
       return false;
     }
     // Que tenga una direccion seleccionada
-    if(shippingPrice == -1){
+    if(shippingPrice === -1){
       return false
     }
     return true;
@@ -126,7 +126,7 @@ export default function HorizontalLinearStepper() {
   function checkState(){
     switch (activeStep) {
       case 0: 
-        return cartProducts.length == 0;
+        return cartProducts.length === 0;
       case 1:
         return false;
       default:
