@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { CartProduct, Product } from '../../shared/shareddtypes'
+import { Product } from '../../shared/shareddtypes'
 import ProductCard from './ProductCard'
 
 test('check product cards renders propertly', async () => {
