@@ -57,7 +57,7 @@ export default function OrderItem({ order }: Props) {
           {productsPaperList}
           <Paper elevation={2}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Shipping price: {order.shippingPrice} €
+              Shipping price: {order.shippingPrice.toFixed(2)} €
             </Typography>
           </Paper>
         </CardContent>
