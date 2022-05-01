@@ -43,12 +43,13 @@ export default function OrderItem({ order }: Props) {
         <CardContent sx={{ textAlign: 'left' }}>
           <Paper elevation={2}>
           <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Delivered: {new Date(order.deliveryDate).toLocaleString()}
+              Confirmed: {new Date(order.confirmDate).toLocaleString()}
             </Typography>
+          
           </Paper>
           <Paper elevation={1}>
-            <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Confirmed: {new Date(order.confirmDate).toLocaleString()}
+          <Typography variant="h5" component="div" sx={{ m: 1 }}>
+              Delivery: {new Date(order.deliveryDate).toLocaleString()}
             </Typography>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Arrival: {new Date(order.arrivalDate).toLocaleString()}
