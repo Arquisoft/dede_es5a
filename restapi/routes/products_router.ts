@@ -18,6 +18,67 @@ app.get("/products", async (_req: Request, res: Response) => {
     }
 });
 
+/**
+ * Añadir producto al carrito
+ */
+ app.post("/products/addCart", async (req: Request, res: Response) => {
+    var newProduct = {
+        name: req.body.name,
+        price: req.body.price,
+        size: req.body.size,
+        quantity: req.body.quantity,
+        image: req.body.image,
+        _id: req.body._id,
+    }
+    
+    if(req.session.cart == undefined)
+        req.session.cart = new Array<any>();
+
+    req.session.cart.push(newProduct);
+
+    res.status(200).send();
+});
+
+/**
+ * Actualizar producto al carrito
+ */
+ app.post("/products/updateCart", async (req: Request, res: Response) => {
+    var newProduct = {
+        name: req.body.name,
+        price: req.body.price,
+        size: req.body.size,
+        quantity: req.body.quantity,
+        image: req.body.image,
+        _id: req.body._id,
+    }
+   
+    req.session.cart = req.session.cart.filter((el: { _id: any; size: any; }) => (el._id != newProduct._id && el.size != newProduct.size));
+    req.session.cart.push(newProduct);
+    
+    res.status(200).send();
+});
+
+/**
+ * Borrar del carrito
+ */
+app.delete("/products/deleteCart", async (req: Request, res: Response) => {
+    var id = req.body._id;
+    var size = req.body.size;
+
+    req.session.cart = req.session.cart.filter((el: { _id: any; size: any; }) => (el._id != id && el.size != size));
+
+    res.status(200).send();
+});
+
+/**
+ * Limpiar carrito
+ */
+ app.get("/products/cleanCart", async (req: Request, res: Response) => {
+    req.session.cart = new Array<any>();
+    
+    res.status(200).send();
+});
+
 //ByID
 app.get("/products/:id", async (req: Request, res: Response) => {
     var id = req?.params?.id;
@@ -137,3 +198,5 @@ app.delete("/products/delete/:field/:value", async (req: Request, res: Response)
         res.status(400).send(error.message);
     }
 });
+
+
