@@ -62,8 +62,8 @@ export default function SaleStepper() {
       })
     });
     return {
-      arrivalDate: "2022-04-11T00:00:00.000Z",
-      confirmDate: "2022-04-08T00:00:00.000Z",
+      deliveryDate: new Date(Date.now() +1).toLocaleString(),
+      arrivalDate: new Date(Date.now() +2).toLocaleString(),
       totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,
