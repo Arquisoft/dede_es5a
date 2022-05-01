@@ -27,7 +27,10 @@ Nuestra propuesta de tienda virtual está desplegada tanto en Azure como en Hero
 En caso de que alguno de los servicios no esté disponile. Póngase en contacto con nosotros y lo solucionaremos :)
 
 ## Tests de carga usando gatling
-Se pueden ver los resultados de los tests de carga en la wiki del proyecto. Haciendo click [aquí](https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling)
+Se pueden ver los resultados de los tests de carga en la wiki del proyecto. Haciendo click [aquí](https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling).
+También están disponibles los resultados de las dos prueas realizadas en los siguientes enlaces.
+- [P1](https://uo276406.github.io/ArquisocksLoadTests/p1-20220429155339720/)
+- [P2](https://uo276406.github.io/ArquisocksLoadTests/p2-20220429163850305/)
 
 ## Guia de inicio rápido
 
