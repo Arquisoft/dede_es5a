@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import { Product } from '../../shared/shareddtypes'
+import { CartProduct, Product } from '../../shared/shareddtypes'
 import ProductCard from './ProductCard'
-
 test('check product cards renders propertly', async () => {
   // Arrange
-  const handleAddToCart = () => {
-    console.log("ADD")
+  const handleAddToCart = (cartProduct: CartProduct) => {
+    console.log("ADD:" + cartProduct._id)
   }
 
   const product: Product = {
