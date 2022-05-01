@@ -52,7 +52,7 @@ app.get("/products", async (_req: Request, res: Response) => {
         _id: req.body._id,
     }
    
-    req.session.cart = req.session.cart.filter((el: { _id: string; }) => el._id != newProduct._id);
+    req.session.cart = req.session.cart.filter((el: { _id: any; size: any; }) => (el._id != newProduct._id && el.size != newProduct.size));
     req.session.cart.push(newProduct);
     
     res.status(200).send();
@@ -63,8 +63,9 @@ app.get("/products", async (_req: Request, res: Response) => {
  */
 app.delete("/products/deleteCart", async (req: Request, res: Response) => {
     var id = req.body._id;
+    var size = req.body.size;
 
-    req.session.cart = req.session.cart.filter((el: { _id: any; }) => el._id != id);
+    req.session.cart = req.session.cart.filter((el: { _id: any; size: any; }) => (el._id != id && el.size != size));
 
     res.status(200).send();
 });
