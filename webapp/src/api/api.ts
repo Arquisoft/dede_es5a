@@ -1,4 +1,4 @@
-import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
+import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace, CartProduct, ProductOrdered } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 // export async function addUser(user:User):Promise<boolean>{
@@ -30,7 +30,7 @@ export async function getProducts():Promise<Product[]>{
   return response.json()
 }
 
-export async function getProductById(id:string):Promise<Product>{
+export async function getProductById(id:string):Promise<Product[]>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/products/'+id);
   //The objects returned by the api are directly convertible to Product objects
@@ -71,6 +71,7 @@ export async function getShippingPrice(address: Address, distributionCenterId:St
 
 
 export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
+  console.log("Entrando en place order")
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -78,8 +79,46 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
+  console.log("Viene update")
+  let response2 = await updateProductsStock(orderToPlace.productsOrdered);
 
   return response.status
+}
+
+async function updateProductsStock(productsOrdered:ProductOrdered[]){
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+
+  productsOrdered.forEach(async productOrdered => {
+    let product = await getProductById(productOrdered.product_id);
+    let disponibilities = product[0].disponibility;
+    let posSize = undefined;
+
+    for(let i = 0; i < disponibilities.length; i++){
+
+      console.log(typeof((disponibilities[i].size).toString()))
+      console.log(typeof(productOrdered.size))
+
+      if((disponibilities[i].size).toString() == productOrdered.size){
+        posSize = i;
+        break;
+      }
+    }
+
+    if(posSize != undefined){
+      console.log("Producto "+product[0].description +" hay " + product[0].disponibility[posSize].stock)
+      product[0].disponibility[posSize].stock -= productOrdered.quantity;
+      console.log("Producto "+product[0].description +" decrementa en " + productOrdered.quantity + " unidades")
+      
+      var {_id , ...productToUpdate} = product[0];
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productToUpdate)
+      };
+      
+      let responseUpdate = await fetch(apiEndPoint+'/products/update/' + productOrdered.product_id, requestOptions);
+    }
+  });
 }
 
 
