@@ -28,7 +28,7 @@ function OrderList(props: OrderListProps) {
     userOrders = props.orderList
   }
 
-  userOrders.sort((n1, n2) => new Date(n2.deliveryDate).getTime() - new Date(n1.deliveryDate).getTime())
+  userOrders.sort((n1, n2) => new Date(n2.confirmDate).getTime() - new Date(n1.confirmDate).getTime())
 
   return (
     <Box sx={{ flexGrow: 1 }} mt={2}>

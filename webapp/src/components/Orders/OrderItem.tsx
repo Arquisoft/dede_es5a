@@ -43,22 +43,28 @@ export default function OrderItem({ order }: Props) {
         <CardContent sx={{ textAlign: 'left' }}>
           <Paper elevation={2}>
           <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Confirmed: {order.confirmDate}
+              Confirmed: {order.confirmDate.toLocaleString()}
             </Typography>
           
           </Paper>
           <Paper elevation={1}>
           <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Delivery: {order.deliveryDate}
+              Delivery: {order.deliveryDate.toLocaleString()}
             </Typography>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Arrival: {order.arrivalDate}
+              Arrival: {order.arrivalDate.toLocaleString()}
             </Typography>
           </Paper>
           {productsPaperList}
           <Paper elevation={2}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
+              Products: {order.totalAmount.toFixed(2)} €
+            </Typography>
+            <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Shipping price: {order.shippingPrice.toFixed(2)} €
+            </Typography>
+            <Typography variant="h5" component="div" sx={{ m: 1 }}>
+              Total: {order.totalAmount.toFixed(2) + order.totalAmount.toFixed(2)} €
             </Typography>
           </Paper>
         </CardContent>
