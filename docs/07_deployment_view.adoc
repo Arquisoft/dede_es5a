@@ -49,8 +49,10 @@ rectangle Website
 }
 
 node "Web server (Heroku)" as webserver{
-component "<<execution enviroment>> \n DeDe"{
+component "<<execution enviroment>> \n DeDe_FrontEnd"{
 node WebApp
+}
+component "<<execution enviroment>> \n DeDe_BackEnd"{
 node RestAPI
 }
 }
