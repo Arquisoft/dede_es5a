@@ -23,8 +23,6 @@ export default function OrderItem({ order }: Props) {
 
     return (
       <Paper sx={{ margin: 1.2 }} key={order.code + p.product_id}>
-        {console.log('CODE: ' + order.code + '| ID: ' + p.product_id)}
-
         <Typography variant="h5">
           {prod?.name} - {prod?.brand}
         </Typography>
@@ -44,15 +42,11 @@ export default function OrderItem({ order }: Props) {
       >
         <CardContent sx={{ textAlign: 'left' }}>
           <Paper elevation={2}>
-            <Typography variant="h5" component="div" align="center">
-              {order.code.toLocaleUpperCase()}
-            </Typography>
-          </Paper>
-
-          <Paper elevation={1}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Confirmed: {new Date(order.confirmDate).toLocaleString()}
             </Typography>
+          </Paper>
+          <Paper elevation={1}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Delivered: {new Date(order.deliveryDate).toLocaleString()}
             </Typography>
@@ -61,6 +55,11 @@ export default function OrderItem({ order }: Props) {
             </Typography>
           </Paper>
           {productsPaperList}
+          <Paper elevation={2}>
+            <Typography variant="h5" component="div" sx={{ m: 1 }}>
+              Shipping price: {order.shippingPrice.toFixed(2)} €
+            </Typography>
+          </Paper>
         </CardContent>
       </Card>
     </Grid>

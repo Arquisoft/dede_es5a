@@ -56,7 +56,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(
-      { number: address.number , 
+      { 
         street: address.street, 
         city: address.city, 
         country: address.country,
@@ -68,8 +68,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
 }
 
 
-export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
-  console.log("Entrando en llamada a place order");
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -78,11 +77,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  console.log("Saliendo de la llamada de place order");
-  console.log("Estado " + response.status)
-  let result = response.text()
-  console.log("Texto" + result)
-  return result
+  return response.status
 }
 
 
