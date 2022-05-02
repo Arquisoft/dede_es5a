@@ -21,7 +21,6 @@ import PayStepPage from './PayStepPage';
 import { StepperContext } from '../../contexts/StepperContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ErrorPage from './Error';
-import { internal_AclRule } from '@inrupt/solid-client';
 
 export const saleSteps = ['Review cart', 'Select delivery address', 'Pay'];
 

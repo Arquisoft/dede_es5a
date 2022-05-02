@@ -1,37 +1,11 @@
 import { Grid, Card, CardContent, Paper, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { getProducts } from '../../api/api'
-import { Order, Product } from '../../shared/shareddtypes'
+import { Order } from '../../shared/shareddtypes'
 
 interface Props {
   order: Order
 }
 
 export default function OrderItem({ order }: Props) {
-  const [products, setProducts] = useState<Product[]>([])
-
-  const refreshProductList = async () => {
-    setProducts(await getProducts())
-  }
-
-  useEffect(() => {
-    refreshProductList()
-  }, [])
-
-  const productsPaperList = order.productsOrdered.map((p) => {
-    const prod = products.find((p2) => p2._id === p.product_id)
-
-    return (
-      <Paper sx={{ margin: 1.2 }} key={order.code + p.product_id}>
-        <Typography variant="h5">
-          {prod?.name} - {prod?.brand}
-        </Typography>
-        <Typography variant="h6">
-          Size: {p.size}, Quantity: {p.quantity}
-        </Typography>
-      </Paper>
-    )
-  })
 
   return (
     <Grid item xs={12}>
@@ -55,7 +29,6 @@ export default function OrderItem({ order }: Props) {
               Arrival: {new Date(order.arrivalDate).toLocaleDateString()}
             </Typography>
           </Paper>
-          {/* {productsPaperList} */}
           <Paper elevation={2}>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
               Products: {order.totalAmount.toFixed(2)} €
