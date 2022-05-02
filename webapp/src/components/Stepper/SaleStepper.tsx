@@ -63,9 +63,9 @@ export default function SaleStepper() {
       })
     });
     return {
-      confirmDate: new Date().toLocaleString(),
-      deliveryDate: addDays(new Date(),1).toLocaleString(),
-      arrivalDate: addDays(new Date(),2).toLocaleString(),
+      confirmDate: new Date().toISOString(),
+      deliveryDate: addDays(new Date(),1).toISOString(),
+      arrivalDate: addDays(new Date(),2).toISOString(),
       totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,

@@ -43,7 +43,7 @@ export default function OrderItem({ order }: Props) {
         <CardContent sx={{ textAlign: 'left' }}>
           <Paper elevation={2}>
           <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Confirmed: {new Date(order.confirmDate).toLocaleDateString()}
+              Confirmed: {new Date(order.confirmDate).toLocaleDateString()} | {new Date(order.confirmDate).toLocaleTimeString()}
             </Typography>
           
           </Paper>
@@ -64,7 +64,7 @@ export default function OrderItem({ order }: Props) {
               Shipping price: {order.shippingPrice.toFixed(2)} €
             </Typography>
             <Typography variant="h5" component="div" sx={{ m: 1 }}>
-              Total: {(order.totalAmount + order.shippingPrice).toFixed(2)} €
+              TOTAL: {(order.totalAmount + order.shippingPrice).toFixed(2)} €
             </Typography>
           </Paper>
         </CardContent>
