@@ -21,6 +21,7 @@ import PayStepPage from './PayStepPage';
 import { StepperContext } from '../../contexts/StepperContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ErrorPage from './Error';
+import { internal_AclRule } from '@inrupt/solid-client';
 
 export const saleSteps = ['Review cart', 'Select delivery address', 'Pay'];
 
@@ -62,9 +63,9 @@ export default function SaleStepper() {
       })
     });
     return {
-      confirmDate: new Date(Date.now()).toLocaleString(),
-      deliveryDate: new Date(Date.now() + 24).toLocaleString(),
-      arrivalDate: new Date(Date.now() + 48).toLocaleString(),
+      confirmDate: new Date().toISOString(),
+      deliveryDate: addDays(new Date(),1).toISOString(),
+      arrivalDate: addDays(new Date(),2).toISOString(),
       totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,
@@ -89,6 +90,12 @@ export default function SaleStepper() {
         setQuery('fail');
       }
     );
+  }
+
+  function addDays(date:Date, days:number) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
   function checkOrder() {
