@@ -49,3 +49,17 @@ label,input {
   position: relative;
   top: 8px
 }
+
+.imagen {
+  width:40px;
+  height:40px;
+  border-radius:150px;
+  object-fit: cover;
+}
+
+.img-noPhoto {
+  width:40px;
+  height:40px;
+  border-radius:150px;
+  
+}

@@ -7,7 +7,6 @@ const ProfileViewer = () => {
   const {session} = useSession();
   const { webId } = session.info as any;
 
-  console.log(VCARD);
 
   return (
     

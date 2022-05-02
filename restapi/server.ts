@@ -21,7 +21,8 @@ var expressSession = require('express-session');
 app.use(expressSession({
     secret: 'abcdefg',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    maxAge: 1000 * 60 * 15
 }));
 
 declare global {
