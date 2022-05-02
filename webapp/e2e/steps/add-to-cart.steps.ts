@@ -5,6 +5,7 @@ const feature = loadFeature('./features/add-to-cart.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
+jest.setTimeout(400000);
 
 defineFeature(feature, test => {
   
@@ -22,27 +23,24 @@ defineFeature(feature, test => {
   });
 
   test('User adds a product to the cart', ({given,when,then}) => {
-    jest.setTimeout(40000);
 
     given('A user who founds the site', () => {
-     
+      console.log('Checking product added...')
     });
 
     when('He selects the product\'s size, he decides to add it to the cart', async () => {
-      //Se selecciona la tabla
-      await page.waitForXPath("/html/body/div[1]/div/div[1]/div/div/div/div[1]/div/div[2]/div/div/div/div").then(element => {      
-        element?.select
-      })
-      await page.waitForXPath("/html/body/div[4]/div[3]/ul/li[1]").then(element => {      
-        element?.click
-      })
+      //Se selecciona la talla en el combobox
+      await expect(page).toClick('div.MuiGrid-grid-xs-4:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)')
+      await expect(page).toClick('#menu- > div:nth-child(3) > ul:nth-child(1) > li:nth-child(1)')
+
       //Se hace click para añadir al carrito
-      const buttonAddToCart = await page.waitForXPath("/html/body/div[1]/div/div[1]/div/div/div/div[1]/div/div[2]/div/button")
-      buttonAddToCart?.click();
+      await expect(page).toClick('div.MuiGrid-grid-xs-4:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > button:nth-child(2)')
     });
 
     then('A confirmation message should be shown in the screen and the product is added', async () => {
-      await expect(page).toMatch('British, size 37 added to cart!')
+      //Se muestra el mensaje de confirmación
+      await expect(page).toClick('.MuiBadge-root > button:nth-child(1)')
+      await expect(page).toMatch('British')
     });
   })
 
