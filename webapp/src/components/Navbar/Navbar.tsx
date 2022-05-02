@@ -204,13 +204,6 @@ const NavBar = () => {
                 <MenuItem onClick={() => navigate('/signIn')}>
                 <Typography textAlign="center">Signin</Typography>
               </MenuItem>
-              ):(
-                <><MenuItem onClick={() => navigate('/profile')}>
-                      <Typography textAlign="center">Profile</Typography>
-                  </MenuItem>
-                  <MenuItem onClick={() => navigate('/orders')}>
-                    <Typography textAlign="center">Orders</Typography>
-                  </MenuItem>
                 ) : (
                   <>
                     <MenuItem onClick={() => navigate('/profile')}>

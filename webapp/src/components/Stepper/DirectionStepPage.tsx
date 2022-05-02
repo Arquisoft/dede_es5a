@@ -40,7 +40,7 @@ export default function DirectionStepPage(props: Props) {
   const firstRender = useRef(true);
 
   const refreshShippingPrice = async () => {
-    let price:number = await getShippingPrice(selectedRows[0]).then(value => value.shippingPrice);
+    let price:number = await getShippingPrice(selectedRows[0], "624049d64b83502f7a1f0f42").then(value => value.shippingPrice);
 
     setShippingPrice(price)
     props.getSelectedShippingPrice(price);
