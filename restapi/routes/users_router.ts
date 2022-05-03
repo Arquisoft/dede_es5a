@@ -4,7 +4,6 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
-import Product from "../models/product";
 var app = require("../server");
 
 // GET (todos los productos)
@@ -16,6 +15,22 @@ app.get("/users", async (_req: Request, res: Response) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
+});
+
+/**
+ * Devuelve el objeto sesión de express
+ */
+ app.get("/users/session", async (req: Request, res: Response) => {
+    res.status(200).send(req.session);
+});
+
+/**
+ * Actualiza el objeto sesión de express
+ */
+ app.post("/users/updateSession", async (req: Request, res: Response) => {
+    req.session = req.body.session;
+
+    res.status(200).send();
 });
 
 //ByID
@@ -115,7 +130,6 @@ app.post("/users/login", async (req: Request, res: Response) => {
         if(user == null || user.length == 0){ // Usuario NO admin
             //Metemos al usuario en sesión
             req.session.usuario = { webID: req.body.webID, role: "user" };
-            req.session.cart = new Array<Product>();
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
@@ -123,7 +137,6 @@ app.post("/users/login", async (req: Request, res: Response) => {
         else{
             //Metemos al usuario en sesión
             req.session.usuario = { webID: user[0].webID, role: user[0].role };
-            req.session.cart = new Array<Product>();
             
             //Redirigir a otra pagina
             res.redirect(200,"/home");
@@ -138,3 +151,5 @@ app.get("/users/logout", async (req: Request, res: Response) => {
     req.session.cart = null;
     res.send("Usuario desconectado");
 });
+
+

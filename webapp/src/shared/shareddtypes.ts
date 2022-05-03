@@ -30,12 +30,14 @@ export type Order = {
   shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
   user_id: string,
-  code: string
+  code: string,
+  _id: string
 }
 
 export type OrderToPlace = {
   arrivalDate: string,
   confirmDate: string,
+  deliveryDate: string,
   totalAmount: number,
   shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
@@ -72,7 +74,6 @@ export type Disponibility = {
 
 export type Address = {
   id: number,
-  number: number,
   street: string,
   city: string,
   country: string,

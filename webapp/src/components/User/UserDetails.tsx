@@ -7,7 +7,6 @@ const ProfileViewer = () => {
   const {session} = useSession();
   const { webId } = session.info as any;
 
-  console.log(VCARD);
 
   return (
     
@@ -25,7 +24,7 @@ const ProfileViewer = () => {
                 <Grid id="grid1" container spacing={4}>
                 <Grid id="grid2" item xs={3}>
                     <Image property={VCARD.hasPhoto.iri.value} 
-                      errorComponent={() => <img src="/images/no-image-profile.png" style={{width: '100%'}}/>}
+                      errorComponent={() => <img src="/images/no-image-profile.png" alt="Imagen de perfil" style={{width: '100%'}}/>}
                       style={{width: '100%'}}
                     /> 
                 </Grid>
