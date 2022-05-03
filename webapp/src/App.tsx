@@ -2,6 +2,7 @@ import './App.css'
 import Footer from './components/Footer'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import UserLogIn from './components/User/UserLogIn'
+import DistributionCentersMap from './components/DistributionCenters/DistributionCentersMap'
 import Home from './components/Home'
 import Navbar from './components/Navbar/Navbar'
 import { CartProvider } from './contexts/CartContext'
@@ -24,6 +25,7 @@ function App(): JSX.Element {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/distributionCenters" element={<DistributionCentersMap />} />
               <Route path="/signIn" element={<UserLogIn />} />
               <Route path="/profile" element={<UserDetails />} />
               <Route path="/orders" element={<Orders />} />

@@ -67,7 +67,7 @@ export default function SaleStepper() {
       }
     );
   }
-
+  
   function checkOrder() {
     // Que exista productos
     if (cartProducts.length === 0) {

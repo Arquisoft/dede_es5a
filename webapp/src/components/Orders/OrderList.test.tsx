@@ -7,9 +7,9 @@ test('check that the list of orders renders propertly', async () => {
   const orderList: Order[] = [
     {
       _id: '1234',
-      arrivalDate: '2022-06-21T00:00:00.000Z',
-      confirmDate: '2022-04-21T00:00:00.000Z',
-      deliveryDate: '2022-03-09T21:17:00.157Z',
+      arrivalDate: '2022-05-04T16:29:33.324+00:00',
+      confirmDate: '2022-05-02T16:29:33.324+00:00',
+      deliveryDate: '2022-05-03T16:29:33.324+00:00',
       totalAmount: 45,
       shippingPrice: 1.15,
       productsOrdered: [
@@ -20,9 +20,9 @@ test('check that the list of orders renders propertly', async () => {
     },
     {
       _id: '5678',
-      arrivalDate: '2022-06-22T00:00:00.000Z',
-      confirmDate: '2022-04-22T00:00:00.000Z',
-      deliveryDate: '2022-03-09T21:18:47.042Z',
+      arrivalDate: '2022-05-12T17:29:33.324+00:00',
+      confirmDate: '2022-05-10T17:29:33.324+00:00',
+      deliveryDate: '2022-05-11T17:29:33.324+00:00',
       totalAmount: 45,
       shippingPrice: 1.25,
       productsOrdered: [
@@ -38,13 +38,18 @@ test('check that the list of orders renders propertly', async () => {
   render(<OrderList orderList={orderList} />)
 
   // Assert
-  expect(screen.getByText("Arrival: " + new Date(orderList[0].arrivalDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Confirmed: " + new Date(orderList[0].confirmDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Delivered: " + new Date(orderList[0].deliveryDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Shipping price: " + orderList[0].shippingPrice + " €")).toBeInTheDocument()
+  expect(screen.getAllByText("Confirmed: " + new Date(orderList[0].confirmDate).toLocaleDateString() + " | "+ new Date(orderList[0].confirmDate).toLocaleTimeString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Arrival: " + new Date(orderList[0].arrivalDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Delivery: " + new Date(orderList[0].deliveryDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Products: " + orderList[0].totalAmount.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Shipping: " + orderList[0].shippingPrice.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("TOTAL: " + (orderList[0].totalAmount + orderList[0].shippingPrice).toFixed(2) + " €").at(0)).toBeInTheDocument()
 
-  expect(screen.getByText("Arrival: " + new Date(orderList[1].arrivalDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Confirmed: " + new Date(orderList[1].confirmDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Delivered: " + new Date(orderList[1].deliveryDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Shipping price: " + orderList[1].shippingPrice + " €")).toBeInTheDocument()
+  expect(screen.getAllByText("Confirmed: " + new Date(orderList[1].confirmDate).toLocaleDateString() + " | "+ new Date(orderList[1].confirmDate).toLocaleTimeString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Arrival: " + new Date(orderList[1].arrivalDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Delivery: " + new Date(orderList[1].deliveryDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Products: " + orderList[1].totalAmount.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Shipping: " + orderList[1].shippingPrice.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("TOTAL: " + (orderList[1].totalAmount + orderList[0].shippingPrice).toFixed(2) + " €").at(0)).toBeInTheDocument()
+
 })

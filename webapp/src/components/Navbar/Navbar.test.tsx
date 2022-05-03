@@ -5,7 +5,7 @@ import NavBar from './Navbar'
 
 test('check categories renders properly', async () => {
   // Arrange
-  const pages = ['Women', 'Men', 'Kids']
+  const pages = ['Distribution centers']
 
   render(
     <BrowserRouter>
