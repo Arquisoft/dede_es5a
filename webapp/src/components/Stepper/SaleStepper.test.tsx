@@ -4,8 +4,7 @@ import SaleStepper from './SaleStepper';
 
 jest.mock('../../helpers/createOrder');
 jest.mock('../../helpers/userAddress', ()=>(
-  
-     (webId:string) => Promise.resolve(
+     () => Promise.resolve(
       [
         [
           'street address 1',
@@ -22,22 +21,13 @@ jest.mock('../../helpers/userAddress', ()=>(
           'country name 2'
         ]
       ]
-
-
-
     )))
   
-
-
-
-
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
-  useLocation: () => {
-    pathname: "localhost:3000/"
-  }
+  useLocation: () => {} // This is intentional
 }));
 
 test('sale stepper renders correctly', async () => {
@@ -50,6 +40,5 @@ test('sale stepper renders correctly', async () => {
     expect(screen.getByText("Select delivery address")).toBeInTheDocument()
     expect(screen.getByText("Pay")).toBeInTheDocument()
   })
-  
 })
 
