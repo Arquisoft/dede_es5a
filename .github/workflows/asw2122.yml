@@ -1,9 +1,8 @@
 name: CI for ASW2122
 
 on:
-  push:
-    branches:
-      - heroku_deploy
+  release:
+    types: [published]
 
 jobs:
   unit-test-webapp:
@@ -84,27 +83,27 @@ jobs:
           registry: ghcr.io
           workdir: restapi
           buildargs: MAPBOX_API_KEY, DATABASE_URI
-  # deploy:
-  #   name: Deploy over SSH
-  #   runs-on: ubuntu-latest
-  #   needs: [docker-push-restapi, docker-push-webapp]
-  #   steps:
-  #     - name: Deploy over SSH
-  #       uses: fifsky/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.DEPLOY_HOST }}
-  #         user: ${{ secrets.DEPLOY_USER }}
-  #         key: ${{ secrets.DEPLOY_KEY }}
-  #         command: |
-  #           wget https://raw.githubusercontent.com/Arquisoft/dede_es5a/master/docker-compose-deploy.yml -O docker-compose.yml
-  #           docker-compose stop
-  #           docker-compose rm -f
-  #           docker-compose pull
-  #           docker-compose up -d
+  deploy:
+    name: Deploy over SSH
+    runs-on: ubuntu-latest
+    needs: [docker-push-restapi, docker-push-webapp]
+    steps:
+      - name: Deploy over SSH
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          user: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          command: |
+            wget https://raw.githubusercontent.com/Arquisoft/dede_es5a/master/docker-compose-deploy.yml -O docker-compose.yml
+            docker-compose stop
+            docker-compose rm -f
+            docker-compose pull   
+            docker-compose up -d
   webapp-heroku-deploy:
     name: Deploy webapp over Heroku
     runs-on: ubuntu-latest
-    needs: [docker-push-webapp, restapi-heroku-deploy]
+    needs: [docker-push-webapp,restapi-heroku-deploy]
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
