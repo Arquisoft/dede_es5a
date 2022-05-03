@@ -23,7 +23,7 @@ interface Props {
 
 export default function ProductCard({ product, handleAddToCart }: Props) {
   const [size, setSize] = React.useState(product.disponibility.at(0)!.size.toString())
-  const [available, setAvailable] = React.useState(false)
+  const [available, setAvailable] = React.useState(product.disponibility.at(0)!.stock > 0 ? true : false)
 
   product.disponibility.sort((n1, n2) => n1.size - n2.size)
 
