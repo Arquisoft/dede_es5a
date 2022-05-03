@@ -111,3 +111,13 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'dede-es5a' #Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+  restapi-heroku-deploy:
+    name: Deploy restapi over Heroku
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'dede-es5a-restapi' #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
