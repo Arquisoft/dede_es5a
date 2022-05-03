@@ -14,11 +14,11 @@ import {VCARD} from "@inrupt/lit-generated-vocab-common";
     }
     for(let i=0;i<hasAddress.length;i++){
       let addressOfTheUser = getThing(myDataSet, hasAddress[i])
-      direccion[i][0] =getStringNoLocale(addressOfTheUser as Thing, VCARD.street_address) as string || undefined
-      direccion[i][1]=getStringNoLocale(addressOfTheUser as Thing, VCARD.locality)as string || undefined
-      direccion[i][2]=getStringNoLocale(addressOfTheUser as Thing, VCARD.postal_code)as string || undefined
-      direccion[i][3]=getStringNoLocale(addressOfTheUser as Thing, VCARD.region)as string || undefined
-      direccion[i][4]=getStringNoLocale(addressOfTheUser as Thing, VCARD.country_name)as string || undefined
+      direccion[i][0] =getStringNoLocale(addressOfTheUser as Thing, VCARD.street_address) as string
+      direccion[i][1]=getStringNoLocale(addressOfTheUser as Thing, VCARD.locality)as string
+      direccion[i][2]=getStringNoLocale(addressOfTheUser as Thing, VCARD.postal_code)as string
+      direccion[i][3]=getStringNoLocale(addressOfTheUser as Thing, VCARD.region)as string
+      direccion[i][4]=getStringNoLocale(addressOfTheUser as Thing, VCARD.country_name)as string
     }
 
     return direccion

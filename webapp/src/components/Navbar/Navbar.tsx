@@ -169,41 +169,40 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
-
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  {!session.info.isLoggedIn ? (
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                  ) : (
-                    <CombinedDataProvider datasetUrl={webId} thingUrl={webId} >
-                      <Image className="imagen" property={VCARD.hasPhoto.iri.value}
-                        errorComponent={() => <img className='img-noPhoto' src="/images/no-image-profile.png" style={{ width: '100%' }} />}
-                      />
-                    </CombinedDataProvider>
-                  )}
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {!session.info.isLoggedIn ? (
-                  <MenuItem onClick={() => navigate('/signIn')}>
-                    <Typography textAlign="center">Signin</Typography>
-                  </MenuItem>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              {!session.info.isLoggedIn ? (
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                ):(
+                  <CombinedDataProvider datasetUrl={webId} thingUrl={webId} >
+                    <Image className="imagen" property={VCARD.hasPhoto.iri.value} 
+                      errorComponent={() => <img className='img-noPhoto' src="/images/no-image-profile.png" style={{width: '100%'}}/>}
+                    /> 
+                  </CombinedDataProvider>
+                )}
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {!session.info.isLoggedIn ? (
+                <MenuItem onClick={() => navigate('/signIn')}>
+                <Typography textAlign="center">Signin</Typography>
+              </MenuItem>
                 ) : (
                   <>
                     <MenuItem onClick={() => navigate('/profile')}>

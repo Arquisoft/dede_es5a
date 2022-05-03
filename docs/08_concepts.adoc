@@ -66,7 +66,7 @@ image:domain_model.png["Domain model"]
 |===
 
 === Architecture and Design Patterns
-image:https://webimages.mongodb.com/_com_assets/cms/mern-stack-b9q1kbudz0.png?auto=format%2Ccompress["MERN Stack Architecture, by MongoDB"]
+image:arquisocks_architecture.png["MERN Stack Architecture"]
 
 MERN Stack is being used in the application which allows to easily create 3-tier architecture.
 
@@ -143,21 +143,7 @@ User interfaces should be designed with usability and accessibility in mind.
 ===== Mockups
 They may not exactly match the final design, but they offer an idea of the functionality and design of the pages that the application will have. 
 
-====== Main page
-image:main.png["Main page"]
-
-====== Cart screen
-image:cart.png["Cart screen"]
-
-====== Product's detail screen
-image:productDetail.png["Product's detail screen"]
-
-====== Sign up/Log in screen
-image:signUp.png["Sign up screen"]
-image:logIn.png["Log in screen"]
-
-====== User's profile screen
-image:userProfile.png["User's profile screen"]
+image:navigation_mockups.png["Navigation between pages"]
 
 === Security
 Security is another key aspect to consider. Some measures to ensure security are:
@@ -173,9 +159,10 @@ To achieve high availability:
 
 * On the other hand, enable autoscaling on the application's service providers in case of anticipating the success of the application. 
 
+* Moreover, we will try to have more than one deployment technology in order to increase a high availability.
+
 === Efficiency
-Try to have a good code quality for better performance.
-_<more>_
+Try to have a good code quality for better performance. We will develop many load tests which are going to simulate the state of the application as it were deployed and used by many users. There are many tools to prove that. Gatling will be the reference tool to get information of the behaviour of the app. Results will be shown in the wiki which is available in our repository in GitHub. You can follow this https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling[link]
 
 === Development concept 
 ==== Build, Test, Deploy
