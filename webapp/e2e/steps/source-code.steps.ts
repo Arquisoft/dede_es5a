@@ -18,14 +18,14 @@ defineFeature(feature, test => {
       .goto("https://dede-es5a.herokuapp.com/", {
         waitUntil: "networkidle0",
       })
-      .catch(() => {});
+      .catch(() => {// This is intentional});
   });
 
   test('User consults project source code', ({given,when,then}) => {
     jest.setTimeout(40000);
 
     given('A user who founds the site', () => {
-     
+     // This is intentional
     });
 
     when('selects the source code button on the footer', async () => {
