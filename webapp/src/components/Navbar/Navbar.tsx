@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { CombinedDataProvider, useSession,Image } from "@inrupt/solid-ui-react";
+import { CombinedDataProvider, useSession, Image } from "@inrupt/solid-ui-react";
 import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 import {
@@ -22,6 +22,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+const pages = ['Distribution centers']
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -121,9 +122,17 @@ const NavBar = () => {
                 />
               </IconButton>
             </Typography>
-            <Box sx={{ flexGrow: 1}}> 
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={() => navigate('/distributionCenters')}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
             </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -172,10 +181,10 @@ const NavBar = () => {
                 )}
               </Menu>
             </Box>
-          <ShoppingCartDrawer />
-        </Toolbar>
-      </Container>
-    </AppBar>
+            <ShoppingCartDrawer />
+          </Toolbar>
+        </Container>
+      </AppBar>
     </>
   )
 }

@@ -6,9 +6,9 @@ test('check order renders propertly', async () => {
   // Arrange
   const order: Order = {
     _id: '1234',
-    arrivalDate: '2022-06-21T00:00:00.000Z',
-    confirmDate: '2022-04-21T00:00:00.000Z',
-    deliveryDate: '2022-03-09T21:17:00.157Z',
+    arrivalDate: '2022-05-12T17:29:33.324+00:00',
+    confirmDate: '2022-05-10T17:29:33.324+00:00',
+    deliveryDate: '2022-05-11T17:29:33.324+00:00',
     shippingPrice: 1.05,
     totalAmount: 45,
     productsOrdered: [
@@ -22,8 +22,11 @@ test('check order renders propertly', async () => {
   render(<OrderItem order={order} key={order.code} />)
 
   // Assert
-  expect(screen.getByText("Arrival: " + new Date(order.arrivalDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Confirmed: " + new Date(order.confirmDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Delivered: " + new Date(order.deliveryDate).toLocaleString())).toBeInTheDocument()
-  expect(screen.getByText("Shipping price: " + order.shippingPrice + " €")).toBeInTheDocument()
+  expect(screen.getAllByText("Confirmed: " + new Date(order.confirmDate).toLocaleDateString() + " | " + new Date(order.confirmDate).toLocaleTimeString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Arrival: " + new Date(order.arrivalDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Delivery: " + new Date(order.deliveryDate).toLocaleDateString()).at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Products: " + order.totalAmount.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("Shipping: " + order.shippingPrice.toFixed(2) + " €").at(0)).toBeInTheDocument()
+  expect(screen.getAllByText("TOTAL: " + (order.totalAmount + order.shippingPrice).toFixed(2) + " €").at(0)).toBeInTheDocument()
+
 })
