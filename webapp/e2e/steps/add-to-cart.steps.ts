@@ -16,7 +16,7 @@ defineFeature(feature, test => {
     page = await browser.newPage();
 
     await page
-      .goto("http://localhost:3000", {
+      .goto("https://dede-es5a.herokuapp.com/", {
         waitUntil: "networkidle0",
       })
       .catch(() => {console.log("Error while testing")});
