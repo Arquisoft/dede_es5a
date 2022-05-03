@@ -19,7 +19,7 @@ defineFeature(feature, test => {
       .goto("http://localhost:3000", {
         waitUntil: "networkidle0",
       })
-      .catch(() => {});
+      .catch(() => {console.log("Error while testing")});
   });
 
   test('User adds a product to the cart', ({given,when,then}) => {

@@ -1,4 +1,3 @@
-import { ImgHTMLAttributes } from 'react';
 import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
