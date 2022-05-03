@@ -20,9 +20,10 @@ interface Props {
   handleAddToCart: (cartProduct: CartProduct) => void
 }
 
+
 export default function ProductCard({ product, handleAddToCart }: Props) {
-  const [size, setSize] = React.useState('')
-  const [available, setAvailable] = React.useState(true)
+  const [size, setSize] = React.useState(product.disponibility.at(0)!.size.toString())
+  const [available, setAvailable] = React.useState(product.disponibility.at(0)!.stock > 0 ? true : false)
 
   product.disponibility.sort((n1, n2) => n1.size - n2.size)
 
@@ -32,17 +33,24 @@ export default function ProductCard({ product, handleAddToCart }: Props) {
     </MenuItem>
   ))
 
+  const handleSize = () => {
+    var currentSize = product.disponibility.find(
+      (s) => s.size === parseInt(size),
+    )
+
+    if (currentSize!.stock > 0) {
+      setAvailable(true)
+    } else {
+      setAvailable(false)
+    }
+  }
+
   const handleSizeChange = (event: SelectChangeEvent) => {
     setSize(event.target.value as string)
     var currentSize = product.disponibility.find(
       (s) => s.size === parseInt(size),
     )
-
-    if (currentSize === undefined) {
-      throw new TypeError('The value was promised to always be there!')
-    }
-
-    if (currentSize?.stock > 0) {
+    if (currentSize!.stock > 0) {
       setAvailable(true)
     } else {
       setAvailable(false)
@@ -124,7 +132,7 @@ export default function ProductCard({ product, handleAddToCart }: Props) {
           <CardActions>
             <FormControl size="small" fullWidth sx={{ m: 1 }}>
               <InputLabel id="demo-simple-select-label">Size</InputLabel>
-              <Select label="Size" onChange={handleSizeChange}>
+              <Select label="Size" onClose={handleSize} onChange={handleSizeChange} defaultValue={product.disponibility.at(0)!.size.toString()}>
                 {sizesList}
               </Select>
             </FormControl>

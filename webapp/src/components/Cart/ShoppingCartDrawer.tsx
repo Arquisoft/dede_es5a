@@ -63,7 +63,7 @@ export default function ShoppingCartDrawer() {
         <StyledBadge
           badgeContent={calculateTotalQuantity(cartProducts)}
         >
-          <IconButton onClick={toggleDrawer(true)} sx={{ p: 0 }}>
+          <IconButton aria-label='shoppingCart' onClick={toggleDrawer(true)} sx={{ p: 0 }}>
             <ShoppingCartIcon fontSize="large" style={{ color: 'white' }}></ShoppingCartIcon>
           </IconButton>
         </StyledBadge>

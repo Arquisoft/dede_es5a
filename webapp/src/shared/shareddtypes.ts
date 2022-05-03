@@ -37,6 +37,7 @@ export type Order = {
 export type OrderToPlace = {
   arrivalDate: string,
   confirmDate: string,
+  deliveryDate: string,
   totalAmount: number,
   shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
