@@ -1,10 +1,7 @@
 import { render, screen } from '@testing-library/react'
-import { useContext } from 'react'
-import { CartContext, CartProvider } from '../../contexts/CartContext'
+import { CartContext} from '../../contexts/CartContext'
 import { CartProduct } from '../../shared/shareddtypes'
 import ShoppingCart from './ShoppingCart'
-
-
 
 test('check empty shopping cart renders propertly', async () => {
   // Arrange
@@ -34,8 +31,6 @@ test('check no empty shopping cart renders propertly', async () => {
     // Act
     render( <CartContext.Provider value={{cartProducts, dispatch}}><ShoppingCart /></CartContext.Provider>)
   
-    
-
     // Assert
     expect(screen.getByText("My Shopping Cart")).toBeInTheDocument()
     expect(screen.getByText("Total")).toBeInTheDocument()

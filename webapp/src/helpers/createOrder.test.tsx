@@ -1,4 +1,3 @@
-import { render, screen } from '@testing-library/react'
 import createOrder from './createOrder';
 import { CartProduct } from '../shared/shareddtypes';
 

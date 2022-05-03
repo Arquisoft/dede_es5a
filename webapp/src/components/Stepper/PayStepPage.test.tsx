@@ -1,6 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import { Address } from '../../shared/shareddtypes'
-import DirectionStepPage from './DirectionStepPage';
 import PayStepPage from './PayStepPage';
 
 test('check pay step page renders correctly', async () => {
