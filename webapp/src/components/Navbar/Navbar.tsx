@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ShoppingCartDrawer from '../Cart/ShoppingCartDrawer'
-import { CombinedDataProvider, useSession,Image } from "@inrupt/solid-ui-react";
+import { CombinedDataProvider, useSession, Image } from "@inrupt/solid-ui-react";
 import { VCARD } from "@inrupt/lit-generated-vocab-common";
 
 import {
@@ -169,7 +169,6 @@ const NavBar = () => {
                 </Button>
               ))}
             </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -218,10 +217,10 @@ const NavBar = () => {
                 )}
               </Menu>
             </Box>
-          <ShoppingCartDrawer />
-        </Toolbar>
-      </Container>
-    </AppBar>
+            <ShoppingCartDrawer />
+          </Toolbar>
+        </Container>
+      </AppBar>
     </>
   )
 }
