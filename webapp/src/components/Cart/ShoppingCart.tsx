@@ -1,6 +1,5 @@
 import {
   Stack,
-  Divider,
   Box,
   Typography,
 } from '@mui/material'

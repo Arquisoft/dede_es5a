@@ -20,7 +20,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PayStepPage from './PayStepPage';
 import { StepperContext } from '../../contexts/StepperContext';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ErrorPage from './Error';
+import ErrorPage from './ErrorPage';
 
 export const saleSteps = ['Review cart', 'Select delivery address', 'Pay'];
 
