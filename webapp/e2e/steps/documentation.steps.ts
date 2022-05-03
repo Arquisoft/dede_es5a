@@ -18,7 +18,9 @@ defineFeature(feature, test => {
       .goto("https://dede-es5a.herokuapp.com/", {
         waitUntil: "networkidle0",
       })
-      .catch(() => {// This is intentional});
+      .catch(() => {
+        // This is intentional
+      });
   });
 
   test('User consults project documentation', ({given,when,then}) => {
