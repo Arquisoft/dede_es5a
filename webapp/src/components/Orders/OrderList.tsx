@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Order } from '../../shared/shareddtypes'
 import { getOrders } from '../../api/api'
 import Grid from '@mui/material/Grid'
@@ -26,7 +26,6 @@ function OrderList(props: OrderListProps) {
 
   if(session.info.webId === undefined){
     userOrders = props.orderList
-    console.log(userOrders)
   }
 
   userOrders.sort((n1, n2) => new Date(n2.confirmDate).getTime() - new Date(n1.confirmDate).getTime())
