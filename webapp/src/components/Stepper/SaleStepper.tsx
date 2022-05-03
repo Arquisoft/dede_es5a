@@ -62,8 +62,9 @@ export default function SaleStepper() {
       })
     });
     return {
-      arrivalDate: "2022-04-11T00:00:00.000Z",
-      confirmDate: "2022-04-08T00:00:00.000Z",
+      confirmDate: new Date().toISOString(),
+      deliveryDate: new Date().toISOString(),
+      arrivalDate: addDays(new Date(),3).toISOString(),
       totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,
@@ -88,6 +89,12 @@ export default function SaleStepper() {
         setQuery('fail');
       }
     );
+  }
+
+  function addDays(date:Date, days:number) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
 
   function checkOrder() {
