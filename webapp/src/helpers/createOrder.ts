@@ -1,6 +1,3 @@
-import { useSession } from "@inrupt/solid-ui-react";
-import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
 import { CartProduct, ProductOrdered } from "../shared/shareddtypes";
 import calculateCartTotal from "./calculateCartTotal";
 

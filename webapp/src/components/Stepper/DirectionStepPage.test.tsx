@@ -5,7 +5,7 @@ import DirectionStepPage from './DirectionStepPage';
 
 test('user without addresses', async () => {
   // Arrange
-  let getSelectedShippingPrice: (number: number) => void = () => { };
+  let getSelectedShippingPrice: (number: number) => void = () => {};// This is intentional
   let addresses: Address[] = [];
 
   // Act
