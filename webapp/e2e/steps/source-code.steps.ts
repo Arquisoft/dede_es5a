@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
 
-const feature = loadFeature('./features/documentation.feature');
+const feature = loadFeature('./features/source-code.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
@@ -21,22 +21,22 @@ defineFeature(feature, test => {
       .catch(() => {});
   });
 
-  test('User consults project documentation', ({given,when,then}) => {
+  test('User consults project source code', ({given,when,then}) => {
     jest.setTimeout(40000);
 
     given('A user who founds the site', () => {
      
     });
 
-    when('selects the documentation button on the footer', async () => {
+    when('selects the source code button on the footer', async () => {
       await Promise.all([
-        (await page.$x("/html/body/div[1]/div/div[2]/div[3]/div[2]/a")).at(0)?.click(),
+        (await page.$x("/html/body/div[1]/div/div[2]/div[3]/div[3]/a")).at(0)?.click(),
         page.waitForNavigation(),
       ]);
     });
 
-    then('is redirected to the documentation web page', async () => {
-      await expect(page).toMatch('DeDe_es5a')
+    then('is redirected to GitHub', async () => {
+      await expect(page).toMatch('master')
     });
   })
 
