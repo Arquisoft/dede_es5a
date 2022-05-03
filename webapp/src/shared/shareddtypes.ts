@@ -30,7 +30,8 @@ export type Order = {
   shippingPrice: number,
   productsOrdered: Array<ProductOrdered>,
   user_id: string,
-  code: string
+  code: string,
+  _id: string
 }
 
 export type OrderToPlace = {

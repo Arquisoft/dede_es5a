@@ -51,7 +51,7 @@ export async function getOrdersByUser(user_id:string):Promise<Order[]>{
   return response.json()
 }
 
-export async function getShippingPrice(address: Address):Promise<ShippingPriceResponse>{
+export async function getShippingPrice(address: Address, distributionCenterId:String):Promise<ShippingPriceResponse>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -60,7 +60,9 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
         street: address.street, 
         city: address.city, 
         country: address.country,
-        zipcode: address.zipcode})
+        zipcode: address.zipcode,
+        distributionCenterId: distributionCenterId
+      })
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
@@ -68,7 +70,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
 }
 
 
-export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -77,8 +79,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  let result = response.text()
-  return result
+  return response.status
 }
 
 
