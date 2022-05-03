@@ -1,3 +1,4 @@
+import { ImgHTMLAttributes } from 'react';
 import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
@@ -81,7 +82,6 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
 
   return response.status
 }
-
 
 export async function login(login: Login): Promise<boolean> {
   return login.email === 'prueba@prueba.es' && login.password==='123';
