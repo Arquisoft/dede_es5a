@@ -41,42 +41,6 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
-
-//RouterSession
-var routerUsuarioSession = express.Router();
-routerUsuarioSession.use(function(req, res, next) {
-    if(req.session.usuario){
-        next();
-    } else {
-        console.log("Nope");
-        //redireccionar al inicio
-        res.redirect(200,"/home");
-    }
-});
-
-//Aplicar RouterAdministrador
-app.use("/users/logout",routerUsuarioSession);
-
-//RouterAdministrador
-var routerUsuarioAdministrador = express.Router();
-routerUsuarioAdministrador.use(function(req, res, next) {
-    if(req.session.usuario && req.session.usuario.role == "admin"){
-        next();
-    } else {
-        console.log("Nope");
-        //redireccionar al inicio
-        res.redirect(200,"/home");
-    }
-});
-
-//Aplicar RouterAdministrador
-app.use("/products/add",routerUsuarioAdministrador);
-app.use("/products/update",routerUsuarioAdministrador);
-app.use("/products/delete",routerUsuarioAdministrador);
-app.use("/users/add",routerUsuarioAdministrador);
-app.use("/users/update",routerUsuarioAdministrador);
-app.use("/users/delete",routerUsuarioAdministrador);
-
 //Rutas a los controladores
 require("./routes/products_router");
 require("./routes/orders_router");
