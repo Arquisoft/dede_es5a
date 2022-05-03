@@ -41,7 +41,7 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(express.json()); //El servidor trabaja con json
 
-/** QUITAMOS ROUTERS TEMPORALMENTE 
+
 //RouterSession
 var routerUsuarioSession = express.Router();
 routerUsuarioSession.use(function(req, res, next) {
@@ -50,7 +50,7 @@ routerUsuarioSession.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
-        res.redirect(""); //<--------- Probablemente mal
+        res.redirect(200,"/home");
     }
 });
 
@@ -65,7 +65,7 @@ routerUsuarioAdministrador.use(function(req, res, next) {
     } else {
         console.log("Nope");
         //redireccionar al inicio
-        res.redirect(""); //<--------- Probablemente mal
+        res.redirect(200,"/home");
     }
 });
 
@@ -76,12 +76,6 @@ app.use("/products/delete",routerUsuarioAdministrador);
 app.use("/users/add",routerUsuarioAdministrador);
 app.use("/users/update",routerUsuarioAdministrador);
 app.use("/users/delete",routerUsuarioAdministrador);
-*/
-
-//Encriptación de contraseñas
-var crypto = require('crypto');
-app.set('clave','abcdefg');
-app.set('crypto', crypto);
 
 //Rutas a los controladores
 require("./routes/products_router");
