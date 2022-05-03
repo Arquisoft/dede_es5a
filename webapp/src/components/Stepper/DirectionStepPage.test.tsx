@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react'
+import { prettyDOM, render, screen, waitFor } from '@testing-library/react'
+import { RenderResult } from '@testing-library/react-hooks';
 import { Address } from '../../shared/shareddtypes'
 import DirectionStepPage from './DirectionStepPage';
 
@@ -31,11 +32,11 @@ test('user with addresses', async () => {
   // Act
   render(<DirectionStepPage getSelectedShippingPrice={getSelectedShippingPrice} addresses={addresses} />)
 
+  // screen.debug(undefined, 500000)  
   // Assert
   expect(screen.getByText("Addresses")).toBeInTheDocument()
   expect(screen.getByText("Shipping price: Select an address before")).toBeInTheDocument()
   expect(screen.getByText("Calle Valdés Salas 1")).toBeInTheDocument()
   expect(screen.getByText("Oviedo")).toBeInTheDocument()
   expect(screen.getByText("España")).toBeInTheDocument()
-  expect(screen.getByText("33007")).toBeInTheDocument()
 })
