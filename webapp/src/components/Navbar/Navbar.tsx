@@ -24,7 +24,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-const pages = ['Women', 'Men', 'Kids']
+const pages = ['Distribution centers']
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -162,7 +162,7 @@ const NavBar = () => {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
+                  onClick={() => navigate('/distributionCenters')}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   {page}
