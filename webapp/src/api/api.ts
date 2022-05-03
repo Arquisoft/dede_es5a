@@ -51,16 +51,18 @@ export async function getOrdersByUser(user_id:string):Promise<Order[]>{
   return response.json()
 }
 
-export async function getShippingPrice(address: Address):Promise<ShippingPriceResponse>{
+export async function getShippingPrice(address: Address, distributionCenterId:String):Promise<ShippingPriceResponse>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(
-      { number: address.number , 
+      { 
         street: address.street, 
         city: address.city, 
         country: address.country,
-        zipcode: address.zipcode})
+        zipcode: address.zipcode,
+        distributionCenterId: distributionCenterId
+      })
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
@@ -68,8 +70,7 @@ export async function getShippingPrice(address: Address):Promise<ShippingPriceRe
 }
 
 
-export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
-  console.log("Entrando en llamada a place order");
+export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -78,13 +79,8 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<string>{
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
 
-  console.log("Saliendo de la llamada de place order");
-  console.log("Estado " + response.status)
-  let result = response.text()
-  console.log("Texto" + result)
-  return result
+  return response.status
 }
-
 
 export async function login(login: Login): Promise<boolean> {
   return login.email === 'prueba@prueba.es' && login.password==='123';

@@ -4,7 +4,7 @@ import OrderList from './OrderList'
 const Orders = () => {
   return (
     <Container maxWidth="lg">
-      <OrderList />
+      <OrderList orderList={[]}/>
     </Container>
   )
 }

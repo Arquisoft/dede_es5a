@@ -72,7 +72,6 @@ app.post("/orders/price", async (req: Request, res: Response) => {
 
             "distributionCenterId": req.body.distributionCenterId
         }
-
         //Calculamos las coordenadas del pedido en base a la direcci´on del cliente
         var coordinatesClientAddress = await calculateCoordinates(addressInfo);
         //Calculamos la distancia entre las coordenadas de la dirección del cliente y la dirección del centro de distribución
@@ -95,8 +94,8 @@ app.post("/orders/price", async (req: Request, res: Response) => {
 app.post("/orders/add", async (req: Request, res: Response) => {
     try {
         //Todavía podría cambiarse para que la empresa de distribución calcule las fechas  (calculateShipping)
-        var newOrder = new Order.default(new Date(req.body.arrivalDate), new Date(req.body.confirmDate), 
-            new Date(), req.body.totalAmount, req.body.shippingPrice, req.body.productsOrdered, req.body.user_id);   
+        var newOrder = new Order.default(new Date(req.body.arrivalDate), new Date(req.body.confirmDate), new Date(req.body.deliveryDate), 
+             req.body.totalAmount, req.body.shippingPrice, req.body.productsOrdered, req.body.user_id);   
 
         newOrder.setCode() //Se genera el código del pedido
 
@@ -185,9 +184,8 @@ async function calculateCoordinates (addressInfo : any){
  * @returns distance from distribution centre and client location
  */
 async function calculateDistance(coordinatesClientAddress: any, distributionCenterId: any) {
-
     var query = { _id: new mongodb.ObjectId(distributionCenterId) };
-    var centrosDistribucion = await service.findBy("CentroDistrib",query); //Se buscan el centro de distribución
+    var centrosDistribucion = await service.findBy("CentroDistribucion",query); //Se buscan el centro de distribución
     console.log(centrosDistribucion)
 
     var distributionCentreLong : number = centrosDistribucion[0].longitude
