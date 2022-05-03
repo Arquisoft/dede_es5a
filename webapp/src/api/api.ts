@@ -71,7 +71,6 @@ export async function getShippingPrice(address: Address, distributionCenterId:St
 
 
 export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
-  console.log("Entrando en place order")
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -79,8 +78,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
   };
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/add', requestOptions);
-  console.log("Viene update")
-  let response2 = await updateProductsStock(orderToPlace.productsOrdered);
+  await updateProductsStock(orderToPlace.productsOrdered);
 
   return response.status
 }
@@ -94,9 +92,6 @@ async function updateProductsStock(productsOrdered:ProductOrdered[]){
     let posSize = undefined;
 
     for(let i = 0; i < disponibilities.length; i++){
-
-      console.log(typeof((disponibilities[i].size).toString()))
-      console.log(typeof(productOrdered.size))
 
       if((disponibilities[i].size).toString() == productOrdered.size){
         posSize = i;
@@ -116,7 +111,7 @@ async function updateProductsStock(productsOrdered:ProductOrdered[]){
         body: JSON.stringify(productToUpdate)
       };
       
-      let responseUpdate = await fetch(apiEndPoint+'/products/update/' + productOrdered.product_id, requestOptions);
+      await fetch(apiEndPoint+'/products/update/' + productOrdered.product_id, requestOptions);
     }
   });
 }
