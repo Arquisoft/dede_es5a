@@ -19,11 +19,17 @@ export default function createOrder(cartProducts: CartProduct[], shippingPrice: 
     });
 
     return {
-      arrivalDate: "2022-04-11T00:00:00.000Z",
-      confirmDate: "2022-04-08T00:00:00.000Z",
-      totalAmount: orderPrice,
+      confirmDate: new Date().toISOString(),
+      deliveryDate: new Date().toISOString(),
+      arrivalDate: addDays(new Date(),3).toISOString(), totalAmount: orderPrice,
       shippingPrice: shippingPrice,
       productsOrdered: productsOrdered,
       user_id: webId === undefined ? "" : webId, //hay que controlar si el usuario esta logeado o no previamente
     }
+  }
+
+  function addDays(date:Date, days:number) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
   }
