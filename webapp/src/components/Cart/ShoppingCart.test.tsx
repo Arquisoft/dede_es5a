@@ -4,6 +4,8 @@ import { CartContext, CartProvider } from '../../contexts/CartContext'
 import { CartProduct } from '../../shared/shareddtypes'
 import ShoppingCart from './ShoppingCart'
 
+
+
 test('check empty shopping cart renders propertly', async () => {
   // Arrange
 
@@ -27,10 +29,12 @@ test('check no empty shopping cart renders propertly', async () => {
         "image": "hola.jpg",
         "_id": "1"
         }]
+    let dispatch = jest.fn();
 
     // Act
-    render( <CartProvider cartProducts={cartProducts}><ShoppingCart /></CartProvider>)
+    render( <CartContext.Provider value={{cartProducts, dispatch}}><ShoppingCart /></CartContext.Provider>)
   
+    
 
     // Assert
     expect(screen.getByText("My Shopping Cart")).toBeInTheDocument()
