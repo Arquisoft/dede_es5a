@@ -20,7 +20,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PayStepPage from './PayStepPage';
 import { StepperContext } from '../../contexts/StepperContext';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ErrorPage from './Error';
+import ErrorPage from './ErrorPage';
+import createOrder from '../../helpers/createOrder';
+import getBackButton from './auxComponents/getBackButton';
 
 export const saleSteps = ['Review cart', 'Select delivery address', 'Pay'];
 
@@ -48,33 +50,8 @@ export default function SaleStepper() {
     restart();
   }, [location]);
 
-  function createOrder() {
-
-    let orderPrice: number = calculateCartTotal(cartProducts);
-
-    let productsOrdered: ProductOrdered[] = [];
-
-    cartProducts.forEach((product: CartProduct) => {
-      productsOrdered.push({
-        product_id: product._id,
-        quantity: product.quantity,
-        size: product.size
-      })
-    });
-    return {
-      confirmDate: new Date().toISOString(),
-      deliveryDate: new Date().toISOString(),
-      arrivalDate: addDays(new Date(),3).toISOString(),
-      totalAmount: orderPrice,
-      shippingPrice: shippingPrice,
-      productsOrdered: productsOrdered,
-      user_id: session.info.webId === undefined ? "" : session.info.webId, //hay que controlar si el usuario esta logeado o no previamente
-    }
-
-  }
-
   const handleClearCart = async () => {
-    let orderToPlace: OrderToPlace = createOrder();
+    let orderToPlace: OrderToPlace = createOrder(cartProducts,shippingPrice,session.info.webId);
     await placeOrder(orderToPlace).then(res => {
       if (res !== 400) {
         setQuery('success');
@@ -90,20 +67,14 @@ export default function SaleStepper() {
       }
     );
   }
-
-  function addDays(date:Date, days:number) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
+  
   function checkOrder() {
     // Que exista productos
-    if (cartProducts.length == 0) {
+    if (cartProducts.length === 0) {
       return false;
     }
     // Que tenga una direccion seleccionada
-    if (shippingPrice == 0) {
+    if (shippingPrice === 0) {
       return false
     }
     return true;
@@ -199,37 +170,15 @@ export default function SaleStepper() {
   function checkNextCondition() {
     switch (activeStep) {
       case 0:
-        return cartProducts.length == 0;
+        return cartProducts.length === 0;
       case 1:
-        return addresses.length == 0;
+        return addresses.length === 0;
       default:
         return false;
     }
   }
 
-  /**
-   * Only shows back button where we are not in the first step
-   */
-  function getBackButton() {
-    if (activeStep !== 0) {
-      return (
-        <Button
-          color="inherit"
-          onClick={handleBack}
-          sx={{ mr: 1 }}
-          startIcon={<ArrowBackIcon />}
-        >
-          Back
-        </Button>)
-    } else {
-      return (
-        <Button
-          color="inherit"
-          sx={{ mr: 1 }}
-          disabled>
-        </Button>)
-    }
-  }
+
 
   function getNextButton() {
     if (activeStep === saleSteps.length - 1) {
@@ -269,7 +218,7 @@ export default function SaleStepper() {
           :
           (
             <React.Fragment>
-              {getBackButton()}
+              {getBackButton(activeStep, handleBack)}
               {choosePage()}
               {getNextButton()}
             </React.Fragment>

@@ -28,6 +28,12 @@
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.2"
   },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "src/reportWebVitals.ts",
+      "src/index.tsx",
+      "src/components/Stepper/customisedComponents/*"
+    ]},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
