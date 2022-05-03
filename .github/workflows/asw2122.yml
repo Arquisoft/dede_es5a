@@ -3,7 +3,7 @@ name: CI for ASW2122
 on:
   push:
     branches:
-      - heroku-deploy
+      - heroku_deploy
 
 jobs:
   unit-test-webapp:
