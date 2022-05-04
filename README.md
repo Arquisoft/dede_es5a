@@ -44,7 +44,9 @@ En caso de que alguno de los servicios no esté disponile. Póngase en contacto 
 Se pueden ver los resultados de los tests de carga en la wiki del proyecto. Haciendo click [aquí](https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling).
 También están disponibles los resultados de las dos prueas realizadas en los siguientes enlaces.
 - [P1](https://uo276406.github.io/ArquisocksLoadTests/p1-20220429155339720/)
+- [P1 (sobre heroku)](https://uo276406.github.io/ArquisocksLoadTests/p1-20220504154331953/)
 - [P2](https://uo276406.github.io/ArquisocksLoadTests/p2-20220429163850305/)
+- [P2 (sobre heroku)]()
 
 ## Guia de inicio rápido 🤔
 
