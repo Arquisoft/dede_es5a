@@ -71,7 +71,7 @@ export async function placeOrder(orderToPlace:OrderToPlace):Promise<number>{
 async function updateProductsStock(productsOrdered:ProductOrdered[]){
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
 
-  productsOrdered.forEach(async productOrdered => {
+  for (const productOrdered of productsOrdered) {
     let product = await getProductById(productOrdered.product_id);
     let disponibilities = product[0].disponibility;
     let posSize = undefined;
@@ -98,7 +98,7 @@ async function updateProductsStock(productsOrdered:ProductOrdered[]){
       
       await fetch(apiEndPoint+'/products/update/' + productOrdered.product_id, requestOptions);
     }
-  });
+  }
 }
 
 
