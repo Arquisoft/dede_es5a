@@ -1,4 +1,4 @@
-import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace, CartProduct, ProductOrdered } from '../shared/shareddtypes';
+import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace, ProductOrdered } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 export async function getUsers():Promise<User[]>{
