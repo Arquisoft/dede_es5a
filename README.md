@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_dede_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_dede_es5a)
 [![codecov](https://codecov.io/gh/Arquisoft/dede_es5a/branch/master/graph/badge.svg?token=bS9nkjfy5q)](https://codecov.io/gh/Arquisoft/dede_es5a)
 
-### Tecnologías utilizadas:
+### Tecnologías utilizadas: 🕵️
 
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
