@@ -1,4 +1,4 @@
-import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace } from '../shared/shareddtypes';
+import { User, Login, Order, Address, ShippingPriceResponse, OrderToPlace, CartProduct } from '../shared/shareddtypes';
 import {Product} from '../shared/shareddtypes';
 
 // export async function addUser(user:User):Promise<boolean>{
@@ -67,6 +67,45 @@ export async function getShippingPrice(address: Address, distributionCenterId:St
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
   let response = await fetch(apiEndPoint+'/orders/price', requestOptions);
   return response.json()
+}
+
+export async function getCart():Promise<CartProduct[]>{
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/users/session');
+  //The objects returned by the api are directly convertible to Product objects
+  
+  let result = await response.json();
+  console.log("Recuperando carrito");
+  console.log(result);
+  if(result.cart == undefined){
+    return new Array<CartProduct>();
+  } else{
+    return result.cart;
+  }
+}
+
+export async function addCart(product:CartProduct):Promise<string>{
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(
+    {
+      name: 'nombre',
+      price: 34,
+      size: '37',
+      quantity: 5,
+      image: 'hola.jpg',
+      _id: '1'
+    })
+  };
+  const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000'
+  let response = await fetch(apiEndPoint+'/products/addCart', requestOptions);
+  //The objects returned by the api are directly convertible to Product objects
+  
+  let result = await response.json();
+  console.log("A;adir carrito");
+  console.log(result);
+  return result;
 }
 
 

@@ -1,3 +1,4 @@
+import { addCart } from "../api/api";
 import { CartReducerAction, CartProduct } from "../shared/shareddtypes";
 
 
@@ -7,6 +8,9 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
         return item._id === action.payload._id && item.size === action.payload.size
     }
 
+    const refreshOrderList = async () => {
+        await addCart(action.payload);
+    }
 
     switch (action.type) {
         case 'ADD':
@@ -24,6 +28,7 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
                     return item;
                 })
             } else {
+                refreshOrderList();
                 const {name, price, size, image, _id} = action.payload
                 return [...state, { name, price, size, quantity: 1, image, _id }]
             }
@@ -43,6 +48,8 @@ const cartReducer = (state: CartProduct[], action: CartReducerAction) => {
         default:
             return state;
     }
+
+
 }
 
 export default cartReducer;

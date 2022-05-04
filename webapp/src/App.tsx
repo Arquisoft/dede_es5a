@@ -13,6 +13,11 @@ import SaleStepper from './components/Stepper/SaleStepper'
 import { StepperProvider } from './contexts/StepperContext'
 
 function App(): JSX.Element {
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener("onload", (event) => {console.log("hola")});
+  }
+
   return (
     <div className="App">
       <SessionProvider sessionId="login">

@@ -30,6 +30,8 @@ app.get("/products", async (_req: Request, res: Response) => {
         image: req.body.image,
         _id: req.body._id,
     }
+    console.log("llego la peticion")
+    console.log(newProduct)
     
     if(req.session.cart == undefined)
         req.session.cart = new Array<any>();
