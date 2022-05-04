@@ -48,7 +48,7 @@ rectangle Website
 }
 }
 
-node "Web server (Heroku)" as webserver{
+node "Web server (Heroku and Azure)" as webserver{
 component "<<execution enviroment>> \n DeDe_FrontEnd"{
 node WebApp
 }
@@ -76,7 +76,7 @@ WebApp --> solid : use
 @enduml
 ----
 Motivation::
-The user will access our app through a website which will communicate with the Web server hosted by Heroku. Then, the Webapp will use the RestAPI to respond the user's requests. The RestAPI will use both MongoDB and the Solid pod from the user in order to correctly respond the WebApp request.
+The user will access our app through a website which will communicate with the Web server hosted by Heroku. Also, the user can access our app hosted in Azure. Then, the Webapp will use the RestAPI to respond the user's requests. The RestAPI will use both MongoDB and the Solid pod from the user in order to correctly respond the WebApp request.
 
 Quality and/or performance features::
 The performance will depend mostly on the user's internet connection and device hardware, since most of the infraestructure depends on external services (MongoDB, Inrupt, etc.). However, we can increase the performance of the application focusing on writing better and most efficient code.
