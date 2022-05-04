@@ -120,19 +120,11 @@ Thanks to the user's interactions with the application, usability problems can b
 
 Usability problems make the application difficult to use and understand for users. So, it is important to avoid or reduce it.
 
-[options="header"]
-.Detected usability problems
-|===
-|Detected problem | Solution
-|===
-
 ==== Accessibility
 There are different standards to follow to achieve accessibility. One of the standards is WCAG 2.0 (Level AA) which is the most used worldwide. Therefore, it is the one used in this application. 
 
 Tools to use are:
 
-* http://www.tawdis.net/[TAW]
-* http://wave.webaim.org/[WAVE]
 * https://achecker.achecks.ca/checker/index.php[ACHECKER]
 * https://color.mediaandme.be/es[Color Test]
 
@@ -150,8 +142,6 @@ Security is another key aspect to consider. Some measures to ensure security are
 
 * The application does not store private data of the user. To obtain it, the application asks the user for permission to access the Solid POD where the data is stored at the time it is needed. In this way, control of the user's own data is guaranteed. 
 
-* _<more>_
-
 === Availability
 To achieve high availability:
 
@@ -164,12 +154,7 @@ To achieve high availability:
 === Efficiency
 Try to have a good code quality for better performance. We will develop many load tests which are going to simulate the state of the application as it were deployed and used by many users. There are many tools to prove that. Gatling will be the reference tool to get information of the behaviour of the app. Results will be shown in the wiki which is available in our repository in GitHub. You can follow this https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling[link]
 
-=== Development concept 
-==== Build, Test, Deploy
-_<can be added later>_
-
 === "Under the hood"
-
 ==== Persistency
 The database management system used is MongoDB and the main reason is the easiness of data passing between the database and the application based on node.js. Another reason is the feature it offers: flexible schema. 
 
@@ -180,18 +165,8 @@ A node.js module, express-session, is used to handle the application session. Th
 * The session of this module is stored on the server, therefore it is more secure. 
 
 === Operation concepts
-
-==== Administration
-_<can be added later>_
-
-==== Management
-_<can be added later >_
-
 ==== Logging
 Users just need to log in to any Solid Pod provider to use the app. There are several advantages:
 
 * The user does not have to register an account in the application. So he does not have to remember the password.
 * Developers do not have to deal with passwords. 
-
-==== Monitoring
-_<can be added later>_
