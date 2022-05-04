@@ -27,7 +27,7 @@ Refer to details in the following sections.
 .Technology decisions
 |===
 |Decision|Reason
-|MongoDB as DBMS|MongoDB is a non-relational model that is a good choice for this project. However, this decision may change in the future.
+|MongoDB as DBMS|MongoDB is a non-relational model that is a good choice for this project.
 |Docker for application deployment|Docker is chosen due to its popularity and there is a lot of information about this technology.
 |Visual Studio Code, WebStorm as IDE or a text editor|At the moment, everyone can use any IDE that supports Typescript and React. Or even, it is possible to use a text editor instead of an IDE. Because the project continues working regardless of the used tool. However, an agreement may be fine to avoid potential problems.
 |===

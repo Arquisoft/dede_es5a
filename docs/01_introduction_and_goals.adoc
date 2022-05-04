@@ -32,7 +32,7 @@ package ArquiSocks {
 }
 
 database Database
-cloud SolidPod
+database SolidPod
 cloud MapsAPI
 
 client --> viewProducts
@@ -83,7 +83,7 @@ A table with quality goals and concrete scenarios, ordered by priorities
 |===
 |Nº|Quality|Motivation
 
-|1|Confidentiality|The application will respect client's privacy. Users are going to manage their personal information stored in Solid Pods.
+|1|Confidentiality|The application will respect client's privacy. Users are going to retrive their personal information stored in Solid Pods.
 |2|Availability|The application will be available the majority of time, specially at client reviews. System availability will always be above 97%, with about 15 hours of maintenance every three weeks.
 |3|Usability|The GUI will be easy to use for any user, especially non-technical users. We will do usability tests with different user profiles.
 |4|Accesibility| Provide equal access and opportunities to people. Increase the number of customers using the application.
