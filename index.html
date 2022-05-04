@@ -487,9 +487,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_security">8.5. Security</a></li>
 <li><a href="#_availability">8.6. Availability</a></li>
 <li><a href="#_efficiency">8.7. Efficiency</a></li>
-<li><a href="#_development_concept">8.8. Development concept</a></li>
-<li><a href="#_under_the_hood">8.9. "Under the hood"</a></li>
-<li><a href="#_operation_concepts">8.10. Operation concepts</a></li>
+<li><a href="#_under_the_hood">8.8. "Under the hood"</a></li>
+<li><a href="#_operation_concepts">8.9. Operation concepts</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
@@ -639,7 +638,7 @@ If you as an architect do not know how the quality of your work will be judged â
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Confidentiality</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application will respect client&#8217;s privacy. Users are going to manage their personal information stored in Solid Pods.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application will respect client&#8217;s privacy. Users are going to retrive their personal information stored in Solid Pods.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
@@ -1000,7 +999,7 @@ Refer to details in the following sections.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB as DBMS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB is a non-relational model that is a good choice for this project. However, this decision may change in the future.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB is a non-relational model that is a good choice for this project.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Docker for application deployment</p></td>
@@ -1556,7 +1555,7 @@ when your infrastructure is more complex.</p>
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p>The user will access our app through a website which will communicate with the Web server hosted by Heroku. Then, the Webapp will use the RestAPI to respond the user&#8217;s requests. The RestAPI will use both MongoDB and the Solid pod from the user in order to correctly respond the WebApp request.</p>
+<p>The user will access our app through a website which will communicate with the Web server hosted by Heroku. Also, the user can access our app hosted in Azure. Then, the Webapp will use the RestAPI to respond the user&#8217;s requests. The RestAPI will use both MongoDB and the Solid pod from the user in order to correctly respond the WebApp request.</p>
 </dd>
 <dt class="hdlist1">Quality and/or performance features</dt>
 <dd>
@@ -1873,19 +1872,6 @@ on this list.</p>
 <div class="paragraph">
 <p>Usability problems make the application difficult to use and understand for users. So, it is important to avoid or reduce it.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. Detected usability problems</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Detected problem</th>
-<th class="tableblock halign-left valign-top">Solution</th>
-</tr>
-</thead>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_accessibility">8.4.2. Accessibility</h4>
@@ -1897,12 +1883,6 @@ on this list.</p>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p><a href="http://www.tawdis.net/">TAW</a></p>
-</li>
-<li>
-<p><a href="http://wave.webaim.org/">WAVE</a></p>
-</li>
 <li>
 <p><a href="https://achecker.achecks.ca/checker/index.php">ACHECKER</a></p>
 </li>
@@ -1938,9 +1918,6 @@ on this list.</p>
 <li>
 <p>The application does not store private data of the user. To obtain it, the application asks the user for permission to access the Solid POD where the data is stored at the time it is needed. In this way, control of the user&#8217;s own data is guaranteed.</p>
 </li>
-<li>
-<p><em>&lt;more&gt;</em></p>
-</li>
 </ul>
 </div>
 </div>
@@ -1970,24 +1947,15 @@ on this list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_development_concept">8.8. Development concept</h3>
+<h3 id="_under_the_hood">8.8. "Under the hood"</h3>
 <div class="sect3">
-<h4 id="_build_test_deploy">8.8.1. Build, Test, Deploy</h4>
-<div class="paragraph">
-<p><em>&lt;can be added later&gt;</em></p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_under_the_hood">8.9. "Under the hood"</h3>
-<div class="sect3">
-<h4 id="_persistency">8.9.1. Persistency</h4>
+<h4 id="_persistency">8.8.1. Persistency</h4>
 <div class="paragraph">
 <p>The database management system used is MongoDB and the main reason is the easiness of data passing between the database and the application based on node.js. Another reason is the feature it offers: flexible schema.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_session_handling">8.9.2. Session handling</h4>
+<h4 id="_session_handling">8.8.2. Session handling</h4>
 <div class="paragraph">
 <p>A node.js module, express-session, is used to handle the application session. There are many reasons:</p>
 </div>
@@ -2004,21 +1972,9 @@ on this list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operation_concepts">8.10. Operation concepts</h3>
+<h3 id="_operation_concepts">8.9. Operation concepts</h3>
 <div class="sect3">
-<h4 id="_administration">8.10.1. Administration</h4>
-<div class="paragraph">
-<p><em>&lt;can be added later&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_management">8.10.2. Management</h4>
-<div class="paragraph">
-<p><em>&lt;can be added later &gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_logging">8.10.3. Logging</h4>
+<h4 id="_logging">8.9.1. Logging</h4>
 <div class="paragraph">
 <p>Users just need to log in to any Solid Pod provider to use the app. There are several advantages:</p>
 </div>
@@ -2031,12 +1987,6 @@ on this list.</p>
 <p>Developers do not have to deal with passwords.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_monitoring">8.10.4. Monitoring</h4>
-<div class="paragraph">
-<p><em>&lt;can be added later&gt;</em></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -2210,7 +2160,7 @@ concrete and measurable.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/mindmap.svg" alt="mindmap" width="373" height="425">
+<img src="./images/mindmap.svg" alt="mindmap" width="369" height="425">
 </div>
 </div>
 </div>
@@ -2273,7 +2223,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QS.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Confidenciality</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users' personal data  will be stored in Solid pods.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User&#8217;s personal data is retrived from their Solid pod.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 </tr>
@@ -2308,7 +2258,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">QS.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Accesibility</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The web application must pass the AA level in tawdis.net</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The web application must pass the AA level in Achecker</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
@@ -2348,7 +2298,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. List of risks</caption>
+<caption class="title">Table 9. List of risks</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -2409,7 +2359,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. List of technical debts</caption>
+<caption class="title">Table 10. List of technical debts</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -2576,7 +2526,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <td class="tableblock halign-left valign-top"><p class="tableblock">The process of incorporating any changes in a branch to another branch.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.tawdis.net/">tawdis.net</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://achecker.achecks.ca/checker">Achecker</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Webpage that allow as to check webpage accessibility using level AA</p></td>
 </tr>
 <tr>
@@ -2654,7 +2604,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-08 17:30:20 +0100
+Last updated 2022-02-22 23:59:29 +0100
 </div>
 </div>
 </body>
