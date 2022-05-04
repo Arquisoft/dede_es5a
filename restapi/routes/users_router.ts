@@ -4,7 +4,6 @@ import * as mongodb  from "mongodb";
 import * as service from "../services/DB_manager";
 import sanitizeHtml from "sanitize-html";
 import User from "../models/user";
-import Product from "../models/product";
 var app = require("../server");
 
 // GET (todos los productos)
