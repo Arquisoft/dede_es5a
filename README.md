@@ -18,27 +18,27 @@
  
 
 
-## Miembros del equipo
+## Miembros del equipo 🧑‍🤝‍🧑
 Diego González Suárez - UO276406  
 Alonso Álvarez Díaz-Ordóñez - UO270262  
 Sofía Yiyu Qiu - UO277360  
 Gaspar Pisa Eyaralar - UO250825  
 María Urrutia Fernández - UO251282
 
-## Despliegue
+## Despliegue 🚀
 Nuestra propuesta de tienda virtual está desplegada tanto en Azure como en Heroku con el objetivo de incrementar la disponibilidad de la misma. Los enlaces son los siguientes:
 - [Heroku](https://dede-es5a.herokuapp.com/)
 - [Azure](http://20.228.137.74:3000)  
 
 En caso de que alguno de los servicios no esté disponile. Póngase en contacto con nosotros y lo solucionaremos :)
 
-## Tests de carga usando gatling
+## Tests de carga usando gatling 😮‍💨
 Se pueden ver los resultados de los tests de carga en la wiki del proyecto. Haciendo click [aquí](https://github.com/Arquisoft/dede_es5a/wiki/Tests-de-carga-usando-gatling).
 También están disponibles los resultados de las dos prueas realizadas en los siguientes enlaces.
 - [P1](https://uo276406.github.io/ArquisocksLoadTests/p1-20220429155339720/)
 - [P2](https://uo276406.github.io/ArquisocksLoadTests/p2-20220429163850305/)
 
-## Guia de inicio rápido
+## Guia de inicio rápido 🤔
 
 <mark>Si tienes instalados node.js y npm, asegurate de actualizarlos antes de intentar construir las imagenes</mark>
 
@@ -71,7 +71,7 @@ npm start
 
 Deberias ser capaz de acceder a la aplicación en [http://localhost:3000](http://localhost:3000).
 
-## Mas información
+## Mas información 📝
 Encontrarás más información sobre el repositorio en los otros archivos README:
 - Documentación: https://github.com/Arquisoft/dede_es5a/tree/master/docs
 - Webapp: https://github.com/Arquisoft/dede_es5a/tree/master/webapp
