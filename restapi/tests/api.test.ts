@@ -5,6 +5,7 @@ var app = require("../server");
 var server = require("../server");
 
 beforeAll(async () => {
+    jest.setTimeout(30000);
 });
 
 afterAll(async () => {
