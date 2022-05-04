@@ -1,4 +1,3 @@
-import { Container } from '@mui/material';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom';
 import { StepperContext } from '../../contexts/StepperContext';
@@ -31,10 +30,9 @@ jest.mock('../../helpers/userAddress', ()=>(
       ]
     )))
   
-const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
    ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
+  useNavigate: () => jest.fn(),
   useLocation: () => {} // This is intentional
 }));
 
@@ -84,7 +82,6 @@ test('go third page of stepper', async () => {
     expect(screen.getByText("Shopping Cart")).not.toBeInTheDocument()
     expect(screen.getByText("Addresses")).not.toBeInTheDocument()
     expect(screen.getByText("Simulating the filling of payment data")).toBeInTheDocument()
-    
   })
 
   let next3Button = screen.getByText(/Pay/i)
@@ -119,18 +116,13 @@ test('second page of stepper renders correctly', async () => {
     </StepperContext.Provider>)
 
   // Assert
-  waitFor(() => {
-    expect(screen.getByText("Pay")).toBeInTheDocument()
-    expect(screen.getByText("Shopping Cart")).toBeInTheDocument()
-    expect(screen.getByText("Addresses")).not.toBeInTheDocument()
-    expect(screen.getByText("Simulating the filling of payment data")).not.toBeInTheDocument()
-    expect(screen.getByText("DirectionsPage")).toBeInTheDocument()
-  })
+  expect(screen.getByText("Pay")).toBeInTheDocument();
+  expect(screen.getByText("DirectionsPage")).toBeInTheDocument();
 })
 
 test('third page of stepper renders correctly', async () => {
   // Arrange
-  let activeStep = 1;
+  let activeStep = 2;
   let stepperDispatch = jest.fn();
   let handleNext = jest.fn();
   let handleBack = jest.fn();
@@ -148,13 +140,8 @@ test('third page of stepper renders correctly', async () => {
     </StepperContext.Provider>)
 
   // Assert
-  waitFor(() => {
-    expect(screen.getByText("Pay")).toBeInTheDocument()
-    expect(screen.getByText("Shopping Cart")).toBeInTheDocument()
-    expect(screen.getByText("Addresses")).not.toBeInTheDocument()
-    expect(screen.getByText("Simulating the filling of payment data")).not.toBeInTheDocument()
-    expect(screen.getByText("PayPage")).toBeInTheDocument()
-  })
+  expect(screen.getAllByText("Pay")).toHaveLength(2);
+  expect(screen.getByText("PayPage")).toBeInTheDocument();
 })
 
 test('error page of stepper renders correctly', async () => {
@@ -177,9 +164,7 @@ test('error page of stepper renders correctly', async () => {
     </StepperContext.Provider>)
 
   // Assert
-  waitFor(() => {
-    expect(screen.getByText("Oops! Something went wrong. Retry again.")).toBeInTheDocument()
-  })
+  expect(screen.getByText("Error")).toBeInTheDocument();
 })
 
 
