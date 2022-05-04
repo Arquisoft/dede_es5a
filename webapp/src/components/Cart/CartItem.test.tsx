@@ -1,7 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import React from 'react';
-import { CartContext, CartProvider } from '../../contexts/CartContext';
-import cartReducer from '../../reducers/cartReducer';
+import { CartProvider } from '../../contexts/CartContext';
 import { CartProduct } from '../../shared/shareddtypes'
 import CartItem from './CartItem'
 
