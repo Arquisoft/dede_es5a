@@ -5,6 +5,7 @@ const feature = loadFeature('./features/signin.feature')
 
 let page: puppeteer.Page
 let browser: puppeteer.Browser
+jest.setTimeout(400000)
 
 defineFeature(feature, (test) => {
   beforeAll(async () => {
@@ -16,6 +17,7 @@ defineFeature(feature, (test) => {
     await page
       .goto('https://dede-es5a.herokuapp.com/', {
         waitUntil: 'networkidle0',
+        timeout: 0
       })
       .catch(() => {
         // This is intentional
@@ -23,8 +25,6 @@ defineFeature(feature, (test) => {
   })
 
   test('User goes to sign in page', ({ given, when, then }) => {
-    jest.setTimeout(400000)
-
     given('A user who founds the site', () => {
       // This is intentional
     })
@@ -35,7 +35,7 @@ defineFeature(feature, (test) => {
           .at(0)
           ?.click(),
         (await page.$x('/html/body/div[2]/div[3]/ul')).at(0)?.click(),
-        page.waitForNavigation(),
+        page.waitForNavigation()
       ])
     })
 
