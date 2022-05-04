@@ -48,6 +48,10 @@ También están disponibles los resultados de las dos prueas realizadas en los s
 - [P2](https://uo276406.github.io/ArquisocksLoadTests/p2-20220429163850305/)
 - [P2 (sobre heroku)](https://uo276406.github.io/ArquisocksLoadTests/p2-20220504160234344)
 
+## Tests de accesibilidad 👌
+Se pueden ver los resultados de los tests de carga en la [wiki](https://github.com/Arquisoft/dede_es5a/wiki/Test-de-accesibilidad-con-Achecker-%F0%9F%87%AA%F0%9F%87%BA) del proyecto. Hemos conseguido el mínimo 🇪🇺 de AA utilizando la herramienta AChecker.
+
+
 ## Guia de inicio rápido 🤔
 
 <mark>Si tienes instalados node.js y npm, asegurate de actualizarlos antes de intentar construir las imagenes</mark>
