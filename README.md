@@ -4,13 +4,19 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_dede_es5a&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_dede_es5a)
 [![codecov](https://codecov.io/gh/Arquisoft/dede_es5a/branch/master/graph/badge.svg?token=bS9nkjfy5q)](https://codecov.io/gh/Arquisoft/dede_es5a)
 
+### Tecnologías utilizadas:
+
 <p float="left">
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
 <img src="https://miro.medium.com/max/1200/0*RbmfNyhuBb8G3LWh.png" height="100">
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
-Este proyecto es un ejemplo basico de un sitio web utilizando **React** con **Typescript** y un endpoint usando **NodeJS** con **express**
+### ArquiSocks: la mayor variedad de calcetines. Disponible tanto en Heroku como en Azure. Se puede acceder tanto en este [readme](https://github.com/Arquisoft/dede_es5a/edit/master/README.md#despliegue) a los enlaces web como en la sección about del repositorio del proyecto. 😉 
+
+![image](https://user-images.githubusercontent.com/79643267/166711671-a928fcb4-143a-4589-8df8-3c88000b502f.png)
+ 
+
 
 ## Miembros del equipo
 Diego González Suárez - UO276406  
