@@ -46,7 +46,7 @@ También están disponibles los resultados de las dos prueas realizadas en los s
 - [P1](https://uo276406.github.io/ArquisocksLoadTests/p1-20220429155339720/)
 - [P1 (sobre heroku)](https://uo276406.github.io/ArquisocksLoadTests/p1-20220504154331953/)
 - [P2](https://uo276406.github.io/ArquisocksLoadTests/p2-20220429163850305/)
-- [P2 (sobre heroku)]()
+- [P2 (sobre heroku)](https://uo276406.github.io/ArquisocksLoadTests/p2-20220504160234344)
 
 ## Guia de inicio rápido 🤔
 
