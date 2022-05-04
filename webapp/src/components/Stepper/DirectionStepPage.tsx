@@ -55,29 +55,27 @@ export default function DirectionStepPage(props: Props) {
   });
   
   return (
-    <Container>
+    <Container style={{ height: 600}}>
       <Box sx={{ mt: '1.25em', mb: '1.25em' }}>
-      <Typography align="center" variant="h6" component="h6" style={{ fontWeight: 600 }}>
+        <Typography align="center" variant="h6" component="h6" style={{ fontWeight: 600 }}>
           Shipping price: {firstRender.current ? 'Select an address before': shippingPrice.toFixed(2) + ' €'} 
         </Typography>
-       
       </Box>
-
-      <Box style={{ height: 400, width: '100%' }}>
+      <Box style={{ height:400, width: '100%'}}>
         <Typography align="center" variant="h5" component="h5">
           Addresses
         </Typography>
         {props.addresses.length == 0? <p>You don't have any address in pod.</p> : null}
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          onSelectionModelChange={(ids) => {
-            const selectedIDs = new Set(ids);
-            setSelectedRows(rows.filter((row) => selectedIDs.has(row.id)));
-          }}
-        />
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            onSelectionModelChange={(ids) => {
+              const selectedIDs = new Set(ids);
+              setSelectedRows(rows.filter((row) => selectedIDs.has(row.id)));
+            }}
+          />
       </Box>
     </Container>
 
