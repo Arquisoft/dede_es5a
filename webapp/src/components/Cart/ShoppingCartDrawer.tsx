@@ -40,7 +40,6 @@ export default function ShoppingCartDrawer() {
   const [openDialog, setOpenDialog] = React.useState(false);
 
   const handleProcessOrderBtn = () =>{
-    
     if(session.info.isLoggedIn){
       toggleDrawer(false)();
       navigate('/saleprocess');
@@ -92,7 +91,7 @@ export default function ShoppingCartDrawer() {
             aria-describedby="alert-dialog-description"
           >
             <DialogTitle id="alert-dialog-title">
-              {"To continue"}
+              To continue
             </DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
