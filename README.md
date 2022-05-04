@@ -12,7 +12,7 @@
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
-### ArquiSocks: la mayor variedad de calcetines. Disponible tanto en Heroku como en Azure. Se puede acceder tanto en este [readme](https://github.com/Arquisoft/dede_es5a/edit/master/README.md#despliegue) a los enlaces web como en la sección about del repositorio del proyecto. 😉 
+### ArquiSocks 🧦: la mayor variedad de calcetines. Disponible tanto en Heroku como en Azure. Se puede acceder en este readme un poquito más abajo a los enlaces web y en la sección about del repositorio del proyecto. 😉 
 
 ![image](https://user-images.githubusercontent.com/79643267/166711671-a928fcb4-143a-4589-8df8-3c88000b502f.png)
  
