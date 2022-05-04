@@ -20,6 +20,8 @@ The following diagram represents the functional requirements of the application.
 
 actor Client as client
 
+left to right direction
+
 package ArquiSocks {
   usecase "Add to cart" as addToCart
   usecase "Place order" as placeOrder
@@ -29,7 +31,7 @@ package ArquiSocks {
   usecase "View products" as viewProducts
 }
 
-cloud Database
+database Database
 cloud SolidPod
 cloud MapsAPI
 
