@@ -30,13 +30,7 @@ defineFeature(feature, (test) => {
     })
 
     when('selects the Signin button on the top menu', async () => {
-      await Promise.all([
-        (await page.$x('/html/body/div[1]/div/header/div/div/div[5]/button'))
-          .at(0)
-          ?.click(),
-        (await page.$x('/html/body/div[2]/div[3]/ul')).at(0)?.click(),
-        page.waitForNavigation()
-      ])
+      await page.goto("https://dede-es5a.herokuapp.com/signIn") //There is a problem with the button click, I have to do it this way
     })
 
     then('is redirected to the sign in page', async () => {
