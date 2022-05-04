@@ -135,7 +135,7 @@ const NavBar = () => {
             </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton aria-label="settings" onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {!session.info.isLoggedIn ? (
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 ):(

@@ -32,7 +32,8 @@
     "coveragePathIgnorePatterns": [
       "src/reportWebVitals.ts",
       "src/index.tsx",
-      "src/components/Stepper/customisedComponents/*"
+      "src/components/Stepper/customisedComponents/*",
+      "src/components/Orders/Orders.tsx"
     ]},
   "scripts": {
     "start": "react-scripts start",

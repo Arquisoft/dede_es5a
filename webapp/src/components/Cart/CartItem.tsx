@@ -72,13 +72,14 @@ export default function CartItem({ product }: Props) {
           <Typography variant="subtitle2">Size {product.size}</Typography>
         </Box>
         <Box gridArea="1/11/1/13">
-          <Button onClick={() => handleRemoveAllFromCart(product)}>
+          <Button aria-label="removeAll" onClick={() => handleRemoveAllFromCart(product)}>
             <DeleteIcon></DeleteIcon>
           </Button>
         </Box>
         <Box gridArea="4/8/6/11">
           <ButtonGroup>
             <Button
+              aria-label="remove"
               variant="contained"
               onClick={() => handleRemoveFromCart(product)}
             >
@@ -88,6 +89,7 @@ export default function CartItem({ product }: Props) {
               {product.quantity}
             </Button>
             <Button
+              aria-label="add"
               variant="contained"
               onClick={() => handleAddToCart(product)}
             >
